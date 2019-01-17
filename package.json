@@ -1,0 +1,36 @@
+{
+  "name": "@pown/recon",
+  "version": "2.0.0",
+  "description": "Pownage guaranteed",
+  "main": "lib/index.js",
+  "scripts": {
+    "recon": "POWN_ROOT=. pown-cli recon",
+    "text": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pownjs/pown-recon.git"
+  },
+  "keywords": [
+    "exploit",
+    "framework"
+  ],
+  "author": "pdp <pdp@gnucitizen.org>",
+  "contributors": [],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pownjs/pown-recon/issues"
+  },
+  "homepage": "https://github.com/pownjs/pown-recon#readme",
+  "devDependencies": {
+    "@pown/cli": "^2.0.6"
+  },
+  "dependencies": {
+    "@pown/request": "^2.0.1"
+  },
+  "pown": {
+    "commands": [
+      "lib/command.js"
+    ]
+  }
+}
