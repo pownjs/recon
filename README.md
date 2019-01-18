@@ -27,12 +27,12 @@ $ ./node_modules/.bin/pown-cli recon
 ## Usage
 
 ```
-pown recon <subcommand>
+pown recon [options] <command>
 
 Target recon
 
 Commands:
-  pown-cli recon transform <transform>  Perform inline transformation
+  pown recon transform <transform>  Perform inline transformation
                                                                     [aliases: t]
 
 Options:
@@ -47,27 +47,33 @@ pown recon transform <transform>
 Perform inline transformation
 
 Commands:
-  pown-cli recon transform githublistrepos  List the first 100 GitHub
+  pown-cli recon t hibpreport [options]     Obtain haveibeenpwned.com breach
+  <nodes...>                                report.[aliases: hibp_report, hibpr]
+  pown-cli recon t crtshdomainreport        Obtain crt.sh domain report which
+  [options] <nodes...>                      helps enumerating potential target
+                                            subdomains.
+                                         [aliases: crtsh_domain_report, crtshdr]
+  pown-cli recon t githublistrepos          List the first 100 GitHub
   [options] <nodes...>                      repositories
                                               [aliases: github_list_repos, ghlr]
-  pown-cli recon transform                  List the first 100 GitHub members in
-  githublistmembers [options] <nodes...>    org
+  pown-cli recon t githublistmembers        List the first 100 GitHub members in
+  [options] <nodes...>                      org
                                             [aliases: github_list_members, ghlm]
-  pown-cli recon transform                  Query CloudFlare DNS API
-  cloudflarednsquery [options] <nodes...>  [aliases: cloudflare_dns_query, cfdq]
-  pown-cli recon transform                  Obtain threatcrowd domain report
-  threatcrowddomainreport [options]         which helps enumerating potential
-  <nodes...>                                target subdomains and email
+  pown-cli recon t gravatar [options]       Get gravatar
+  <nodes...>
+  pown-cli recon t dockerhublistrepos       List the first 100 DockerHub
+  [options] <nodes...>                      repositories
+                                           [aliases: dockerhub_list_repos, dhlr]
+  pown-cli recon t cloudflarednsquery       Query CloudFlare DNS API
+  [options] <nodes...>                     [aliases: cloudflare_dns_query, cfdq]
+  pown-cli recon t threatcrowddomainreport  Obtain threatcrowd domain report
+  [options] <nodes...>                      which helps enumerating potential
+                                            target subdomains and email
                                             addresses.
                                       [aliases: threatcrowd_domain_report, tcdr]
-  pown-cli recon transform                  Obtain threatcrowd ip report which
-  threatcrowdipreport [options] <nodes...>  helps enumerating virtual hosts.
+  pown recon t threatcrowdipreport          Obtain threatcrowd ip report which
+  [options] <nodes...>                      helps enumerating virtual hosts.
                                           [aliases: threatcrowd_ip_report, tcir]
-
-Options:
-  --version      Show version number                                   [boolean]
-  --modules, -m  Load modules                                           [string]
-  --help         Show help                                             [boolean]
 ```
 
 ## Transforms
