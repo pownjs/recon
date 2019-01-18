@@ -21,7 +21,7 @@ $ npm install @pown/recon --save
 Once done, invoke pown recon like this:
 
 ```sh
-$ ./node_modules/.bin/pown-cli recon
+$ ./node_modules/.bin/pown     recon
 ```
 
 ## Usage
@@ -47,33 +47,42 @@ pown recon transform <transform>
 Perform inline transformation
 
 Commands:
-  pown-cli recon t hibpreport [options]     Obtain haveibeenpwned.com breach
-  <nodes...>                                report.[aliases: hibp_report, hibpr]
-  pown-cli recon t crtshdomainreport        Obtain crt.sh domain report which
-  [options] <nodes...>                      helps enumerating potential target
+  pown     recon transform pkslookupkeys    Look the the PKS database at
+  [options] <nodes...>                      pool.sks-keyservers.net which
+                                            pgp.mit.edu is part of.
+                                               [aliases: pks_lookup_keys, pkslk]
+  pown     recon transform hibpreport       Obtain haveibeenpwned.com breach
+  [options] <nodes...>                      report.[aliases: hibp_report, hibpr]
+  pown     recon transform                  Obtain crt.sh domain report which
+  crtshdomainreport [options] <nodes...>    helps enumerating potential target
                                             subdomains.
                                          [aliases: crtsh_domain_report, crtshdr]
-  pown-cli recon t githublistrepos          List the first 100 GitHub
+  pown     recon transform githublistrepos  List the first 100 GitHub
   [options] <nodes...>                      repositories
                                               [aliases: github_list_repos, ghlr]
-  pown-cli recon t githublistmembers        List the first 100 GitHub members in
-  [options] <nodes...>                      org
+  pown     recon transform                  List the first 100 GitHub members in
+  githublistmembers [options] <nodes...>    org
                                             [aliases: github_list_members, ghlm]
-  pown-cli recon t gravatar [options]       Get gravatar
-  <nodes...>
-  pown-cli recon t dockerhublistrepos       List the first 100 DockerHub
-  [options] <nodes...>                      repositories
+  pown     recon transform gravatar         Get gravatar
+  [options] <nodes...>
+  pown     recon transform                  List the first 100 DockerHub
+  dockerhublistrepos [options] <nodes...>   repositories
                                            [aliases: dockerhub_list_repos, dhlr]
-  pown-cli recon t cloudflarednsquery       Query CloudFlare DNS API
-  [options] <nodes...>                     [aliases: cloudflare_dns_query, cfdq]
-  pown-cli recon t threatcrowddomainreport  Obtain threatcrowd domain report
-  [options] <nodes...>                      which helps enumerating potential
-                                            target subdomains and email
+  pown     recon transform                  Query CloudFlare DNS API
+  cloudflarednsquery [options] <nodes...>  [aliases: cloudflare_dns_query, cfdq]
+  pown     recon transform                  Obtain threatcrowd domain report
+  threatcrowddomainreport [options]         which helps enumerating potential
+  <nodes...>                                target subdomains and email
                                             addresses.
                                       [aliases: threatcrowd_domain_report, tcdr]
-  pown recon t threatcrowdipreport          Obtain threatcrowd ip report which
-  [options] <nodes...>                      helps enumerating virtual hosts.
+  pown     recon transform                  Obtain threatcrowd ip report which
+  threatcrowdipreport [options] <nodes...>  helps enumerating virtual hosts.
                                           [aliases: threatcrowd_ip_report, tcir]
+
+Options:
+  --version      Show version number                                   [boolean]
+  --modules, -m  Load modules                                           [string]
+  --help         Show help                                             [boolean]
 ```
 
 ## Transforms
