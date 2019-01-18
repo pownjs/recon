@@ -21,7 +21,7 @@ $ npm install @pown/recon --save
 Once done, invoke pown recon like this:
 
 ```sh
-$ ./node_modules/.bin/pown     recon
+$ ./node_modules/.bin/pown-cli recon
 ```
 
 ## Usage
