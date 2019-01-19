@@ -142,6 +142,7 @@ Options:
 * Hacker Target Reverse IP Lookup
 * Have I Been Pwned Lookup
 * PKS Lookup
+* Urlscan Live Shot
 * Threatcrowd Lookup
 
 ## Tutorial
