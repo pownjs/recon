@@ -26,6 +26,8 @@ $ ./node_modules/.bin/pown-cli recon
 
 ## Usage
 
+> **WARNING**: This pown command is currently under development and as a result will be subject to breaking changes.
+
 ```
 pown-cli recon [options] <command>
 
