@@ -149,4 +149,5 @@ This is a great start but there are a number of things that the original author 
 * More transforms
 * Shell-like environment
 * Common Search-engine support will be nice
+  - will be used for finding various types of disclousures like trello boards etc
 
