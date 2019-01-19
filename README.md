@@ -151,7 +151,7 @@ To demonstrate the power of Pown Recon and graph-based OSINT (Open Source Intell
 Let's start by quering everyone who is a member of Google's engineering team and contributes to their GitHub account.
 
 ```sh
-$ pown recon t -w google.network ghlm google
+pown recon t -w google.network ghlm google
 ```
 
 This command will generate a table similar to this:
@@ -188,7 +188,41 @@ The `-w google.network` command line option exported the network to a file. You 
 
 ![screenshot](https://media.githubusercontent.com/media/pownjs/pown-recon/master/screenshots/01.png)
 
-Now imagine that we want to query what repositories these gooogle engineers are working on...
+Now imagine that we want to query what repositories these gooogle engineers are working on. This is easy. First we need to select the nodes in the graph and then transform them with the "GitHub List Repositories" transformation. This is how we do it from the command line:
+
+```sh
+pown recon t ghlr -r google.network -w google2.nework -s 'node[type="github:member"]'
+```
+
+If you don't hit GitHub API rate limits, you will be presented with this:
+
+```sh
+┌──────────────────────────────────────────────────────────────────────────┬───────────────────────────────────────────────────────┐
+│ uri                                                                      │ fullName                                              │
+├──────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────┤
+│ https://github.com/3rf/2015-talks                                        │ 3rf/2015-talks                                        │
+├──────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────┤
+│ https://github.com/3rf/codecoroner                                       │ 3rf/codecoroner                                       │
+├──────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────┤
+...
+...
+...
+├──────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────┤
+│ https://github.com/alexpennace/rvm                                       │ alexpennace/rvm                                       │
+├──────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────┤
+│ https://github.com/alexpennace/simple-security-organizer                 │ alexpennace/simple-security-organizer                 │
+├──────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────┤
+│ https://github.com/alexpennace/walibot                                   │ alexpennace/walibot                                   │
+└──────────────────────────────────────────────────────────────────────────┴───────────────────────────────────────────────────────┘
+```
+
+Since now we have two files `google.network` and `google2.network` you might be wondering what is the difference between them. Well, we have a tool for doing just that. This is how we do it.
+
+```sh
+pown recon diff google.network google2.network
+```
+
+Now we know! This feature is quite useful if you are building a large recon maps and you are just curius to know what are the key differences. Imagine your cron job performs the same recon every day and you would like to know if something new just appeared which might be worth exploring further. Hello bug bounty hunters!
 
 ## Improvements
 
