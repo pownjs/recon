@@ -169,6 +169,11 @@ This command will generate a table similar to this:
 ...
 ...
 ...
+├──────────────────────────────────────────┼───────────────────────┼───────────────────────────────────────────────────────┤
+│ https://github.com/alexwhouse            │ alexwhouse            │ https://avatars3.githubusercontent.com/u/1448490?v=4  │
+├──────────────────────────────────────────┼───────────────────────┼───────────────────────────────────────────────────────┤
+│ https://github.com/alexwoz               │ alexwoz               │ https://avatars3.githubusercontent.com/u/501863?v=4   │
+└──────────────────────────────────────────┴───────────────────────┴───────────────────────────────────────────────────────┘
 ```
 
 You just created your first network!
