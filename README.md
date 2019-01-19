@@ -224,6 +224,10 @@ pown recon diff google.network google2.network
 
 Now we know! This feature is quite useful if you are building a large recon maps and you are just curius to know what are the key differences. Imagine your cron job performs the same recon every day and you would like to know if something new just appeared which might be worth exploring further. Hello bug bounty hunters!
 
+## Sponsors
+
+This work is the result of almost direct copy of SecApps excellent [Recon](https://recon.secapps.com) tool. While you can perform the same transformations from Pown now, Recon gives you a nice GUI which helps a lot. Also, the sharing features pretty cool.
+
 ## Improvements
 
 This is a great start but there are a number of things that the original author would like to improve. In no particular order here is the current wish list:
