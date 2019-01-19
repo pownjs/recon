@@ -142,6 +142,47 @@ Options:
 * PKS Lookup
 * Threatcrowd Lookup
 
+## Tutorial
+
+To demonstrate the power of Pown Recon and graph-based OSINT (Open Source Intelligence), let's have a look at the following trivial example.
+
+Let's start by quering everyone who is a member of Google's engineering team and contributes to their GitHub account.
+
+```sh
+$ pown recon t -w google.network ghlm google
+```
+
+This command will generate a table similar to this:
+
+```
+┌──────────────────────────────────────────┬───────────────────────┬───────────────────────────────────────────────────────┐
+│ uri                                      │ login                 │ avatar                                                │
+├──────────────────────────────────────────┼───────────────────────┼───────────────────────────────────────────────────────┤
+│ https://github.com/3rf                   │ 3rf                   │ https://avatars1.githubusercontent.com/u/1242478?v=4  │
+├──────────────────────────────────────────┼───────────────────────┼───────────────────────────────────────────────────────┤
+│ https://github.com/aaroey                │ aaroey                │ https://avatars0.githubusercontent.com/u/31743510?v=4 │
+├──────────────────────────────────────────┼───────────────────────┼───────────────────────────────────────────────────────┤
+│ https://github.com/aarongable            │ aarongable            │ https://avatars3.githubusercontent.com/u/2474926?v=4  │
+├──────────────────────────────────────────┼───────────────────────┼───────────────────────────────────────────────────────┤
+│ https://github.com/aaronj1335            │ aaronj1335            │ https://avatars2.githubusercontent.com/u/787066?v=4   │
+├──────────────────────────────────────────┼───────────────────────┼───────────────────────────────────────────────────────┤
+...
+...
+...
+```
+
+You just created your first network!
+
+The representation is tabular for convinience but underneath we've got a model which consists of nodes connected by edges. 
+
+If you are wondering what that looks like you can use [SecApps Recon](https://recon.secapps.com). The command line does not have the necessery level of interactivity to present the complexity of graphs.
+
+The `-w google.network` command line option exported the network to a file. You can load the file directly into SecApps Recon with the file open feature. The result will look like this:
+
+![screenshot](https://media.githubusercontent.com/media/pownjs/pown-recon/master/screenshots/01.png)
+
+Now imagine that we want to query what repositories these gooogle engineers are working on...
+
 ## Improvements
 
 This is a great start but there are a number of things that the original author would like to improve. In no particular order here is the current wish list:
@@ -150,4 +191,3 @@ This is a great start but there are a number of things that the original author 
 * Shell-like environment
 * Common Search-engine support will be nice
   - will be used for finding various types of disclousures like trello boards etc
-
