@@ -2,14 +2,14 @@
 
 # Pown Recon
 
-Pown Recon is a target reconnaissance framework powered by graph theory.
+Pown Recon is a target reconnaissance framework powered by graph theory. The benefit of using graph theory instead of flat table representation is that it is easier to find relationship between different types of information which comes quite handy in many situations. Graph theory algorithms also help with diffing, searching, like finding the shortest path, and many more interesting tasks.
 
 ## Quickstart
 
 If installed globally as part of [Pown.js](https://github.com/pownjs/pown) invoke like this:
 
 ```sh
-$ pown reon
+$ pown recon
 ```
 
 Otherwise install this module from the root of your project:
@@ -27,13 +27,16 @@ $ ./node_modules/.bin/pown-cli recon
 ## Usage
 
 ```
-pown recon [options] <command>
+pown-cli recon [options] <command>
 
 Target recon
 
 Commands:
-  pown recon transform <transform>  Perform inline transformation
+  pown-cli recon transform <transform>  Perform inline transformation
                                                                     [aliases: t]
+  pown-cli recon select <expression>    Perform a selection         [aliases: s]
+  pown-cli recon diff <fileA> <fileB>   Perform a diff between two recon files
+                                                                    [aliases: d]
 
 Options:
   --version      Show version number                                   [boolean]
@@ -41,53 +44,103 @@ Options:
   --help         Show help                                             [boolean]
 ```
 
+### Transform Usage
+
 ```
-pown recon transform <transform>
+pown-cli recon transform <transform>
 
 Perform inline transformation
 
 Commands:
-  pown     recon transform pkslookupkeys    Look the the PKS database at
+  pown-cli recon transform pkslookupkeys    Look the the PKS database at
   [options] <nodes...>                      pool.sks-keyservers.net which
                                             pgp.mit.edu is part of.
                                                [aliases: pks_lookup_keys, pkslk]
-  pown     recon transform hibpreport       Obtain haveibeenpwned.com breach
+  pown-cli recon transform hibpreport       Obtain haveibeenpwned.com breach
   [options] <nodes...>                      report.[aliases: hibp_report, hibpr]
-  pown     recon transform                  Obtain crt.sh domain report which
+  pown-cli recon transform                  Obtain crt.sh domain report which
   crtshdomainreport [options] <nodes...>    helps enumerating potential target
                                             subdomains.
                                          [aliases: crtsh_domain_report, crtshdr]
-  pown     recon transform githublistrepos  List the first 100 GitHub
+  pown-cli recon transform githublistrepos  List the first 100 GitHub
   [options] <nodes...>                      repositories
                                               [aliases: github_list_repos, ghlr]
-  pown     recon transform                  List the first 100 GitHub members in
+  pown-cli recon transform                  List the first 100 GitHub members in
   githublistmembers [options] <nodes...>    org
                                             [aliases: github_list_members, ghlm]
-  pown     recon transform gravatar         Get gravatar
+  pown-cli recon transform gravatar         Get gravatar
   [options] <nodes...>
-  pown     recon transform                  List the first 100 DockerHub
+  pown-cli recon transform                  List the first 100 DockerHub
   dockerhublistrepos [options] <nodes...>   repositories
                                            [aliases: dockerhub_list_repos, dhlr]
-  pown     recon transform                  Query CloudFlare DNS API
+  pown-cli recon transform                  Query CloudFlare DNS API
   cloudflarednsquery [options] <nodes...>  [aliases: cloudflare_dns_query, cfdq]
-  pown     recon transform                  Obtain threatcrowd domain report
+  pown-cli recon transform                  Obtain threatcrowd domain report
   threatcrowddomainreport [options]         which helps enumerating potential
   <nodes...>                                target subdomains and email
                                             addresses.
                                       [aliases: threatcrowd_domain_report, tcdr]
-  pown     recon transform                  Obtain threatcrowd ip report which
+  pown-cli recon transform                  Obtain threatcrowd ip report which
   threatcrowdipreport [options] <nodes...>  helps enumerating virtual hosts.
                                           [aliases: threatcrowd_ip_report, tcir]
+  pown-cli recon transform                  Obtain reverse IP information from
+  hackertargetreverseiplookup [options]     hackertarget.com.
+  <nodes...>                    [aliases: hackertarget_reverse_ip_lookup, htril]
 
 Options:
   --version      Show version number                                   [boolean]
   --modules, -m  Load modules                                           [string]
   --help         Show help                                             [boolean]
+  --read, -r     Read file
+  --write, -w    Write file
+```
+
+### Select Usage
+
+```
+pown-cli recon select <expression>
+
+Perform a selection
+
+Options:
+  --version      Show version number                                   [boolean]
+  --modules, -m  Load modules                                           [string]
+  --help         Show help                                             [boolean]
+  --read, -r     Read file
+  --write, -w    Write file
+  --format, -f   Output format
+                   [string] [choices: "table", "json", "csv"] [default: "table"]
+```
+
+### Diff Usage
+
+```
+pown-cli recon diff <fileA> <fileB>
+
+Perform a diff between two recon files
+
+Options:
+  --version      Show version number                                   [boolean]
+  --modules, -m  Load modules                                           [string]
+  --help         Show help                                             [boolean]
+  --subset, -s   The subset to select
+                            [choices: "left", "right", "both"] [default: "left"]
+  --write, -w    Write file
+  --format, -f   Output format
+                   [string] [choices: "table", "json", "csv"] [default: "table"]
 ```
 
 ## Transforms
 
-The transform is a core concept behind Recon. The purpose of the transform is take an input of one type and expand. If you are familiar with tools such as Maltego or SecApps Recon you know the drill.
+* GitHub Search of Repos and Members
+* CloudFlare 1.1.1.1 DNS API
+* CRTSH
+* DockerHub Repo Search
+* Gravatar URLs
+* Hacker Target Reverse IP Lookup
+* Have I Been Pwned Lookup
+* PKS Lookup
+* Threatcrowd Lookup
 
 ## Improvements
 
@@ -95,3 +148,5 @@ This is a great start but there are a number of things that the original author 
 
 * More transforms
 * Shell-like environment
+* Common Search-engine support will be nice
+
