@@ -235,5 +235,7 @@ This is a great start but there are a number of things that the original author 
 
 * More transforms
 * Shell-like environment
+* Builtin Graphical Preview
+  - SecApps Recon is nice but how about a built-in server/app for previewing the networks
 * Common Search-engine support will be nice
   - will be used for finding various types of disclosures like Trello boards etc
