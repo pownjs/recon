@@ -2,7 +2,7 @@
 
 # Pown Recon
 
-Pown Recon is a target reconnaissance framework powered by graph theory. The benefit of using graph theory instead of flat table representation is that it is easier to find relationship between different types of information which comes quite handy in many situations. Graph theory algorithms also help with diffing, searching, like finding the shortest path, and many more interesting tasks.
+Pown Recon is a target reconnaissance framework powered by graph theory. The benefit of using graph theory instead of flat table representation is that it is easier to find the relationships between different types of information which comes quite handy in many situations. Graph theory algorithms also help with diffing, searching, like finding the shortest path, and many more interesting tasks.
 
 ## Quickstart
 
@@ -12,7 +12,7 @@ If installed globally as part of [Pown.js](https://github.com/pownjs/pown) invok
 $ pown recon
 ```
 
-Otherwise install this module from the root of your project:
+Otherwise, install this module from the root of your project:
 
 ```sh
 $ npm install @pown/recon --save
@@ -148,7 +148,7 @@ Options:
 
 To demonstrate the power of Pown Recon and graph-based OSINT (Open Source Intelligence), let's have a look at the following trivial example.
 
-Let's start by quering everyone who is a member of Google's engineering team and contributes to their GitHub account.
+Let's start by querying everyone who is a member of Google's engineering team and contributes to their GitHub account.
 
 ```sh
 pown recon t -w google.network ghlm google
@@ -180,15 +180,15 @@ This command will generate a table similar to this:
 
 You just created your first network!
 
-The representation is tabular for convinience but underneath we've got a model which consists of nodes connected by edges. 
+The representation is tabular for convenience but underneath we've got a model which consists of nodes connected by edges.
 
-If you are wondering what that looks like you can use [SecApps Recon](https://recon.secapps.com). The command line does not have the necessery level of interactivity to present the complexity of graphs.
+If you are wondering what that looks like you can use [SecApps Recon](https://recon.secapps.com). The command line does not have the necessary level of interactivity to present the complexity of graphs.
 
 The `-w google.network` command line option exported the network to a file. You can load the file directly into SecApps Recon with the file open feature. The result will look like this:
 
 ![screenshot](https://media.githubusercontent.com/media/pownjs/pown-recon/master/screenshots/01.png)
 
-Now imagine that we want to query what repositories these gooogle engineers are working on. This is easy. First we need to select the nodes in the graph and then transform them with the "GitHub List Repositories" transformation. This is how we do it from the command line:
+Now imagine that we want to query what repositories these Google engineers are working on. This is easy. First, we need to select the nodes in the graph and then transform them with the "GitHub List Repositories" transformation. This is how we do it from the command line:
 
 ```sh
 pown recon t ghlr -r google.network -w google2.nework -s 'node[type="github:member"]'
@@ -222,17 +222,17 @@ Since now we have two files `google.network` and `google2.network` you might be 
 pown recon diff google.network google2.network
 ```
 
-Now we know! This feature is quite useful if you are building a large recon maps and you are just curius to know what are the key differences. Imagine your cron job performs the same recon every day and you would like to know if something new just appeared which might be worth exploring further. Hello bug bounty hunters!
+Now we know! This feature is quite useful if you are building large recon maps and you are just curious to know what are the key differences. Imagine your cron job performs the same recon every day and you would like to know if something new just appeared which might be worth exploring further. Hello, bug bounty hunters!
 
 ## Sponsors
 
-This work is the result of almost direct copy of SecApps excellent [Recon](https://recon.secapps.com) tool. While you can perform the same transformations from Pown now, Recon gives you a nice GUI which helps a lot. Also, the sharing features pretty cool.
+This work is the result of an almost direct copy of SecApps excellent [Recon](https://recon.secapps.com) tool. While you can perform the same transformations from Pown now, Recon gives you a nice GUI which helps a lot. Also, the sharing features of SecApps are pretty cool.
 
 ## Improvements
 
-This is a great start but there are a number of things that the original author would like to improve. In no particular order here is the current wish list:
+This is a great start but there are a number of things that the original author would like to improve. In no particular order here is the current wishlist:
 
 * More transforms
 * Shell-like environment
 * Common Search-engine support will be nice
-  - will be used for finding various types of disclousures like trello boards etc
+  - will be used for finding various types of disclosures like Trello boards etc
