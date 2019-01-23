@@ -127,6 +127,7 @@ Options:
 * Wappalyzer
 * AWS Landing Pages
 * Builtwith
+* Riddler
 
 ## Tutorial
 
