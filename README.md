@@ -223,6 +223,9 @@ This is a great start but there are a number of things that the original author 
 * Shell-like environment
 * Maybe add vulners
 * Maybe add retire.js
+* Maybe add https://ip-ranges.amazonaws.com/ip-ranges.json
+* Maybe add https://findsubdomains.com
+* Maybe add 
 * Builtin Graphical Preview
   - SecApps Recon is nice but how about a built-in server/app for previewing the networks
 * Common Search-engine support will be nice
