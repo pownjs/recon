@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "recon": "POWN_ROOT=. pown-cli recon",
+    "build": "node ./scripts/build-index.js",
     "test": "mocha"
   },
   "repository": {
