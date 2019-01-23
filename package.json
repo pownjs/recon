@@ -27,7 +27,7 @@
     "@pown/cli": "^2.2.0"
   },
   "dependencies": {
-    "@pown/request": "^2.2.0",
+    "@pown/request": "^2.2.1",
     "cytoscape": "^3.3.3"
   },
   "pown": {
