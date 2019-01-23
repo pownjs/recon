@@ -23,11 +23,11 @@
   },
   "homepage": "https://github.com/pownjs/pown-recon#readme",
   "devDependencies": {
-    "@pown/cli": "^2.1.3"
+    "@pown/cli": "^2.2.0"
   },
   "dependencies": {
-    "@pown/request": "^2.0.1",
-    "cytoscape": "^3.3.2"
+    "@pown/request": "^2.1.0",
+    "cytoscape": "^3.3.3"
   },
   "pown": {
     "commands": [
