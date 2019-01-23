@@ -29,70 +29,48 @@ $ ./node_modules/.bin/pown-cli recon
 > **WARNING**: This pown command is currently under development and as a result will be subject to breaking changes.
 
 ```
-pown-cli recon [options] <command>
+pown recon [options] <command>
 
 Target recon
 
 Commands:
-  pown-cli recon transform <transform>  Perform inline transformation
-                                                                    [aliases: t]
-  pown-cli recon select <expression>    Perform a selection         [aliases: s]
-  pown-cli recon diff <fileA> <fileB>   Perform a diff between two recon files
-                                                                    [aliases: d]
+  pown recon transform <transform>  Perform inline transformation  [aliases: t]
+  pown recon select <expression>    Perform a selection  [aliases: s]
+  pown recon diff <fileA> <fileB>   Perform a diff between two recon files  [aliases: d]
 
 Options:
-  --version      Show version number                                   [boolean]
-  --modules, -m  Load modules                                           [string]
-  --help         Show help                                             [boolean]
+  --version      Show version number  [boolean]
+  --modules, -m  Load modules  [string]
+  --debug, -d    Debug mode  [boolean]
+  --help         Show help  [boolean]
 ```
 
 ### Transform Usage
 
 ```
-pown-cli recon transform <transform>
+pown recon transform <transform>
 
 Perform inline transformation
 
 Commands:
-  pown-cli recon transform pkslookupkeys    Look the the PKS database at
-  [options] <nodes...>                      pool.sks-keyservers.net which
-                                            pgp.mit.edu is part of.
-                                               [aliases: pks_lookup_keys, pkslk]
-  pown-cli recon transform hibpreport       Obtain haveibeenpwned.com breach
-  [options] <nodes...>                      report.[aliases: hibp_report, hibpr]
-  pown-cli recon transform                  Obtain crt.sh domain report which
-  crtshdomainreport [options] <nodes...>    helps enumerating potential target
-                                            subdomains.
-                                         [aliases: crtsh_domain_report, crtshdr]
-  pown-cli recon transform githublistrepos  List the first 100 GitHub
-  [options] <nodes...>                      repositories
-                                              [aliases: github_list_repos, ghlr]
-  pown-cli recon transform                  List the first 100 GitHub members in
-  githublistmembers [options] <nodes...>    org
-                                            [aliases: github_list_members, ghlm]
-  pown-cli recon transform gravatar         Get gravatar
-  [options] <nodes...>
-  pown-cli recon transform                  List the first 100 DockerHub
-  dockerhublistrepos [options] <nodes...>   repositories
-                                           [aliases: dockerhub_list_repos, dhlr]
-  pown-cli recon transform                  Query CloudFlare DNS API
-  cloudflarednsquery [options] <nodes...>  [aliases: cloudflare_dns_query, cfdq]
-  pown-cli recon transform                  Obtain threatcrowd domain report
-  threatcrowddomainreport [options]         which helps enumerating potential
-  <nodes...>                                target subdomains and email
-                                            addresses.
-                                      [aliases: threatcrowd_domain_report, tcdr]
-  pown-cli recon transform                  Obtain threatcrowd ip report which
-  threatcrowdipreport [options] <nodes...>  helps enumerating virtual hosts.
-                                          [aliases: threatcrowd_ip_report, tcir]
-  pown-cli recon transform                  Obtain reverse IP information from
-  hackertargetreverseiplookup [options]     hackertarget.com.
-  <nodes...>                    [aliases: hackertarget_reverse_ip_lookup, htril]
+  pown recon transform pkslookupkeys [options] <nodes...>                Look the the PKS database at pool.sks-keyservers.net which pgp.mit.edu is part of.  [aliases: pks_lookup_keys, pkslk]
+  pown recon transform hibpreport [options] <nodes...>                   Obtain haveibeenpwned.com breach report.  [aliases: hibp_report, hibpr]
+  pown recon transform crtshdomainreport [options] <nodes...>            Obtain crt.sh domain report which helps enumerating potential target subdomains.  [aliases: crtsh_domain_report, crtshdr]
+  pown recon transform githublistrepos [options] <nodes...>              List the first 100 GitHub repositories  [aliases: github_list_repos, ghlr]
+  pown recon transform githublistmembers [options] <nodes...>            List the first 100 GitHub members in org  [aliases: github_list_members, ghlm]
+  pown recon transform urlscanliveshot [options] <nodes...>              Generates a liveshot of any public site via urlscan.  [aliases: usls]
+  pown recon transform gravatar [options] <nodes...>                     Get gravatar
+  pown recon transform dockerhublistrepos [options] <nodes...>           List the first 100 DockerHub repositories  [aliases: dockerhub_list_repos, dhlr]
+  pown recon transform cloudflarednsquery [options] <nodes...>           Query CloudFlare DNS API  [aliases: cloudflare_dns_query, cfdq]
+  pown recon transform threatcrowddomainreport [options] <nodes...>      Obtain threatcrowd domain report which helps enumerating potential target subdomains and email addresses.  [aliases: threatcrowd_domain_report, tcdr]
+  pown recon transform threatcrowdipreport [options] <nodes...>          Obtain threatcrowd ip report which helps enumerating virtual hosts.  [aliases: threatcrowd_ip_report, tcir]
+  pown recon transform hackertargetreverseiplookup [options] <nodes...>  Obtain reverse IP information from hackertarget.com.  [aliases: hackertarget_reverse_ip_lookup, htril]
 
 Options:
-  --version      Show version number                                   [boolean]
-  --modules, -m  Load modules                                           [string]
-  --help         Show help                                             [boolean]
+  --version      Show version number  [boolean]
+  --modules, -m  Load modules  [string]
+  --debug, -d    Debug mode  [boolean]
+  --help         Show help  [boolean]
   --read, -r     Read file
   --write, -w    Write file
 ```
@@ -100,36 +78,37 @@ Options:
 ### Select Usage
 
 ```
-pown-cli recon select <expression>
+pown recon select <expression>
 
 Perform a selection
 
 Options:
-  --version      Show version number                                   [boolean]
-  --modules, -m  Load modules                                           [string]
-  --help         Show help                                             [boolean]
+  --version      Show version number  [boolean]
+  --modules, -m  Load modules  [string]
+  --debug, -d    Debug mode  [boolean]
+  --help         Show help  [boolean]
   --read, -r     Read file
   --write, -w    Write file
-  --format, -f   Output format
-                   [string] [choices: "table", "json", "csv"] [default: "table"]
+  --format, -f   Output format  [string] [choices: "table", "json", "csv"] [default: "table"]
+  --with-ids     Output ids as well  [boolean] [default: false]
 ```
 
 ### Diff Usage
 
 ```
-pown-cli recon diff <fileA> <fileB>
+pown recon diff <fileA> <fileB>
 
 Perform a diff between two recon files
 
 Options:
-  --version      Show version number                                   [boolean]
-  --modules, -m  Load modules                                           [string]
-  --help         Show help                                             [boolean]
-  --subset, -s   The subset to select
-                            [choices: "left", "right", "both"] [default: "left"]
+  --version      Show version number  [boolean]
+  --modules, -m  Load modules  [string]
+  --debug, -d    Debug mode  [boolean]
+  --help         Show help  [boolean]
+  --subset, -s   The subset to select  [choices: "left", "right", "both"] [default: "left"]
   --write, -w    Write file
-  --format, -f   Output format
-                   [string] [choices: "table", "json", "csv"] [default: "table"]
+  --format, -f   Output format  [string] [choices: "table", "json", "csv"] [default: "table"]
+  --with-ids     Output ids as well  [boolean] [default: false]
 ```
 
 ## Transforms
@@ -144,6 +123,7 @@ Options:
 * PKS Lookup
 * Urlscan Live Shot
 * Threatcrowd Lookup
+* ZoomEye Scraper
 
 ## Tutorial
 
