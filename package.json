@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "recon": "POWN_ROOT=. pown-cli recon",
-    "text": "mocha"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
