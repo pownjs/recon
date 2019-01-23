@@ -124,6 +124,8 @@ Options:
 * Urlscan Live Shot
 * Threatcrowd Lookup
 * ZoomEye Scraper
+* Wappalyzer
+* AWS Landing Pages
 
 ## Tutorial
 
