@@ -179,23 +179,19 @@ pown recon t ghlr -r google.network -w google2.nework -s 'node[type="github:memb
 If you don't hit GitHub API rate limits, you will be presented with this:
 
 ```sh
-┌──────────────────────────────────────────────────────────────────────────┬───────────────────────────────────────────────────────┐
-│ uri                                                                      │ fullName                                              │
-├──────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────┤
-│ https://github.com/3rf/2015-talks                                        │ 3rf/2015-talks                                        │
-├──────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────┤
-│ https://github.com/3rf/codecoroner                                       │ 3rf/codecoroner                                       │
-├──────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────┤
+┌─────────┬───────────────┬──────────────────────────────────────────────────────────────────────────────┬───────────────────────────────────────────────────────────┐
+│ (index) │     type      │                                     uri                                      │                         fullName                          │
+├─────────┼───────────────┼──────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────────┤
+│    0    │ 'github:repo' │                     'https://github.com/3rf/2015-talks'                      │                     '3rf/2015-talks'                      │
+│    1    │ 'github:repo' │                     'https://github.com/3rf/codecoroner'                     │                     '3rf/codecoroner'                     │
+│    2    │ 'github:repo' │                   'https://github.com/3rf/DefinitelyTyped'                   │                   '3rf/DefinitelyTyped'                   │
 ...
 ...
 ...
-├──────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────┤
-│ https://github.com/alexpennace/rvm                                       │ alexpennace/rvm                                       │
-├──────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────┤
-│ https://github.com/alexpennace/simple-security-organizer                 │ alexpennace/simple-security-organizer                 │
-├──────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────┤
-│ https://github.com/alexpennace/walibot                                   │ alexpennace/walibot                                   │
-└──────────────────────────────────────────────────────────────────────────┴───────────────────────────────────────────────────────┘
+│  1348   │ 'github:repo' │              'https://github.com/agau4779/ultimate-tic-tac-toe'              │              'agau4779/ultimate-tic-tac-toe'              │
+│  1349   │ 'github:repo' │                  'https://github.com/agau4779/worm_scraper'                  │                  'agau4779/worm_scraper'                  │
+│  1350   │ 'github:repo' │                    'https://github.com/agau4779/zsearch'                     │                    'agau4779/zsearch'                     │
+└─────────┴───────────────┴──────────────────────────────────────────────────────────────────────────────┴───────────────────────────────────────────────────────────┘
 ```
 
 Since now we have two files `google.network` and `google2.network` you might be wondering what is the difference between them. Well, we have a tool for doing just that. This is how we do it.
