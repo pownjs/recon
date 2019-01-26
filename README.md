@@ -145,25 +145,19 @@ pown recon t -w google.network ghlm google
 This command will generate a table similar to this:
 
 ```
-┌──────────────────────────────────────────┬───────────────────────┬───────────────────────────────────────────────────────┐
-│ uri                                      │ login                 │ avatar                                                │
-├──────────────────────────────────────────┼───────────────────────┼───────────────────────────────────────────────────────┤
-│ https://github.com/3rf                   │ 3rf                   │ https://avatars1.githubusercontent.com/u/1242478?v=4  │
-├──────────────────────────────────────────┼───────────────────────┼───────────────────────────────────────────────────────┤
-│ https://github.com/aaroey                │ aaroey                │ https://avatars0.githubusercontent.com/u/31743510?v=4 │
-├──────────────────────────────────────────┼───────────────────────┼───────────────────────────────────────────────────────┤
-│ https://github.com/aarongable            │ aarongable            │ https://avatars3.githubusercontent.com/u/2474926?v=4  │
-├──────────────────────────────────────────┼───────────────────────┼───────────────────────────────────────────────────────┤
-│ https://github.com/aaronj1335            │ aaronj1335            │ https://avatars2.githubusercontent.com/u/787066?v=4   │
-├──────────────────────────────────────────┼───────────────────────┼───────────────────────────────────────────────────────┤
+┌─────────┬─────────────────┬────────────────────────────────────────────┬─────────────────────────┬─────────────────────────────────────────────────────────┐
+│ (index) │      type       │                    uri                     │          login          │                         avatar                          │
+├─────────┼─────────────────┼────────────────────────────────────────────┼─────────────────────────┼─────────────────────────────────────────────────────────┤
+│    0    │ 'github:member' │          'https://github.com/3rf'          │          '3rf'          │ 'https://avatars1.githubusercontent.com/u/1242478?v=4'  │
+│    1    │ 'github:member' │        'https://github.com/aaroey'         │        'aaroey'         │ 'https://avatars0.githubusercontent.com/u/31743510?v=4' │
+│    2    │ 'github:member' │      'https://github.com/aarongable'       │      'aarongable'       │ 'https://avatars3.githubusercontent.com/u/2474926?v=4'  │
 ...
 ...
 ...
-├──────────────────────────────────────────┼───────────────────────┼───────────────────────────────────────────────────────┤
-│ https://github.com/alexwhouse            │ alexwhouse            │ https://avatars3.githubusercontent.com/u/1448490?v=4  │
-├──────────────────────────────────────────┼───────────────────────┼───────────────────────────────────────────────────────┤
-│ https://github.com/alexwoz               │ alexwoz               │ https://avatars3.githubusercontent.com/u/501863?v=4   │
-└──────────────────────────────────────────┴───────────────────────┴───────────────────────────────────────────────────────┘
+│   97    │ 'github:member' │         'https://github.com/alexv'         │         'alexv'         │ 'https://avatars0.githubusercontent.com/u/30807372?v=4' │
+│   98    │ 'github:member' │      'https://github.com/alexwhouse'       │      'alexwhouse'       │ 'https://avatars3.githubusercontent.com/u/1448490?v=4'  │
+│   99    │ 'github:member' │        'https://github.com/alexwoz'        │        'alexwoz'        │  'https://avatars3.githubusercontent.com/u/501863?v=4'  │
+└─────────┴─────────────────┴────────────────────────────────────────────┴─────────────────────────┴─────────────────────────────────────────────────────────┘
 ```
 
 You just created your first network!
