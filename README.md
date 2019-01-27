@@ -40,10 +40,9 @@ Commands:
   pown recon diff <fileA> <fileB>   Perform a diff between two recon files  [aliases: d]
 
 Options:
-  --version      Show version number  [boolean]
-  --modules, -m  Load modules  [string]
-  --debug, -d    Debug mode  [boolean]
-  --help         Show help  [boolean]
+  --version  Show version number  [boolean]
+  --debug    Debug mode  [boolean]
+  --help     Show help  [boolean]
 ```
 
 ### Transform Usage
@@ -54,26 +53,34 @@ pown recon transform <transform>
 Perform inline transformation
 
 Commands:
-  pown recon transform pkslookupkeys [options] <nodes...>                Look the the PKS database at pool.sks-keyservers.net which pgp.mit.edu is part of.  [aliases: pks_lookup_keys, pkslk]
-  pown recon transform hibpreport [options] <nodes...>                   Obtain haveibeenpwned.com breach report.  [aliases: hibp_report, hibpr]
-  pown recon transform crtshdomainreport [options] <nodes...>            Obtain crt.sh domain report which helps enumerating potential target subdomains.  [aliases: crtsh_domain_report, crtshdr]
-  pown recon transform githublistrepos [options] <nodes...>              List the first 100 GitHub repositories  [aliases: github_list_repos, ghlr]
-  pown recon transform githublistmembers [options] <nodes...>            List the first 100 GitHub members in org  [aliases: github_list_members, ghlm]
-  pown recon transform urlscanliveshot [options] <nodes...>              Generates a liveshot of any public site via urlscan.  [aliases: usls]
-  pown recon transform gravatar [options] <nodes...>                     Get gravatar
-  pown recon transform dockerhublistrepos [options] <nodes...>           List the first 100 DockerHub repositories  [aliases: dockerhub_list_repos, dhlr]
-  pown recon transform cloudflarednsquery [options] <nodes...>           Query CloudFlare DNS API  [aliases: cloudflare_dns_query, cfdq]
-  pown recon transform threatcrowddomainreport [options] <nodes...>      Obtain threatcrowd domain report which helps enumerating potential target subdomains and email addresses.  [aliases: threatcrowd_domain_report, tcdr]
-  pown recon transform threatcrowdipreport [options] <nodes...>          Obtain threatcrowd ip report which helps enumerating virtual hosts.  [aliases: threatcrowd_ip_report, tcir]
-  pown recon transform hackertargetreverseiplookup [options] <nodes...>  Obtain reverse IP information from hackertarget.com.  [aliases: hackertarget_reverse_ip_lookup, htril]
+  pown recon transform archiveindex [options] <nodes...>                  Obtain a commoncraw index for specific URL.  [aliases: archive_index, arci]
+  pown recon transform awsiamendpoints [options] <nodes...>               Enumeration AWS IAM Endpoints  [aliases: aws_iam_endpoints, awsie]
+  pown recon transform builtwithscraperelationships [options] <nodes...>  Performs scrape of builtwith relationships  [aliases: builtwith_scrape_relationships, bwsr]
+  pown recon transform cloudflarednsquery [options] <nodes...>            Query CloudFlare DNS API  [aliases: cloudflare_dns_query, cfdq]
+  pown recon transform commoncrawlindex [options] <nodes...>              Obtain a commoncraw index for specific URL.  [aliases: commoncrawl_index, cci]
+  pown recon transform crtshdomainreport [options] <nodes...>             Obtain crt.sh domain report which helps enumerating potential target subdomains.  [aliases: crtsh_domain_report, crtshdr]
+  pown recon transform dockerhublistrepos [options] <nodes...>            List the first 100 DockerHub repositories  [aliases: dockerhub_list_repos, dhlr]
+  pown recon transform githublistrepos [options] <nodes...>               List the first 100 GitHub repositories  [aliases: github_list_repos, ghlr]
+  pown recon transform githublistmembers [options] <nodes...>             List the first 100 GitHub members in org  [aliases: github_list_members, ghlm]
+  pown recon transform gravatar [options] <nodes...>                      Get gravatar
+  pown recon transform hackertargetreverseiplookup [options] <nodes...>   Obtain reverse IP information from hackertarget.com.  [aliases: hackertarget_reverse_ip_lookup, htril]
+  pown recon transform hibpreport [options] <nodes...>                    Obtain haveibeenpwned.com breach report.  [aliases: hibp_report, hibpr]
+  pown recon transform pkslookupkeys [options] <nodes...>                 Look the the PKS database at pool.sks-keyservers.net which pgp.mit.edu is part of.  [aliases: pks_lookup_keys, pkslk]
+  pown recon transform riddleripsearch [options] <nodes...>               Searches for IP references using F-Secure riddler.io.  [aliases: riddler_ip_search, ris]
+  pown recon transform riddlerdomainsearch [options] <nodes...>           Searches for Domain references using F-Secure riddler.io.  [aliases: riddler_domain_search, rds]
+  pown recon transform threatcrowddomainreport [options] <nodes...>       Obtain threatcrowd domain report which helps enumerating potential target subdomains and email addresses.  [aliases: threatcrowd_domain_report, tcdr]
+  pown recon transform threatcrowdipreport [options] <nodes...>           Obtain threatcrowd ip report which helps enumerating virtual hosts.  [aliases: threatcrowd_ip_report, tcir]
+  pown recon transform urlscanliveshot [options] <nodes...>               Generates a liveshot of any public site via urlscan.  [aliases: usls]
+  pown recon transform wappalyzerprofile [options] <nodes...>             Enumerate technologies with api.wappalyzer.com  [aliases: wappalyzer_profile, wzp]
+  pown recon transform whatsmynamereport [options] <nodes...>             Find social accounts with whatsmyname database.  [aliases: wmnr]
+  pown recon transform zoomeyescrapesearchresults [options] <nodes...>    Performs first page scrape on ZoomEye search results  [aliases: zoomeye_scrape_search_results, zyssr]
 
 Options:
-  --version      Show version number  [boolean]
-  --modules, -m  Load modules  [string]
-  --debug, -d    Debug mode  [boolean]
-  --help         Show help  [boolean]
-  --read, -r     Read file
-  --write, -w    Write file
+  --version    Show version number  [boolean]
+  --debug      Debug mode  [boolean]
+  --help       Show help  [boolean]
+  --read, -r   Read file  [string]
+  --write, -w  Write file  [string]
 ```
 
 ### Select Usage
@@ -84,14 +91,14 @@ pown recon select <expression>
 Perform a selection
 
 Options:
-  --version      Show version number  [boolean]
-  --modules, -m  Load modules  [string]
-  --debug, -d    Debug mode  [boolean]
-  --help         Show help  [boolean]
-  --read, -r     Read file
-  --write, -w    Write file
-  --format, -f   Output format  [string] [choices: "table", "json", "csv"] [default: "table"]
-  --with-ids     Output ids as well  [boolean] [default: false]
+  --version            Show version number  [boolean]
+  --debug              Debug mode  [boolean]
+  --help               Show help  [boolean]
+  --read, -r           Read file  [string]
+  --write, -w          Write file  [string]
+  --output-format, -o  Output format  [string] [choices: "table", "csv", "json"] [default: "table"]
+  --output-fields      Output fields  [string] [default: ""]
+  --output-with-ids    Output ids  [boolean] [default: false]
 ```
 
 ### Diff Usage
@@ -102,14 +109,14 @@ pown recon diff <fileA> <fileB>
 Perform a diff between two recon files
 
 Options:
-  --version      Show version number  [boolean]
-  --modules, -m  Load modules  [string]
-  --debug, -d    Debug mode  [boolean]
-  --help         Show help  [boolean]
-  --subset, -s   The subset to select  [choices: "left", "right", "both"] [default: "left"]
-  --write, -w    Write file
-  --format, -f   Output format  [string] [choices: "table", "json", "csv"] [default: "table"]
-  --with-ids     Output ids as well  [boolean] [default: false]
+  --version            Show version number  [boolean]
+  --debug              Debug mode  [boolean]
+  --help               Show help  [boolean]
+  --subset, -s         The subset to select  [choices: "left", "right", "both"] [default: "left"]
+  --write, -w          Write file  [string]
+  --output-format, -o  Output format  [string] [choices: "table", "csv", "json"] [default: "table"]
+  --output-fields      Output fields  [string] [default: ""]
+  --output-with-ids    Output ids  [boolean] [default: false]
 ```
 
 ## Transforms
@@ -131,6 +138,7 @@ Options:
 * Riddler
 * Commoncraw
 * Archive.org
+* WhatsMyName
 
 ## Tutorial
 
