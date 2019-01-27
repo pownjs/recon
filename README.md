@@ -45,7 +45,7 @@ Options:
   --help     Show help  [boolean]
 ```
 
-### Transform Usage
+### Transform
 
 ```
 pown recon transform <transform>
@@ -83,7 +83,7 @@ Options:
   --write, -w  Write file  [string]
 ```
 
-### Select Usage
+### Select
 
 ```
 pown recon select <expression>
@@ -101,7 +101,7 @@ Options:
   --output-with-ids    Output ids  [boolean] [default: false]
 ```
 
-### Diff Usage
+### Diff
 
 ```
 pown recon diff <fileA> <fileB>
