@@ -214,13 +214,14 @@ Now we know! This feature is quite useful if you are building large recon maps a
 
 This work is the result of an almost direct copy of SecApps excellent [Recon](https://recon.secapps.com) tool. While you can perform the same transformations from Pown now, Recon gives you a nice GUI which helps a lot. Also, the sharing features of SecApps are pretty cool.
 
-## Improvements
+# Suggestions and Improvements
 
 This is a great start but there are a number of things that the original author would like to improve. In no particular order here is the current wishlist:
 
 * More transforms
 * Shell-like environment
 * Maybe add vulners
+* Convert social URIs to images
 * Maybe add retire.js
 * Maybe add https://ip-ranges.amazonaws.com/ip-ranges.json
 * Maybe add https://findsubdomains.com
