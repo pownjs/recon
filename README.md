@@ -27,7 +27,7 @@ Once done, invoke pown recon like this:
 $ ./node_modules/.bin/pown-cli recon
 ```
 
-or use Pown to invoke it locally:
+You can also use Pown to invoke it locally:
 
 ```sh
 $ POWN_ROOT=. pown recon
