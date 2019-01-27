@@ -7,7 +7,9 @@ Pown Recon is a target reconnaissance framework powered by graph theory. The ben
 
 ## Quickstart
 
-If installed globally as part of [Pown.js](https://github.com/pownjs/pown) invoke like this:
+This tool is meant to be used as part of [Pown.js](https://github.com/pownjs/pown) but it can be invoked separately as an independent tool.
+
+If installed globally as part of Pown invoke like this:
 
 ```sh
 $ pown recon
@@ -23,6 +25,12 @@ Once done, invoke pown recon like this:
 
 ```sh
 $ ./node_modules/.bin/pown-cli recon
+```
+
+or use Pown to invoke it locally:
+
+```sh
+$ POWN_ROOT=. pown recon
 ```
 
 ## Usage
