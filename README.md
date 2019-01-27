@@ -221,7 +221,7 @@ This is a great start but there are a number of things that the original author 
 * More transforms
 * Shell-like environment
 * Maybe add vulners
-* Convert social URIs to images
+* Convert social URIs to profile pictures
 * Maybe add retire.js
 * Maybe add https://ip-ranges.amazonaws.com/ip-ranges.json
 * Maybe add https://findsubdomains.com
