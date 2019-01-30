@@ -1,4 +1,5 @@
-echo GITHUB Enumeration For Pown
-
+echo Listing members
 recon t ghlm pownjs
+
+echo Extracting member repositories 
 recon t ghlr -s 'node[type="github:member"]'
