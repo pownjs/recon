@@ -1,0 +1,4 @@
+echo GITHUB Enumeration For Pown
+
+recon t ghlm pownjs
+recon t ghlr -s 'node[type="github:member"]'

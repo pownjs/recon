@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "recon": "POWN_ROOT=. pown-cli recon",
+    "script": "POWN_ROOT=. pown-cli script",
     "build": "node ./scripts/build-transforms-index.js && sh ./scripts/update-whatsmyname-db.sh",
     "test": "mocha"
   },
@@ -24,7 +25,8 @@
   },
   "homepage": "https://github.com/pownjs/pown-recon#readme",
   "devDependencies": {
-    "@pown/cli": "^2.5.0"
+    "@pown/cli": "^2.7.0",
+    "@pown/script": "^2.0.0"
   },
   "dependencies": {
     "@pown/async": "^2.0.1",
