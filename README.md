@@ -149,7 +149,7 @@ Options:
 
 ## Transforms
 
-* GitHub Search of Repos and Members
+* GitHub Search of Repos, Gists and Members
 * CloudFlare 1.1.1.1 DNS API
 * CRTSH
 * DockerHub Repo Search
