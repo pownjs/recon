@@ -36,7 +36,7 @@
   },
   "pown": {
     "commands": [
-      "lib/commands/main.js"
+      "lib/commands/recon.js"
     ]
   }
 }
