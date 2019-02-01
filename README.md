@@ -9,25 +9,31 @@ Pown Recon is a target reconnaissance framework powered by graph theory. The ben
 
 This tool is meant to be used as part of [Pown.js](https://github.com/pownjs/pown) but it can be invoked separately as an independent tool.
 
-If installed globally as part of Pown invoke like this:
+Install Pown first as usual:
+
+```sh
+$ npm install -g pown@latest
+```
+
+Invoke directly from Pown:
 
 ```sh
 $ pown recon
 ```
 
-Otherwise, install this module from the root of your project:
+Otherwise, install this module locally from the root of your project:
 
 ```sh
 $ npm install @pown/recon --save
 ```
 
-Once done, invoke pown recon like this:
+Once done, invoke pown cli:
 
 ```sh
 $ ./node_modules/.bin/pown-cli recon
 ```
 
-You can also use Pown to invoke it locally:
+You can also use the global pown to invoke the tool locally:
 
 ```sh
 $ POWN_ROOT=. pown recon
@@ -43,13 +49,13 @@ pown recon [options] <command>
 Target recon
 
 Commands:
-  pown recon transform <transform>  Perform inline transformation  [aliases: t]
-  pown recon select <expression>    Perform a selection  [aliases: s]
-  pown recon diff <fileA> <fileB>   Perform a diff between two recon files  [aliases: d]
+  pown recon transform <transform>    Perform inline transformation  [aliases: t]
+  pown recon select <expressions...>  Perform a selection  [aliases: s]
+  pown recon merge <files...>         Perform a merge between at least two recon files  [aliases: d]
+  pown recon diff <fileA> <fileB>     Perform a diff between two recon files  [aliases: d]
 
 Options:
   --version  Show version number  [boolean]
-  --debug    Debug mode  [boolean]
   --help     Show help  [boolean]
 ```
 
@@ -79,13 +85,14 @@ Commands:
   pown recon transform threatcrowddomainreport [options] <nodes...>       Obtain threatcrowd domain report which helps enumerating potential target subdomains and email addresses.  [aliases: threatcrowd_domain_report, tcdr]
   pown recon transform threatcrowdipreport [options] <nodes...>           Obtain threatcrowd ip report which helps enumerating virtual hosts.  [aliases: threatcrowd_ip_report, tcir]
   pown recon transform urlscanliveshot [options] <nodes...>               Generates a liveshot of any public site via urlscan.  [aliases: usls]
+  pown recon transform nop [options] <nodes...>                           Does not do anything
+  pown recon transform echo [options] <nodes...>                          Echos Nodes
   pown recon transform wappalyzerprofile [options] <nodes...>             Enumerate technologies with api.wappalyzer.com  [aliases: wappalyzer_profile, wzp]
-  pown recon transform whatsmynamereport [options] <nodes...>             Find social accounts with whatsmyname database.  [aliases: wmnr]
+  pown recon transform whatsmynamereport [options] <nodes...>             Find social accounts with the help of whatsmyname database.  [aliases: whatsmyname_report, whatsmyname, wmnr, wmn]
   pown recon transform zoomeyescrapesearchresults [options] <nodes...>    Performs first page scrape on ZoomEye search results  [aliases: zoomeye_scrape_search_results, zyssr]
 
 Options:
   --version    Show version number  [boolean]
-  --debug      Debug mode  [boolean]
   --help       Show help  [boolean]
   --read, -r   Read file  [string]
   --write, -w  Write file  [string]
@@ -94,19 +101,32 @@ Options:
 ### Select
 
 ```
-pown recon select <expression>
+pown recon select <expressions...>
 
 Perform a selection
 
 Options:
-  --version            Show version number  [boolean]
-  --debug              Debug mode  [boolean]
-  --help               Show help  [boolean]
-  --read, -r           Read file  [string]
-  --write, -w          Write file  [string]
-  --output-format, -o  Output format  [string] [choices: "table", "csv", "json"] [default: "table"]
-  --output-fields      Output fields  [string] [default: ""]
-  --output-with-ids    Output ids  [boolean] [default: false]
+  --version             Show version number  [boolean]
+  --help                Show help  [boolean]
+  --read, -r            Read file  [string]
+  --write, -w           Write file  [string]
+  --output-format, -o   Output format  [string] [choices: "table", "csv", "json"] [default: "table"]
+  --output-fields       Output fields  [string] [default: ""]
+  --output-with-ids     Output ids  [boolean] [default: false]
+  --output-with-labels  Output labels  [boolean] [default: false]
+```
+
+### Merge
+
+```
+pown recon merge <files...>
+
+Perform a merge between at least two recon files
+
+Options:
+  --version    Show version number  [boolean]
+  --help       Show help  [boolean]
+  --write, -w  Write file  [string]
 ```
 
 ### Diff
@@ -117,14 +137,14 @@ pown recon diff <fileA> <fileB>
 Perform a diff between two recon files
 
 Options:
-  --version            Show version number  [boolean]
-  --debug              Debug mode  [boolean]
-  --help               Show help  [boolean]
-  --subset, -s         The subset to select  [choices: "left", "right", "both"] [default: "left"]
-  --write, -w          Write file  [string]
-  --output-format, -o  Output format  [string] [choices: "table", "csv", "json"] [default: "table"]
-  --output-fields      Output fields  [string] [default: ""]
-  --output-with-ids    Output ids  [boolean] [default: false]
+  --version             Show version number  [boolean]
+  --help                Show help  [boolean]
+  --subset, -s          The subset to select  [choices: "left", "right", "both"] [default: "left"]
+  --write, -w           Write file  [string]
+  --output-format, -o   Output format  [string] [choices: "table", "csv", "json"] [default: "table"]
+  --output-fields       Output fields  [string] [default: ""]
+  --output-with-ids     Output ids  [boolean] [default: false]
+  --output-with-labels  Output labels  [boolean] [default: false]
 ```
 
 ## Transforms
@@ -227,14 +247,12 @@ This work is the result of an almost direct copy of SecApps excellent [Recon](ht
 This is a great start but there are a number of things that the original author would like to improve. In no particular order here is the current wishlist:
 
 * More transforms
-* Shell-like environment
-* Maybe add vulners
+  - vulners
+  - retire.js
+  - https://ip-ranges.amazonaws.com/ip-ranges.json
+  - https://findsubdomains.com
 * Convert social URIs to profile pictures
-* Maybe add retire.js
-* Maybe add https://ip-ranges.amazonaws.com/ip-ranges.json
-* Maybe add https://findsubdomains.com
-* Maybe add 
 * Builtin Graphical Preview
   - SecApps Recon is nice but how about a built-in server/app for previewing the networks
 * Common Search-engine support will be nice
-  - will be used for finding various types of disclosures like Trello boards etc
+  - will be used for finding various types of disclosures like Trello boards etc or it could be a standalone tool
