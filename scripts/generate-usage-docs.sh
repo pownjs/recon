@@ -4,7 +4,7 @@ COMMANDS="pown"
 SUBCOMMANDS="recon"
 SUBSUBCOMMANDS="transform select diff merge add remove group ungroup"
 
-POWN_ROOT=.
+export POWN_ROOT=.
 
 for C in $COMMANDS
 do
@@ -21,7 +21,7 @@ do
 
         for SSC in $SUBSUBCOMMANDS
         do
-            echo "### $SSC"
+            echo "### $C $SC $SSC"
             echo
             echo '```'
             $C $SC $SSC --help

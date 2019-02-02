@@ -44,22 +44,26 @@ $ POWN_ROOT=. pown recon
 > **WARNING**: This pown command is currently under development and as a result will be subject to breaking changes.
 
 ```
-pown recon [options] <command>
+pown recon <command>
 
 Target recon
 
 Commands:
-  pown recon transform <transform>    Perform inline transformation  [aliases: t]
-  pown recon select <expressions...>  Perform a selection  [aliases: s]
-  pown recon merge <files...>         Perform a merge between at least two recon files  [aliases: d]
-  pown recon diff <fileA> <fileB>     Perform a diff between two recon files  [aliases: d]
+  pown recon transform <transform>          Perform inline transformation  [aliases: t]
+  pown recon select <expressions...>        Select nodes  [aliases: s]
+  pown recon add <nodes...>                 Add nodes  [aliases: a]
+  pown recon remove <expressions...>        Remove nodes  [aliases: r]
+  pown recon merge <files...>               Perform a merge between at least two recon files  [aliases: m]
+  pown recon diff <fileA> <fileB>           Perform a diff between two recon files  [aliases: d]
+  pown recon group <name> <expressions...>  Group nodes  [aliases: g]
+  pown recon ungroup <expressions...>       Ungroup nodes  [aliases: u]
 
 Options:
   --version  Show version number  [boolean]
   --help     Show help  [boolean]
 ```
 
-### transform
+### pown recon transform
 
 ```
 pown recon transform <transform>
@@ -67,30 +71,35 @@ pown recon transform <transform>
 Perform inline transformation
 
 Commands:
-  pown recon transform archiveindex [options] <nodes...>                  Obtain a commoncraw index for specific URL.  [aliases: archive_index, arci]
-  pown recon transform awsiamendpoints [options] <nodes...>               Enumeration AWS IAM Endpoints  [aliases: aws_iam_endpoints, awsie]
-  pown recon transform builtwithscraperelationships [options] <nodes...>  Performs scrape of builtwith relationships  [aliases: builtwith_scrape_relationships, bwsr]
-  pown recon transform cloudflarednsquery [options] <nodes...>            Query CloudFlare DNS API  [aliases: cloudflare_dns_query, cfdq]
-  pown recon transform commoncrawlindex [options] <nodes...>              Obtain a commoncraw index for specific URL.  [aliases: commoncrawl_index, cci]
+  pown recon transform archiveindex [options] <nodes...>                  Obtain archive.org index for specific URL.  [aliases: archive_index, arci]
+  pown recon transform awsiamendpoints [options] <nodes...>               Enumerate AWS IAM endpoints.  [aliases: aws_iam_endpoints, awsie]
+  pown recon transform builtwithscraperelationships [options] <nodes...>  Performs scrape of builtwith.com relationships  [aliases: builtwith_scrape_relationships, bwsr]
+  pown recon transform cloudflarednsquery [options] <nodes...>            Query CloudFlare DNS API.  [aliases: cloudflare_dns_query, cfdq]
+  pown recon transform commoncrawlindex [options] <nodes...>              Obtain a CommonCraw index for specific URL.  [aliases: commoncrawl_index, cci]
   pown recon transform crtshdomainreport [options] <nodes...>             Obtain crt.sh domain report which helps enumerating potential target subdomains.  [aliases: crtsh_domain_report, crtshdr]
-  pown recon transform dockerhublistrepos [options] <nodes...>            List the first 100 DockerHub repositories  [aliases: dockerhub_list_repos, dhlr]
-  pown recon transform githublistrepos [options] <nodes...>               List the first 100 GitHub repositories  [aliases: github_list_repos, ghlr]
-  pown recon transform githublistgists [options] <nodes...>               List the first 100 GitHub gists  [aliases: github_list_gists, ghlg]
+  pown recon transform dockerhublistrepos [options] <nodes...>            List the first 100 DockerHub repositories.  [aliases: dockerhub_list_repos, dhlr]
+  pown recon transform githublistrepos [options] <nodes...>               List GitHub repositories.  [aliases: github_list_repos, ghlr]
+  pown recon transform githublistgists [options] <nodes...>               List GitHub gists.  [aliases: github_list_gists, ghlg]
   pown recon transform githublistmembers [options] <nodes...>             List the first 100 GitHub members in org  [aliases: github_list_members, ghlm]
-  pown recon transform gravatar [options] <nodes...>                      Get gravatar
+  pown recon transform gravatar [options] <nodes...>                      Get gravatar.
   pown recon transform hackertargetreverseiplookup [options] <nodes...>   Obtain reverse IP information from hackertarget.com.  [aliases: hackertarget_reverse_ip_lookup, htril]
   pown recon transform hibpreport [options] <nodes...>                    Obtain haveibeenpwned.com breach report.  [aliases: hibp_report, hibpr]
   pown recon transform pkslookupkeys [options] <nodes...>                 Look the the PKS database at pool.sks-keyservers.net which pgp.mit.edu is part of.  [aliases: pks_lookup_keys, pkslk]
-  pown recon transform riddleripsearch [options] <nodes...>               Searches for IP references using F-Secure riddler.io.  [aliases: riddler_ip_search, ris]
-  pown recon transform riddlerdomainsearch [options] <nodes...>           Searches for Domain references using F-Secure riddler.io.  [aliases: riddler_domain_search, rds]
+  pown recon transform riddleripsearch [options] <nodes...>               Searches for IP references using F-Secure riddler.io.  [aliases: riddler_ip_search, rdis]
+  pown recon transform riddlerdomainsearch [options] <nodes...>           Searches for Domain references using F-Secure riddler.io.  [aliases: riddler_domain_search, rdds]
   pown recon transform threatcrowddomainreport [options] <nodes...>       Obtain threatcrowd domain report which helps enumerating potential target subdomains and email addresses.  [aliases: threatcrowd_domain_report, tcdr]
   pown recon transform threatcrowdipreport [options] <nodes...>           Obtain threatcrowd ip report which helps enumerating virtual hosts.  [aliases: threatcrowd_ip_report, tcir]
   pown recon transform urlscanliveshot [options] <nodes...>               Generates a liveshot of any public site via urlscan.  [aliases: usls]
-  pown recon transform nop [options] <nodes...>                           Does not do anything
-  pown recon transform echo [options] <nodes...>                          Echos Nodes
-  pown recon transform wappalyzerprofile [options] <nodes...>             Enumerate technologies with api.wappalyzer.com  [aliases: wappalyzer_profile, wzp]
+  pown recon transform nop [options] <nodes...>                           Does not do anything.
+  pown recon transform splitemail [options] <nodes...>                    Split email.  [aliases: split_email, se]
+  pown recon transform buildemail [options] <nodes...>                    Build email.  [aliases: build_email, be]
+  pown recon transform splituri [options] <nodes...>                      Split URI.  [aliases: split_uri, su]
+  pown recon transform builduri [options] <nodes...>                      Build URI.  [aliases: build_uri, bu]
+  pown recon transform analyzeip [options] <nodes...>                     Analyze IP.  [aliases: analyze_ip, ai]
+  pown recon transform wappalyzerprofile [options] <nodes...>             Enumerate technologies with api.wappalyzer.com.  [aliases: wappalyzer_profile, wzp]
   pown recon transform whatsmynamereport [options] <nodes...>             Find social accounts with the help of whatsmyname database.  [aliases: whatsmyname_report, whatsmyname, wmnr, wmn]
   pown recon transform zoomeyescrapesearchresults [options] <nodes...>    Performs first page scrape on ZoomEye search results  [aliases: zoomeye_scrape_search_results, zyssr]
+  pown recon transform auto [options] <nodes...>                          Select the most appropriate methods of transformation
 
 Options:
   --version    Show version number  [boolean]
@@ -99,25 +108,26 @@ Options:
   --write, -w  Write file  [string]
 ```
 
-### select
+### pown recon select
 
 ```
 pown recon select <expressions...>
 
-Perform a selection
+Select nodes
 
 Options:
-  --version             Show version number  [boolean]
-  --help                Show help  [boolean]
-  --read, -r            Read file  [string]
-  --write, -w           Write file  [string]
-  --output-format, -o   Output format  [string] [choices: "table", "csv", "json"] [default: "table"]
-  --output-fields       Output fields  [string] [default: ""]
-  --output-with-ids     Output ids  [boolean] [default: false]
-  --output-with-labels  Output labels  [boolean] [default: false]
+  --version              Show version number  [boolean]
+  --help                 Show help  [boolean]
+  --read, -r             Read file  [string]
+  --write, -w            Write file  [string]
+  --output-format, -o    Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
+  --output-fields        Output fields  [string] [default: ""]
+  --output-with-ids      Output ids  [boolean] [default: false]
+  --output-with-labels   Output labels  [boolean] [default: false]
+  --output-with-parents  Output parents  [boolean] [default: false]
 ```
 
-### diff
+### pown recon diff
 
 ```
 pown recon diff <fileA> <fileB>
@@ -125,17 +135,18 @@ pown recon diff <fileA> <fileB>
 Perform a diff between two recon files
 
 Options:
-  --version             Show version number  [boolean]
-  --help                Show help  [boolean]
-  --subset, -s          The subset to select  [choices: "left", "right", "both"] [default: "left"]
-  --write, -w           Write file  [string]
-  --output-format, -o   Output format  [string] [choices: "table", "csv", "json"] [default: "table"]
-  --output-fields       Output fields  [string] [default: ""]
-  --output-with-ids     Output ids  [boolean] [default: false]
-  --output-with-labels  Output labels  [boolean] [default: false]
+  --version              Show version number  [boolean]
+  --help                 Show help  [boolean]
+  --subset, -s           The subset to select  [choices: "left", "right", "both"] [default: "left"]
+  --write, -w            Write file  [string]
+  --output-format, -o    Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
+  --output-fields        Output fields  [string] [default: ""]
+  --output-with-ids      Output ids  [boolean] [default: false]
+  --output-with-labels   Output labels  [boolean] [default: false]
+  --output-with-parents  Output parents  [boolean] [default: false]
 ```
 
-### merge
+### pown recon merge
 
 ```
 pown recon merge <files...>
@@ -148,76 +159,82 @@ Options:
   --write, -w  Write file  [string]
 ```
 
-### add
+### pown recon add
 
 ```
-pown recon [options] <command>
+pown recon add <nodes...>
 
-Target recon
-
-Commands:
-  pown recon transform <transform>    Perform inline transformation  [aliases: t]
-  pown recon select <expressions...>  Perform a selection  [aliases: s]
-  pown recon merge <files...>         Perform a merge between at least two recon files  [aliases: d]
-  pown recon diff <fileA> <fileB>     Perform a diff between two recon files  [aliases: d]
+Add nodes
 
 Options:
-  --version  Show version number  [boolean]
-  --help     Show help  [boolean]
+  --version              Show version number  [boolean]
+  --help                 Show help  [boolean]
+  --group, -g            Group nodes  [string] [default: ""]
+  --node-type            The type for new nodes from the command line  [string] [default: "string"]
+  --read, -r             Read file  [string]
+  --write, -w            Write file  [string]
+  --output-format, -o    Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
+  --output-fields        Output fields  [string] [default: ""]
+  --output-with-ids      Output ids  [boolean] [default: false]
+  --output-with-labels   Output labels  [boolean] [default: false]
+  --output-with-parents  Output parents  [boolean] [default: false]
 ```
 
-### remove
+### pown recon remove
 
 ```
-pown recon [options] <command>
+pown recon remove <expressions...>
 
-Target recon
-
-Commands:
-  pown recon transform <transform>    Perform inline transformation  [aliases: t]
-  pown recon select <expressions...>  Perform a selection  [aliases: s]
-  pown recon merge <files...>         Perform a merge between at least two recon files  [aliases: d]
-  pown recon diff <fileA> <fileB>     Perform a diff between two recon files  [aliases: d]
+Remove nodes
 
 Options:
-  --version  Show version number  [boolean]
-  --help     Show help  [boolean]
+  --version              Show version number  [boolean]
+  --help                 Show help  [boolean]
+  --read, -r             Read file  [string]
+  --write, -w            Write file  [string]
+  --output-format, -o    Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
+  --output-fields        Output fields  [string] [default: ""]
+  --output-with-ids      Output ids  [boolean] [default: false]
+  --output-with-labels   Output labels  [boolean] [default: false]
+  --output-with-parents  Output parents  [boolean] [default: false]
 ```
 
-### group
+### pown recon group
 
 ```
-pown recon [options] <command>
+pown recon group <name> <expressions...>
 
-Target recon
-
-Commands:
-  pown recon transform <transform>    Perform inline transformation  [aliases: t]
-  pown recon select <expressions...>  Perform a selection  [aliases: s]
-  pown recon merge <files...>         Perform a merge between at least two recon files  [aliases: d]
-  pown recon diff <fileA> <fileB>     Perform a diff between two recon files  [aliases: d]
+Group nodes
 
 Options:
-  --version  Show version number  [boolean]
-  --help     Show help  [boolean]
+  --version              Show version number  [boolean]
+  --help                 Show help  [boolean]
+  --read, -r             Read file  [string]
+  --write, -w            Write file  [string]
+  --output-format, -o    Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
+  --output-fields        Output fields  [string] [default: ""]
+  --output-with-ids      Output ids  [boolean] [default: false]
+  --output-with-labels   Output labels  [boolean] [default: false]
+  --output-with-parents  Output parents  [boolean] [default: false]
 ```
 
-### ungroup
+### pown recon ungroup
 
 ```
-pown recon [options] <command>
+pown recon ungroup <expressions...>
 
-Target recon
-
-Commands:
-  pown recon transform <transform>    Perform inline transformation  [aliases: t]
-  pown recon select <expressions...>  Perform a selection  [aliases: s]
-  pown recon merge <files...>         Perform a merge between at least two recon files  [aliases: d]
-  pown recon diff <fileA> <fileB>     Perform a diff between two recon files  [aliases: d]
+Ungroup nodes
 
 Options:
-  --version  Show version number  [boolean]
-  --help     Show help  [boolean]
+  --version              Show version number  [boolean]
+  --help                 Show help  [boolean]
+  --read, -r             Read file  [string]
+  --write, -w            Write file  [string]
+  --output-format, -o    Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
+  --output-fields        Output fields  [string] [default: ""]
+  --output-with-ids      Output ids  [boolean] [default: false]
+  --output-with-labels   Output labels  [boolean] [default: false]
+  --output-with-parents  Output parents  [boolean] [default: false]
 ```
 
 ## Transforms
