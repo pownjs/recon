@@ -5,6 +5,10 @@
 
 Pown Recon is a target reconnaissance framework powered by graph theory. The benefit of using graph theory instead of flat table representation is that it is easier to find the relationships between different types of information which comes quite handy in many situations. Graph theory algorithms also help with diffing, searching, like finding the shortest path, and many more interesting tasks.
 
+## Credits
+
+This tool is part of [secapps.com](https://secapps.com) open-source initiative.
+
 ## Quickstart
 
 This tool is meant to be used as part of [Pown.js](https://github.com/pownjs/pown) but it can be invoked separately as an independent tool.
@@ -396,18 +400,3 @@ Now we know! This feature is quite useful if you are building large recon maps a
 ## Sponsors
 
 This work is the result of an almost direct copy of SecApps excellent [Recon](https://recon.secapps.com) tool. While you can perform the same transformations from Pown now, Recon gives you a nice GUI which helps a lot. Also, the sharing features of SecApps are pretty cool.
-
-# Suggestions and Improvements
-
-This is a great start but there are a number of things that the original author would like to improve. In no particular order here is the current wishlist:
-
-* More transforms
-  - vulners
-  - retire.js
-  - https://ip-ranges.amazonaws.com/ip-ranges.json
-  - https://findsubdomains.com
-* Convert social URIs to profile pictures
-* Builtin Graphical Preview
-  - SecApps Recon is nice but how about a built-in server/app for previewing the networks
-* Common Search-engine support will be nice
-  - will be used for finding various types of disclosures like Trello boards etc or it could be a standalone tool
