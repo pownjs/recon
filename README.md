@@ -271,53 +271,53 @@ pown select '#some\\$funky\\@id'
 
 ### Group, class, & ID
 
-`node`, `edge`, or `*` (group selector) Matches elements based on group (node for nodes, edge for edges, * for all).
+* `node`, `edge`, or `*` (group selector) Matches elements based on group (node for nodes, edge for edges, * for all).
 
-`.className` Matches elements that have the specified class (e.g. use .foo for a class named "foo").
+* `.className` Matches elements that have the specified class (e.g. use .foo for a class named "foo").
 
-The `#id` Matches element with the matching ID (e.g. `#foo` is the same as `[id = 'foo']`)
+* The `#id` Matches element with the matching ID (e.g. `#foo` is the same as `[id = 'foo']`)
 
 ### Data
 
-`[name]` Matches elements if they have the specified data attribute defined, i.e. not undefined (e.g. `[foo]` for an attribute named “foo”). Here, null is considered a defined value.
+* `[name]` Matches elements if they have the specified data attribute defined, i.e. not undefined (e.g. `[foo]` for an attribute named “foo”). Here, null is considered a defined value.
 
-`[^name]` Matches elements if the specified data attribute is not defined, i.e. undefined (e.g `[^foo]`). Here, null is considered a defined value.
+* `[^name]` Matches elements if the specified data attribute is not defined, i.e. undefined (e.g `[^foo]`). Here, null is considered a defined value.
 
-`[?name]` Matches elements if the specified data attribute is a truthy value (e.g. `[?foo]`).
+* `[?name]` Matches elements if the specified data attribute is a truthy value (e.g. `[?foo]`).
 
-`[!name]` Matches elements if the specified data attribute is a falsey value (e.g. `[!foo]`).
+* `[!name]` Matches elements if the specified data attribute is a falsey value (e.g. `[!foo]`).
 
-`[name = value]` Matches elements if their data attribute matches a specified value (e.g. `[foo = 'bar']` or `[num = 2]`).
+* `[name = value]` Matches elements if their data attribute matches a specified value (e.g. `[foo = 'bar']` or `[num = 2]`).
 
-`[name != value]` Matches elements if their data attribute doesn’t match a specified value (e.g. `[foo != 'bar']` or `[num != 2]`).
+* `[name != value]` Matches elements if their data attribute doesn’t match a specified value (e.g. `[foo != 'bar']` or `[num != 2]`).
 
-`[name > value]` Matches elements if their data attribute is greater than a specified value (e.g. `[foo > 'bar']` or `[num > 2]`).
+* `[name > value]` Matches elements if their data attribute is greater than a specified value (e.g. `[foo > 'bar']` or `[num > 2]`).
 
-`[name >= value]` Matches elements if their data attribute is greater than or equal to a specified value (e.g. `[foo >= 'bar']` or `[num >= 2]`).
+* `[name >= value]` Matches elements if their data attribute is greater than or equal to a specified value (e.g. `[foo >= 'bar']` or `[num >= 2]`).
 
-`[name < value]` Matches elements if their data attribute is less than a specified value (e.g. `[foo < 'bar']` or `[num < 2]`).
+* `[name < value]` Matches elements if their data attribute is less than a specified value (e.g. `[foo < 'bar']` or `[num < 2]`).
 
-`[name <= value]` Matches elements if their data attribute is less than or equal to a specified value (e.g. `[foo <= 'bar']` or `[num <= 2]`).
+* `[name <= value]` Matches elements if their data attribute is less than or equal to a specified value (e.g. `[foo <= 'bar']` or `[num <= 2]`).
 
-`[name *= value]` Matches elements if their data attribute contains the specified value as a substring (e.g. `[foo *= 'bar']`).
+* `[name *= value]` Matches elements if their data attribute contains the specified value as a substring (e.g. `[foo *= 'bar']`).
 
-`[name ^= value]` Matches elements if their data attribute starts with the specified value (e.g. `[foo ^= 'bar']`).
+* `[name ^= value]` Matches elements if their data attribute starts with the specified value (e.g. `[foo ^= 'bar']`).
 
-`[name $= value]` Matches elements if their data attribute ends with the specified value (e.g. `[foo $= 'bar']`).
+* `[name $= value]` Matches elements if their data attribute ends with the specified value (e.g. `[foo $= 'bar']`).
 
-`@` (data attribute operator modifier) Prepended to an operator so that is case insensitive (e.g. `[foo @$= 'ar']`, `[foo @>= 'a']`, `[foo @= 'bar']`)
+* `@` (data attribute operator modifier) Prepended to an operator so that is case insensitive (e.g. `[foo @$= 'ar']`, `[foo @>= 'a']`, `[foo @= 'bar']`)
 
-`!` (data attribute operator modifier) Prepended to an operator so that it is negated (e.g. `[foo !$= 'ar']`, `[foo !>= 'a']`)
+* `!` (data attribute operator modifier) Prepended to an operator so that it is negated (e.g. `[foo !$= 'ar']`, `[foo !>= 'a']`)
 
-`[[]]` (metadata brackets) Use double square brackets in place of square ones to match against metadata instead of data (e.g. `[[degree > 2]]` matches elements of degree greater than 2). The properties that are supported include `degree`, `indegree`, and `outdegree`.
+* `[[]]` (metadata brackets) Use double square brackets in place of square ones to match against metadata instead of data (e.g. `[[degree > 2]]` matches elements of degree greater than 2). The properties that are supported include `degree`, `indegree`, and `outdegree`.
 
 ### Compound nodes
 
-`>` (child selector) Matches direct children of the parent node (e.g. `node > node`).
+* `>` (child selector) Matches direct children of the parent node (e.g. `node > node`).
 
-` ` (descendant selector) Matches descendants of the parent node (e.g. `node node`).
+* ` ` (descendant selector) Matches descendants of the parent node (e.g. `node node`).
 
-`$` (subject selector) Sets the subject of the selector (e.g. `$node > node` to select the parent nodes instead of the children).
+* `$` (subject selector) Sets the subject of the selector (e.g. `$node > node` to select the parent nodes instead of the children).
 
 ## Transforms
 
