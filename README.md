@@ -50,13 +50,13 @@ Target recon
 
 Commands:
   pown recon transform <transform>          Perform inline transformation  [aliases: t]
-  pown recon select <expressions...>        Select nodes  [aliases: s]
+  pown recon select <selectors...>        Select nodes  [aliases: s]
   pown recon add <nodes...>                 Add nodes  [aliases: a]
-  pown recon remove <expressions...>        Remove nodes  [aliases: r]
+  pown recon remove <selectors...>        Remove nodes  [aliases: r]
   pown recon merge <files...>               Perform a merge between at least two recon files  [aliases: m]
   pown recon diff <fileA> <fileB>           Perform a diff between two recon files  [aliases: d]
-  pown recon group <name> <expressions...>  Group nodes  [aliases: g]
-  pown recon ungroup <expressions...>       Ungroup nodes  [aliases: u]
+  pown recon group <name> <selectors...>  Group nodes  [aliases: g]
+  pown recon ungroup <selectors...>       Ungroup nodes  [aliases: u]
 
 Options:
   --version  Show version number  [boolean]
@@ -111,7 +111,7 @@ Options:
 ### pown recon select
 
 ```
-pown recon select <expressions...>
+pown recon select <selectors...>
 
 Select nodes
 
@@ -183,7 +183,7 @@ Options:
 ### pown recon remove
 
 ```
-pown recon remove <expressions...>
+pown recon remove <selectors...>
 
 Remove nodes
 
@@ -202,7 +202,7 @@ Options:
 ### pown recon group
 
 ```
-pown recon group <name> <expressions...>
+pown recon group <name> <selectors...>
 
 Group nodes
 
@@ -221,7 +221,7 @@ Options:
 ### pown recon ungroup
 
 ```
-pown recon ungroup <expressions...>
+pown recon ungroup <selectors...>
 
 Ungroup nodes
 
@@ -245,7 +245,7 @@ For more information, see the examples.
 
 ## Selectors
 
-Some commands expect selector expressions. A selector functions similar to a CSS selector on DOM elements, but selectors in Recon instead work on collections of graph elements.
+Some commands expect selector selectors. A selector functions similar to a CSS selector on DOM elements, but selectors in Recon instead work on collections of graph elements.
 
 The selectors can be combined together to make powerful queries, for example:
 
