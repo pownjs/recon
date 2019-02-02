@@ -59,7 +59,7 @@ Options:
   --help     Show help  [boolean]
 ```
 
-### Transform
+### transform
 
 ```
 pown recon transform <transform>
@@ -75,6 +75,7 @@ Commands:
   pown recon transform crtshdomainreport [options] <nodes...>             Obtain crt.sh domain report which helps enumerating potential target subdomains.  [aliases: crtsh_domain_report, crtshdr]
   pown recon transform dockerhublistrepos [options] <nodes...>            List the first 100 DockerHub repositories  [aliases: dockerhub_list_repos, dhlr]
   pown recon transform githublistrepos [options] <nodes...>               List the first 100 GitHub repositories  [aliases: github_list_repos, ghlr]
+  pown recon transform githublistgists [options] <nodes...>               List the first 100 GitHub gists  [aliases: github_list_gists, ghlg]
   pown recon transform githublistmembers [options] <nodes...>             List the first 100 GitHub members in org  [aliases: github_list_members, ghlm]
   pown recon transform gravatar [options] <nodes...>                      Get gravatar
   pown recon transform hackertargetreverseiplookup [options] <nodes...>   Obtain reverse IP information from hackertarget.com.  [aliases: hackertarget_reverse_ip_lookup, htril]
@@ -98,7 +99,7 @@ Options:
   --write, -w  Write file  [string]
 ```
 
-### Select
+### select
 
 ```
 pown recon select <expressions...>
@@ -116,20 +117,7 @@ Options:
   --output-with-labels  Output labels  [boolean] [default: false]
 ```
 
-### Merge
-
-```
-pown recon merge <files...>
-
-Perform a merge between at least two recon files
-
-Options:
-  --version    Show version number  [boolean]
-  --help       Show help  [boolean]
-  --write, -w  Write file  [string]
-```
-
-### Diff
+### diff
 
 ```
 pown recon diff <fileA> <fileB>
@@ -145,6 +133,91 @@ Options:
   --output-fields       Output fields  [string] [default: ""]
   --output-with-ids     Output ids  [boolean] [default: false]
   --output-with-labels  Output labels  [boolean] [default: false]
+```
+
+### merge
+
+```
+pown recon merge <files...>
+
+Perform a merge between at least two recon files
+
+Options:
+  --version    Show version number  [boolean]
+  --help       Show help  [boolean]
+  --write, -w  Write file  [string]
+```
+
+### add
+
+```
+pown recon [options] <command>
+
+Target recon
+
+Commands:
+  pown recon transform <transform>    Perform inline transformation  [aliases: t]
+  pown recon select <expressions...>  Perform a selection  [aliases: s]
+  pown recon merge <files...>         Perform a merge between at least two recon files  [aliases: d]
+  pown recon diff <fileA> <fileB>     Perform a diff between two recon files  [aliases: d]
+
+Options:
+  --version  Show version number  [boolean]
+  --help     Show help  [boolean]
+```
+
+### remove
+
+```
+pown recon [options] <command>
+
+Target recon
+
+Commands:
+  pown recon transform <transform>    Perform inline transformation  [aliases: t]
+  pown recon select <expressions...>  Perform a selection  [aliases: s]
+  pown recon merge <files...>         Perform a merge between at least two recon files  [aliases: d]
+  pown recon diff <fileA> <fileB>     Perform a diff between two recon files  [aliases: d]
+
+Options:
+  --version  Show version number  [boolean]
+  --help     Show help  [boolean]
+```
+
+### group
+
+```
+pown recon [options] <command>
+
+Target recon
+
+Commands:
+  pown recon transform <transform>    Perform inline transformation  [aliases: t]
+  pown recon select <expressions...>  Perform a selection  [aliases: s]
+  pown recon merge <files...>         Perform a merge between at least two recon files  [aliases: d]
+  pown recon diff <fileA> <fileB>     Perform a diff between two recon files  [aliases: d]
+
+Options:
+  --version  Show version number  [boolean]
+  --help     Show help  [boolean]
+```
+
+### ungroup
+
+```
+pown recon [options] <command>
+
+Target recon
+
+Commands:
+  pown recon transform <transform>    Perform inline transformation  [aliases: t]
+  pown recon select <expressions...>  Perform a selection  [aliases: s]
+  pown recon merge <files...>         Perform a merge between at least two recon files  [aliases: d]
+  pown recon diff <fileA> <fileB>     Perform a diff between two recon files  [aliases: d]
+
+Options:
+  --version  Show version number  [boolean]
+  --help     Show help  [boolean]
 ```
 
 ## Transforms
