@@ -15,9 +15,11 @@ const code = fs.readdirSync(root)
     .map(({ name, module }) => {
         return Object.entries(module)
             .map(([transformer, module]) => {
-                const { alias = [], title = '', description = '', types = [], options = {}, noise = 1 } = module
+                const { alias, title, description, types, options, noise } = module
 
-                return `exports[${JSON.stringify(transformer)}] = ${JSON.stringify({alias, title, description, types, options, noise}, '', '    ')}
+                return `// WARNING: This is an auto-generated file.
+
+exports[${JSON.stringify(transformer)}] = ${JSON.stringify({alias, title, description, types, options, noise}, '', '    ')}
 
 exports[${JSON.stringify(transformer)}].load = function () { return require(${JSON.stringify('.' + path.sep + name)})[${JSON.stringify(transformer)}] }`
             })
