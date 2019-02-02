@@ -1,0 +1,8 @@
+echo Setting brand
+recon a --node-type brand pownjs
+
+echo Auto recon phase 1
+recon t auto -s 'node'
+
+echo Auto recon phase 2
+recon t auto -s 'node'
