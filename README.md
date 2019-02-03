@@ -278,6 +278,10 @@ Once the recon is complete, open the graph for preview in SecApps Recon:
 $ pown apps recon < path/to/file.network
 ```
 
+You will see a screen similar to the following:
+
+![screenshot](https://media.githubusercontent.com/media/pownjs/pown-recon/master/screenshots/02.png)
+
 ## Scripting
 
 Pown recon is designed to be scripted either via your favorite shell environment or [Pown Script](https://github.com/pownjs/pown-script). If you use Pown Script you will benefit from preserved context between each command execution. This means that you can build a graph without then need to save and restore into intermediate files.
