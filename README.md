@@ -3,7 +3,7 @@
 
 # Pown Recon
 
-Pown Recon is a target reconnaissance framework powered by graph theory. The benefit of using graph theory instead of flat table representation is that it is easier to find the relationships between different types of information which comes quite handy in many situations. Graph theory algorithms also help with diffing, searching, like finding the shortest path, and many more interesting tasks.
+Pown Recon is a target reconnaissance framework powered by graph theory. The benefit of using graph theory instead of flat table representation is that it is easier to find the relationships between different types of information which comes quite handy in many situations. Graph theory algorithms also help with diffing, searching, like finding the shortest path, and many other helpful tasks to aid information discovery and intelligence gathering.
 
 | ![screenshot](https://media.githubusercontent.com/media/pownjs/pown-recon/master/screenshots/01.png) | ![screenshot](https://media.githubusercontent.com/media/pownjs/pown-recon/master/screenshots/02.png) |
 |-|-|
@@ -11,6 +11,16 @@ Pown Recon is a target reconnaissance framework powered by graph theory. The ben
 ## Credits
 
 This tool is part of [secapps.com](https://secapps.com) open-source initiative.
+
+```
+  ___ ___ ___   _   ___ ___  ___
+ / __| __/ __| /_\ | _ \ _ \/ __|
+ \__ \ _| (__ / _ \|  _/  _/\__ \
+ |___/___\___/_/ \_\_| |_|  |___/
+  https://secapps.com
+```
+
+Pown Recon is the result of an almost direct copy of SecApps' excellent [Recon](https://recon.secapps.com) tool.
 
 ## Quickstart
 
@@ -244,15 +254,55 @@ Options:
   --output-with-parents  Output parents  [boolean] [default: false]
 ```
 
+## Preview
+
+Generate graphs can be previewed in [SecApps Recon](https://recon.secapps.com) for convenience, which this tool is based on. You can access SecApps Recon from your browser but you can also invoke it from the command line.
+
+First you need `@pown/apps` installed:
+
+```sh
+$ pown modules install @pown/apps
+```
+
+This will install the optional apps command package.
+
+Generate your graph using the write options:
+
+```sh
+$ pown recon transform auto -w path/to/file.network --node-type brand target
+```
+
+Once the recon is complete, open the graph for preview in SecApps Recon:
+
+```sh
+$ pown apps recon < path/to/file.network
+```
+
 ## Scripting
 
-Pown recon is designed to be scripted either via your favorite shell environment or [Pown Script](https://github.com/pownjs/pown-script). If you use Pown Script you will benefit from preserved context between each executions. This means that you can build a graph without then need to save and restore into intermediate files.
+Pown recon is designed to be scripted either via your favorite shell environment or [Pown Script](https://github.com/pownjs/pown-script). If you use Pown Script you will benefit from preserved context between each command execution. This means that you can build a graph without then need to save and restore into intermediate files.
+
+Using your favourite editor create a file called `example.pown` with the following contents:
+
+```sh
+echo This is script
+recon add --node-type brand target
+recon auto
+```
+
+Execute the script from pown:
+
+```sh
+$ pown script path/to/example.pown
+```
 
 For more information, see the examples.
 
 ## Selectors
 
-Some commands expect selector selectors. A selector functions similar to a CSS selector on DOM elements, but selectors in Recon instead work on collections of graph elements.
+> Some commands expect graph selectors. The rest of the documentation is copy of cytoscape.js selectors manual with some minor differences.
+
+A selector functions similar to a CSS selector on DOM elements, but selectors in Recon instead work on collections of graph elements. This mechanism is provided by the powerful cytoscape.js.
 
 The selectors can be combined together to make powerful queries, for example:
 
@@ -409,7 +459,3 @@ pown recon diff google.network google2.network
 ```
 
 Now we know! This feature is quite useful if you are building large recon maps and you are just curious to know what are the key differences. Imagine your cron job performs the same recon every day and you would like to know if something new just appeared which might be worth exploring further. Hello, bug bounty hunters!
-
-## Sponsors
-
-This work is the result of an almost direct copy of SecApps excellent [Recon](https://recon.secapps.com) tool. While you can perform the same transformations from Pown now, Recon gives you a nice GUI which helps a lot. Also, the sharing features of SecApps are pretty cool.
