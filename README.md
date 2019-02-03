@@ -456,10 +456,10 @@ If you don't hit GitHub API rate limits, you will be presented with this:
 └──────────────────────────────────────────────────────────────────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-Since now we have two files `google.network` and `google2.network` you might be wondering what is the difference between them. Well, we have a tool for doing just that. This is how we do it.
+Since now we have two files `google.network` and `google2.network` you might be wondering what is the difference between them. Well, we have a tool for doing just that.
 
 ```sh
 pown recon diff google.network google2.network
 ```
 
-Now we know! This feature is quite useful if you are building large recon maps and you are just curious to know what are the key differences. Imagine your cron job performs the same recon every day and you would like to know if something new just appeared which might be worth exploring further. Hello, bug bounty hunters!
+Now we know! This feature is quite useful if you are building large recon maps and you would like to know what are the key differences. Imagine your cron job performs the same recon every day and you would like to know if something new just appeared which might be worth exploring further. Hello, bug bounty hunters!
