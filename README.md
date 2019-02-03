@@ -5,6 +5,9 @@
 
 Pown Recon is a target reconnaissance framework powered by graph theory. The benefit of using graph theory instead of flat table representation is that it is easier to find the relationships between different types of information which comes quite handy in many situations. Graph theory algorithms also help with diffing, searching, like finding the shortest path, and many more interesting tasks.
 
+| ![screenshot](https://media.githubusercontent.com/media/pownjs/pown-recon/master/screenshots/01.png) | ![screenshot](https://media.githubusercontent.com/media/pownjs/pown-recon/master/screenshots/02.png) |
+|-|-|
+
 ## Credits
 
 This tool is part of [secapps.com](https://secapps.com) open-source initiative.
