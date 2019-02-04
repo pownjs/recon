@@ -1,7 +1,7 @@
 [![Follow on Twitter](https://img.shields.io/twitter/follow/pownjs.svg?logo=twitter)](https://twitter.com/pownjs)
 [![NPM](https://img.shields.io/npm/v/@pown/recon.svg)](https://www.npmjs.com/package/@pown/recon)
 
-> ]Version 2x Fury](https://github.com/pownjs/lobby) - rapid, breaking changes
+> [Version 2x Fury](https://github.com/pownjs/lobby) - rapid, breaking changes
 
 # Pown Recon
 
