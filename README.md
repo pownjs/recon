@@ -382,6 +382,7 @@ pown select '#some\\$funky\\@id'
 * Archive.org
 * WhatsMyName
 * Utility Transforms
+* Security Trails
 * Auto Recon
 
 ## Tutorial
@@ -397,7 +398,7 @@ pown recon t -w google.network ghlm google
 This command will generate a table similar to this:
 
 ```
-   github:member   
+   github:member
 ┌─────────────────────────────────────────────────────────┬─────────────────────────────────────────────────────────┬─────────────────────────────────────────────────────────┐
 │ uri                                                     │ login                                                   │ avatar                                                  │
 ├─────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────┤
@@ -436,7 +437,7 @@ pown recon t ghlr -r google.network -w google2.nework -s 'node[type="github:memb
 If you don't hit GitHub API rate limits, you will be presented with this:
 
 ```
-   github:repo   
+   github:repo
 ┌──────────────────────────────────────────────────────────────────────────────────────┬──────────────────────────────────────────────────────────────────────────────────────┐
 │ uri                                                                                  │ fullName                                                                             │
 ├──────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────┤
