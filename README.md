@@ -21,7 +21,7 @@ This tool is part of [secapps.com](https://secapps.com) open-source initiative.
   https://secapps.com
 ```
 
-Pown Recon is the result of an almost direct copy of SecApps' excellent [Recon](https://recon.secapps.com) tool.
+> **NB**: Pown Recon is the result of an almost direct copy of SecApps' excellent [Recon](https://recon.secapps.com) tool.
 
 ## Quickstart
 
