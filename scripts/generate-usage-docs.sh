@@ -8,25 +8,25 @@ export POWN_ROOT=.
 
 for C in $COMMANDS
 do
-	for SC in $SUBCOMMANDS
-	do
+    for SC in $SUBCOMMANDS
+    do
         echo '## Usage'
         echo
         echo '> **WARNING**: This pown command is currently under development and as a result will be subject to breaking changes.'
-		echo
+        echo
         echo '```'
-		$C $SC --help
+        $C $SC --help
         echo '```'
-		echo
+        echo
 
         for SSC in $SUBSUBCOMMANDS
         do
-            echo "### $C $SC $SSC"
+            echo "### \`$C $SC $SSC\`"
             echo
             echo '```'
             $C $SC $SSC --help
             echo '```'
             echo
         done
-	done
+    done
 done

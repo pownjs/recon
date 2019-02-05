@@ -67,12 +67,12 @@ pown recon <command>
 Target recon
 
 Commands:
-  pown recon transform <transform>          Perform inline transformation  [aliases: t]
+  pown recon transform <transform>        Perform inline transformation  [aliases: t]
   pown recon select <selectors...>        Select nodes  [aliases: s]
-  pown recon add <nodes...>                 Add nodes  [aliases: a]
+  pown recon add <nodes...>               Add nodes  [aliases: a]
   pown recon remove <selectors...>        Remove nodes  [aliases: r]
-  pown recon merge <files...>               Perform a merge between at least two recon files  [aliases: m]
-  pown recon diff <fileA> <fileB>           Perform a diff between two recon files  [aliases: d]
+  pown recon merge <files...>             Perform a merge between at least two recon files  [aliases: m]
+  pown recon diff <fileA> <fileB>         Perform a diff between two recon files  [aliases: d]
   pown recon group <name> <selectors...>  Group nodes  [aliases: g]
   pown recon ungroup <selectors...>       Ungroup nodes  [aliases: u]
 
@@ -81,7 +81,7 @@ Options:
   --help     Show help  [boolean]
 ```
 
-### pown recon transform
+### `pown recon transform`
 
 ```
 pown recon transform <transform>
@@ -105,6 +105,8 @@ Commands:
   pown recon transform pkslookupkeys [options] <nodes...>                 Look the the PKS database at pool.sks-keyservers.net which pgp.mit.edu is part of.  [aliases: pks_lookup_keys, pkslk]
   pown recon transform riddleripsearch [options] <nodes...>               Searches for IP references using F-Secure riddler.io.  [aliases: riddler_ip_search, rdis]
   pown recon transform riddlerdomainsearch [options] <nodes...>           Searches for Domain references using F-Secure riddler.io.  [aliases: riddler_domain_search, rdds]
+  pown recon transform securitytrailssuggestions [options] <nodes...>     Get a list of domain suggestions from securitytrails.com.  [aliases: securitytrails_domain_suggestions, stds]
+  pown recon transform securitytrailsdomainreport [options] <nodes...>    Get a domain report from securitytrails.com.  [aliases: securitytrails_domain_report, stdr]
   pown recon transform threatcrowddomainreport [options] <nodes...>       Obtain threatcrowd domain report which helps enumerating potential target subdomains and email addresses.  [aliases: threatcrowd_domain_report, tcdr]
   pown recon transform threatcrowdipreport [options] <nodes...>           Obtain threatcrowd ip report which helps enumerating virtual hosts.  [aliases: threatcrowd_ip_report, tcir]
   pown recon transform urlscanliveshot [options] <nodes...>               Generates a liveshot of any public site via urlscan.  [aliases: usls]
@@ -126,7 +128,7 @@ Options:
   --write, -w  Write file  [string]
 ```
 
-### pown recon select
+### `pown recon select`
 
 ```
 pown recon select <selectors...>
@@ -134,18 +136,19 @@ pown recon select <selectors...>
 Select nodes
 
 Options:
-  --version              Show version number  [boolean]
-  --help                 Show help  [boolean]
-  --read, -r             Read file  [string]
-  --write, -w            Write file  [string]
-  --output-format, -o    Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
-  --output-fields        Output fields  [string] [default: ""]
-  --output-with-ids      Output ids  [boolean] [default: false]
-  --output-with-labels   Output labels  [boolean] [default: false]
-  --output-with-parents  Output parents  [boolean] [default: false]
+  --version            Show version number  [boolean]
+  --help               Show help  [boolean]
+  --read, -r           Read file  [string]
+  --write, -w          Write file  [string]
+  --output-format, -o  Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
+  --output-fields      Output fields  [string] [default: ""]
+  --output-ids         Output ids  [boolean] [default: false]
+  --output-labels      Output labels  [boolean] [default: false]
+  --output-parents     Output parents  [boolean] [default: false]
+  --output-tags        Output tags  [boolean] [default: false]
 ```
 
-### pown recon diff
+### `pown recon diff`
 
 ```
 pown recon diff <fileA> <fileB>
@@ -153,18 +156,19 @@ pown recon diff <fileA> <fileB>
 Perform a diff between two recon files
 
 Options:
-  --version              Show version number  [boolean]
-  --help                 Show help  [boolean]
-  --subset, -s           The subset to select  [choices: "left", "right", "both"] [default: "left"]
-  --write, -w            Write file  [string]
-  --output-format, -o    Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
-  --output-fields        Output fields  [string] [default: ""]
-  --output-with-ids      Output ids  [boolean] [default: false]
-  --output-with-labels   Output labels  [boolean] [default: false]
-  --output-with-parents  Output parents  [boolean] [default: false]
+  --version            Show version number  [boolean]
+  --help               Show help  [boolean]
+  --subset, -s         The subset to select  [choices: "left", "right", "both"] [default: "left"]
+  --write, -w          Write file  [string]
+  --output-format, -o  Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
+  --output-fields      Output fields  [string] [default: ""]
+  --output-ids         Output ids  [boolean] [default: false]
+  --output-labels      Output labels  [boolean] [default: false]
+  --output-parents     Output parents  [boolean] [default: false]
+  --output-tags        Output tags  [boolean] [default: false]
 ```
 
-### pown recon merge
+### `pown recon merge`
 
 ```
 pown recon merge <files...>
@@ -177,7 +181,7 @@ Options:
   --write, -w  Write file  [string]
 ```
 
-### pown recon add
+### `pown recon add`
 
 ```
 pown recon add <nodes...>
@@ -185,20 +189,21 @@ pown recon add <nodes...>
 Add nodes
 
 Options:
-  --version              Show version number  [boolean]
-  --help                 Show help  [boolean]
-  --group, -g            Group nodes  [string] [default: ""]
-  --node-type            The type for new nodes from the command line  [string] [default: "string"]
-  --read, -r             Read file  [string]
-  --write, -w            Write file  [string]
-  --output-format, -o    Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
-  --output-fields        Output fields  [string] [default: ""]
-  --output-with-ids      Output ids  [boolean] [default: false]
-  --output-with-labels   Output labels  [boolean] [default: false]
-  --output-with-parents  Output parents  [boolean] [default: false]
+  --version            Show version number  [boolean]
+  --help               Show help  [boolean]
+  --group, -g          Group nodes  [string] [default: ""]
+  --node-type          The type for new nodes from the command line  [string] [default: "string"]
+  --read, -r           Read file  [string]
+  --write, -w          Write file  [string]
+  --output-format, -o  Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
+  --output-fields      Output fields  [string] [default: ""]
+  --output-ids         Output ids  [boolean] [default: false]
+  --output-labels      Output labels  [boolean] [default: false]
+  --output-parents     Output parents  [boolean] [default: false]
+  --output-tags        Output tags  [boolean] [default: false]
 ```
 
-### pown recon remove
+### `pown recon remove`
 
 ```
 pown recon remove <selectors...>
@@ -206,18 +211,19 @@ pown recon remove <selectors...>
 Remove nodes
 
 Options:
-  --version              Show version number  [boolean]
-  --help                 Show help  [boolean]
-  --read, -r             Read file  [string]
-  --write, -w            Write file  [string]
-  --output-format, -o    Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
-  --output-fields        Output fields  [string] [default: ""]
-  --output-with-ids      Output ids  [boolean] [default: false]
-  --output-with-labels   Output labels  [boolean] [default: false]
-  --output-with-parents  Output parents  [boolean] [default: false]
+  --version            Show version number  [boolean]
+  --help               Show help  [boolean]
+  --read, -r           Read file  [string]
+  --write, -w          Write file  [string]
+  --output-format, -o  Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
+  --output-fields      Output fields  [string] [default: ""]
+  --output-ids         Output ids  [boolean] [default: false]
+  --output-labels      Output labels  [boolean] [default: false]
+  --output-parents     Output parents  [boolean] [default: false]
+  --output-tags        Output tags  [boolean] [default: false]
 ```
 
-### pown recon group
+### `pown recon group`
 
 ```
 pown recon group <name> <selectors...>
@@ -225,18 +231,19 @@ pown recon group <name> <selectors...>
 Group nodes
 
 Options:
-  --version              Show version number  [boolean]
-  --help                 Show help  [boolean]
-  --read, -r             Read file  [string]
-  --write, -w            Write file  [string]
-  --output-format, -o    Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
-  --output-fields        Output fields  [string] [default: ""]
-  --output-with-ids      Output ids  [boolean] [default: false]
-  --output-with-labels   Output labels  [boolean] [default: false]
-  --output-with-parents  Output parents  [boolean] [default: false]
+  --version            Show version number  [boolean]
+  --help               Show help  [boolean]
+  --read, -r           Read file  [string]
+  --write, -w          Write file  [string]
+  --output-format, -o  Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
+  --output-fields      Output fields  [string] [default: ""]
+  --output-ids         Output ids  [boolean] [default: false]
+  --output-labels      Output labels  [boolean] [default: false]
+  --output-parents     Output parents  [boolean] [default: false]
+  --output-tags        Output tags  [boolean] [default: false]
 ```
 
-### pown recon ungroup
+### `pown recon ungroup`
 
 ```
 pown recon ungroup <selectors...>
@@ -244,15 +251,16 @@ pown recon ungroup <selectors...>
 Ungroup nodes
 
 Options:
-  --version              Show version number  [boolean]
-  --help                 Show help  [boolean]
-  --read, -r             Read file  [string]
-  --write, -w            Write file  [string]
-  --output-format, -o    Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
-  --output-fields        Output fields  [string] [default: ""]
-  --output-with-ids      Output ids  [boolean] [default: false]
-  --output-with-labels   Output labels  [boolean] [default: false]
-  --output-with-parents  Output parents  [boolean] [default: false]
+  --version            Show version number  [boolean]
+  --help               Show help  [boolean]
+  --read, -r           Read file  [string]
+  --write, -w          Write file  [string]
+  --output-format, -o  Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
+  --output-fields      Output fields  [string] [default: ""]
+  --output-ids         Output ids  [boolean] [default: false]
+  --output-labels      Output labels  [boolean] [default: false]
+  --output-parents     Output parents  [boolean] [default: false]
+  --output-tags        Output tags  [boolean] [default: false]
 ```
 
 ## Preview
