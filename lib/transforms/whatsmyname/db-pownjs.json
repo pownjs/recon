@@ -2,5 +2,49 @@
    "license" : ["Copyright (C) 2019 PownJS"],
    "authors" : ["pdp"],
    "sites" : [
+      {
+         "name" : "Docker Hub",
+         "check_uri" : "https://hub.docker.com/v2/users/{account}/",
+         "check_headers" : {},
+         "pretty_uri" : "https://hub.docker.com/u/{account}",
+         "account_existence_code" : "200",
+         "account_existence_string" : "profile_url",
+         "account_missing_string" : "Not Found",
+         "account_missing_code" : "404",
+         "known_accounts" : ["john"],
+         "category" : "coding",
+         "valid" : true,
+         "comments" : []
+      },
+      {
+         "name" : "NPM",
+         "check_uri" : "https://www.npmjs.com/~{account}",
+         "check_headers" : {},
+         "pretty_uri" : "https://www.npmjs.com/~{account}",
+         "account_existence_code" : "200",
+         "account_existence_string" : "http://en.gravatar.com",
+         "account_missing_string" : "Scope not found",
+         "account_missing_code" : "404",
+         "known_accounts" : ["john"],
+         "category" : "coding",
+         "valid" : true,
+         "comments" : []
+      },
+      {
+         "name" : "Travis CI",
+         "check_uri" : "https://api.travis-ci.org/owner/{account}",
+         "check_headers" : {
+            "Travis-API-Version": "3"
+         },
+         "pretty_uri" : "https://travis-ci.org/{account}",
+         "account_existence_code" : "200",
+         "account_existence_string" : "avatar_url",
+         "account_missing_string" : "owner not found",
+         "account_missing_code" : "404",
+         "known_accounts" : ["john"],
+         "category" : "coding",
+         "valid" : true,
+         "comments" : []
+      }
    ]
 }
