@@ -265,7 +265,7 @@ Options:
 
 ## Preview
 
-Generate graphs can be previewed in [SecApps Recon](https://recon.secapps.com) for convenience, which this tool is based on. You can access SecApps Recon from your browser but you can also invoke it from the command line.
+Generated graphs can be previewed in [SecApps Recon](https://recon.secapps.com) for convenience, which this tool is based on. You can access SecApps Recon from your browser but you can also invoke it from the command line.
 
 First you need `@pown/apps` installed:
 
@@ -300,7 +300,7 @@ Using your favourite editor create a file called `example.pown` with the followi
 ```sh
 echo This is script
 recon add --node-type brand target
-recon auto
+recon t auto
 ```
 
 Execute the script from pown:
