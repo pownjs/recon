@@ -1,0 +1,3 @@
+{
+  "extends": "@pown/toolchain/.babelrc"
+}
