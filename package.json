@@ -32,11 +32,11 @@
     "@pown/toolchain": "^2.0.0"
   },
   "dependencies": {
-    "@pown/async": "^2.0.1",
+    "@pown/async": "^2.1.0",
     "@pown/file": "^2.0.0",
     "@pown/preferences": "^2.2.1",
     "@pown/request": "^2.6.0",
-    "cytoscape": "^3.4.0"
+    "cytoscape": "^3.4.1"
   },
   "pown": {
     "commands": [
