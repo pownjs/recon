@@ -373,6 +373,7 @@ pown select '#some\\$funky\\@id'
 ## Transforms
 
 * GitHub Search of Repos, Gists and Members
+* Bitbucket Search of Repos, Snippets and Members
 * CloudFlare 1.1.1.1 DNS API
 * CRTSH
 * DockerHub Repo Search
