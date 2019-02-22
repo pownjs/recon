@@ -7,7 +7,7 @@
     "recon": "POWN_ROOT=. pown-cli recon",
     "script": "POWN_ROOT=. pown-cli script",
     "shell": "POWN_ROOT=. pown-cli shell",
-    "build": "node ./scripts/build-transforms-index.js && sh ./scripts/update-whatsmyname-db.sh",
+    "build": "node ./scripts/generate-transforms-index.js",
     "test": "mocha"
   },
   "repository": {
