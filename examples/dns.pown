@@ -1,0 +1,3 @@
+echo DNS Recon Example
+
+recon t auto --name 'dnsresolve' --node-type domain secapps.com websecurify.com
