@@ -36,6 +36,7 @@
     "@pown/file": "^2.0.0",
     "@pown/preferences": "^2.2.1",
     "@pown/request": "^2.6.0",
+    "@pown/whoarethey": "^2.0.0",
     "cytoscape": "^3.5.0"
   },
   "pown": {
