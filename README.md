@@ -68,14 +68,15 @@ Target recon
 
 Commands:
   pown recon transform <transform>        Perform inline transformation  [aliases: t]
-  pown recon select <selectors...>        Select nodes  [aliases: s]
+  pown recon select <expressions...>      Select nodes  [aliases: s]
+  pown recon traverse <expressions...>    Traverse nodes  [aliases: v]
   pown recon add <nodes...>               Add nodes  [aliases: a]
   pown recon remove <selectors...>        Remove nodes  [aliases: r]
   pown recon merge <files...>             Perform a merge between at least two recon files  [aliases: m]
   pown recon diff <fileA> <fileB>         Perform a diff between two recon files  [aliases: d]
   pown recon group <name> <selectors...>  Group nodes  [aliases: g]
   pown recon ungroup <selectors...>       Ungroup nodes  [aliases: u]
-  pown recon save <file>                  Save to file  [aliases: v]
+  pown recon save <file>                  Save to file  [aliases: a]
   pown recon import <file>                Import file  [aliases: i]
   pown recon export <file>                Export to file  [aliases: e]
 
@@ -143,7 +144,7 @@ Options:
 ### `pown recon select`
 
 ```
-pown recon select <selectors...>
+pown recon select <expressions...>
 
 Select nodes
 
@@ -161,17 +162,17 @@ Options:
   --output-tags        Output tags  [boolean] [default: false]
 ```
 
-### `pown recon diff`
+### `pown recon traverse`
 
 ```
-pown recon diff <fileA> <fileB>
+pown recon traverse <expressions...>
 
-Perform a diff between two recon files
+Traverse nodes
 
 Options:
   --version            Show version number  [boolean]
   --help               Show help  [boolean]
-  --subset, -s         The subset to select  [choices: "left", "right", "both"] [default: "left"]
+  --read, -r           Read file  [string]
   --write, -w          Write file  [string]
   --output-format, -o  Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
   --output-fields      Output fields  [string] [default: ""]
@@ -180,19 +181,6 @@ Options:
   --output-images      Output images  [boolean] [default: false]
   --output-parents     Output parents  [boolean] [default: false]
   --output-tags        Output tags  [boolean] [default: false]
-```
-
-### `pown recon merge`
-
-```
-pown recon merge <files...>
-
-Perform a merge between at least two recon files
-
-Options:
-  --version    Show version number  [boolean]
-  --help       Show help  [boolean]
-  --write, -w  Write file  [string]
 ```
 
 ### `pown recon add`
@@ -229,6 +217,40 @@ Options:
   --version            Show version number  [boolean]
   --help               Show help  [boolean]
   --read, -r           Read file  [string]
+  --write, -w          Write file  [string]
+  --output-format, -o  Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
+  --output-fields      Output fields  [string] [default: ""]
+  --output-ids         Output ids  [boolean] [default: false]
+  --output-labels      Output labels  [boolean] [default: false]
+  --output-images      Output images  [boolean] [default: false]
+  --output-parents     Output parents  [boolean] [default: false]
+  --output-tags        Output tags  [boolean] [default: false]
+```
+
+### `pown recon merge`
+
+```
+pown recon merge <files...>
+
+Perform a merge between at least two recon files
+
+Options:
+  --version    Show version number  [boolean]
+  --help       Show help  [boolean]
+  --write, -w  Write file  [string]
+```
+
+### `pown recon diff`
+
+```
+pown recon diff <fileA> <fileB>
+
+Perform a diff between two recon files
+
+Options:
+  --version            Show version number  [boolean]
+  --help               Show help  [boolean]
+  --subset, -s         The subset to select  [choices: "left", "right", "both"] [default: "left"]
   --write, -w          Write file  [string]
   --output-format, -o  Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
   --output-fields      Output fields  [string] [default: ""]
