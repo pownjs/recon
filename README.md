@@ -48,7 +48,7 @@ $ npm install @pown/recon --save
 Once done, invoke pown cli:
 
 ```sh
-$ ./node_modules/.bin/pown-cli recon
+$ POWN_ROOT=. ./node_modules/.bin/pown-cli recon
 ```
 
 You can also use the global pown to invoke the tool locally:
@@ -75,6 +75,9 @@ Commands:
   pown recon diff <fileA> <fileB>         Perform a diff between two recon files  [aliases: d]
   pown recon group <name> <selectors...>  Group nodes  [aliases: g]
   pown recon ungroup <selectors...>       Ungroup nodes  [aliases: u]
+  pown recon save <file>                  Save to file  [aliases: v]
+  pown recon import <file>                Import file  [aliases: i]
+  pown recon export <file>                Export to file  [aliases: e]
 
 Options:
   --version  Show version number  [boolean]
@@ -91,16 +94,23 @@ Perform inline transformation
 Commands:
   pown recon transform archiveindex [options] <nodes...>                  Obtain archive.org index for specific URL.  [aliases: archive_index, arci]
   pown recon transform awsiamendpoints [options] <nodes...>               Enumerate AWS IAM endpoints.  [aliases: aws_iam_endpoints, awsie]
-  pown recon transform builtwithscraperelationships [options] <nodes...>  Performs scrape of builtwith.com relationships  [aliases: builtwith_scrape_relationships, bwsr]
+  pown recon transform bitbucketlistrepos [options] <nodes...>            List Bitbucket repositories.  [aliases: bitbucket_list_repos, bblr]
+  pown recon transform bitbucketlistsnippets [options] <nodes...>         List Bitbucket snippets.  [aliases: bitbucket_list_snippets, bbls]
+  pown recon transform bitbucketlistteamrepos [options] <nodes...>        List Bitbucket team repos.  [aliases: bitbucket_list_team_repos, bbltr]
+  pown recon transform bitbucketlistteammembers [options] <nodes...>      List Bitbucket team members.  [aliases: bitbucket_list_team_members, bbltm]
+  pown recon transform builtwithscraperelationships [options] <nodes...>  Performs scrape of builtwith.com relationships.  [aliases: builtwith_scrape_relationships, bwsr]
   pown recon transform cloudflarednsquery [options] <nodes...>            Query CloudFlare DNS API.  [aliases: cloudflare_dns_query, cfdq]
   pown recon transform commoncrawlindex [options] <nodes...>              Obtain a CommonCraw index for specific URL.  [aliases: commoncrawl_index, cci]
   pown recon transform crtshdomainreport [options] <nodes...>             Obtain crt.sh domain report which helps enumerating potential target subdomains.  [aliases: crtsh_domain_report, crtshdr]
+  pown recon transform bakeimages [options] <nodes...>                    Convert external image into data URIs for self-embedding purposes.  [aliases: bake_images, be]
+  pown recon transform dnsresolve [options] <nodes...>                    Does not do anything.  [aliases: dr, dns]
   pown recon transform dockerhublistrepos [options] <nodes...>            List the first 100 DockerHub repositories.  [aliases: dockerhub_list_repos, dhlr]
   pown recon transform githublistrepos [options] <nodes...>               List GitHub repositories.  [aliases: github_list_repos, ghlr]
   pown recon transform githublistgists [options] <nodes...>               List GitHub gists.  [aliases: github_list_gists, ghlg]
   pown recon transform githublistmembers [options] <nodes...>             List the first 100 GitHub members in org  [aliases: github_list_members, ghlm]
   pown recon transform gravatar [options] <nodes...>                      Get gravatar.
   pown recon transform hackertargetreverseiplookup [options] <nodes...>   Obtain reverse IP information from hackertarget.com.  [aliases: hackertarget_reverse_ip_lookup, htril]
+  pown recon transform hackertargetonlineportscan [options] <nodes...>    Obtain port information from hackertarget.com.  [aliases: hackertarget_online_port_scan, htps]
   pown recon transform hibpreport [options] <nodes...>                    Obtain haveibeenpwned.com breach report.  [aliases: hibp_report, hibpr]
   pown recon transform pkslookupkeys [options] <nodes...>                 Look the the PKS database at pool.sks-keyservers.net which pgp.mit.edu is part of.  [aliases: pks_lookup_keys, pkslk]
   pown recon transform riddleripsearch [options] <nodes...>               Searches for IP references using F-Secure riddler.io.  [aliases: riddler_ip_search, rdis]
@@ -113,11 +123,13 @@ Commands:
   pown recon transform nop [options] <nodes...>                           Does not do anything.
   pown recon transform splitemail [options] <nodes...>                    Split email.  [aliases: split_email, se]
   pown recon transform buildemail [options] <nodes...>                    Build email.  [aliases: build_email, be]
+  pown recon transform splitdomain [options] <nodes...>                   Split domain.  [aliases: split_domain, ss]
+  pown recon transform builddomain [options] <nodes...>                   Build domain.  [aliases: build_domain, bd]
   pown recon transform splituri [options] <nodes...>                      Split URI.  [aliases: split_uri, su]
   pown recon transform builduri [options] <nodes...>                      Build URI.  [aliases: build_uri, bu]
   pown recon transform analyzeip [options] <nodes...>                     Analyze IP.  [aliases: analyze_ip, ai]
   pown recon transform wappalyzerprofile [options] <nodes...>             Enumerate technologies with api.wappalyzer.com.  [aliases: wappalyzer_profile, wzp]
-  pown recon transform whatsmynamereport [options] <nodes...>             Find social accounts with the help of whatsmyname database.  [aliases: whatsmyname_report, whatsmyname, wmnr, wmn]
+  pown recon transform whoaretheyreport [options] <nodes...>              Find social accounts with the help of whoarethey database.  [aliases: whoarethey_report, whoarethey, wmnr, wmn]
   pown recon transform zoomeyescrapesearchresults [options] <nodes...>    Performs first page scrape on ZoomEye search results  [aliases: zoomeye_scrape_search_results, zyssr]
   pown recon transform auto [options] <nodes...>                          Select the most appropriate methods of transformation
 
@@ -144,6 +156,7 @@ Options:
   --output-fields      Output fields  [string] [default: ""]
   --output-ids         Output ids  [boolean] [default: false]
   --output-labels      Output labels  [boolean] [default: false]
+  --output-images      Output images  [boolean] [default: false]
   --output-parents     Output parents  [boolean] [default: false]
   --output-tags        Output tags  [boolean] [default: false]
 ```
@@ -164,6 +177,7 @@ Options:
   --output-fields      Output fields  [string] [default: ""]
   --output-ids         Output ids  [boolean] [default: false]
   --output-labels      Output labels  [boolean] [default: false]
+  --output-images      Output images  [boolean] [default: false]
   --output-parents     Output parents  [boolean] [default: false]
   --output-tags        Output tags  [boolean] [default: false]
 ```
@@ -199,6 +213,7 @@ Options:
   --output-fields      Output fields  [string] [default: ""]
   --output-ids         Output ids  [boolean] [default: false]
   --output-labels      Output labels  [boolean] [default: false]
+  --output-images      Output images  [boolean] [default: false]
   --output-parents     Output parents  [boolean] [default: false]
   --output-tags        Output tags  [boolean] [default: false]
 ```
@@ -219,6 +234,7 @@ Options:
   --output-fields      Output fields  [string] [default: ""]
   --output-ids         Output ids  [boolean] [default: false]
   --output-labels      Output labels  [boolean] [default: false]
+  --output-images      Output images  [boolean] [default: false]
   --output-parents     Output parents  [boolean] [default: false]
   --output-tags        Output tags  [boolean] [default: false]
 ```
@@ -239,6 +255,7 @@ Options:
   --output-fields      Output fields  [string] [default: ""]
   --output-ids         Output ids  [boolean] [default: false]
   --output-labels      Output labels  [boolean] [default: false]
+  --output-images      Output images  [boolean] [default: false]
   --output-parents     Output parents  [boolean] [default: false]
   --output-tags        Output tags  [boolean] [default: false]
 ```
@@ -259,8 +276,22 @@ Options:
   --output-fields      Output fields  [string] [default: ""]
   --output-ids         Output ids  [boolean] [default: false]
   --output-labels      Output labels  [boolean] [default: false]
+  --output-images      Output images  [boolean] [default: false]
   --output-parents     Output parents  [boolean] [default: false]
   --output-tags        Output tags  [boolean] [default: false]
+```
+
+### `pown recon save`
+
+```
+pown recon save <file>
+
+Save to file
+
+Options:
+  --version   Show version number  [boolean]
+  --help      Show help  [boolean]
+  --read, -r  Read file  [string]
 ```
 
 ## Preview
