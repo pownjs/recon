@@ -442,6 +442,7 @@ pown select '#some\\$funky\\@id'
 * Riddler
 * CommonCraw
 * Archive.org
+* Shodan
 * WhatsMyName
 * Utility Transforms
 * Security Trails
