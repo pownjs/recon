@@ -428,7 +428,7 @@ pown select '#some\\$funky\\@id'
 * GitHub Search of Repos, Gists and Members
 * Bitbucket Search of Repos, Snippets and Members
 * CloudFlare 1.1.1.1 DNS API
-* CRTSH
+* CRTSH (CN & SAN)
 * DockerHub Repo Search
 * Gravatar URLs
 * Hacker Target Reverse IP Lookup
@@ -436,7 +436,6 @@ pown select '#some\\$funky\\@id'
 * PKS Lookup
 * Urlscan Live Shot
 * Threatcrowd Lookup
-* ZoomEye Scraper
 * Wappalyzer
 * AWS IAM Pages
 * Builtwith
