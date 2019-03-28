@@ -67,18 +67,18 @@ pown recon <command>
 Target recon
 
 Commands:
-  pown recon transform <transform>        Perform inline transformation  [aliases: t]
-  pown recon select <expressions...>      Select nodes  [aliases: s]
-  pown recon traverse <expressions...>    Traverse nodes  [aliases: v]
-  pown recon add <nodes...>               Add nodes  [aliases: a]
-  pown recon remove <selectors...>        Remove nodes  [aliases: r]
-  pown recon merge <files...>             Perform a merge between at least two recon files  [aliases: m]
-  pown recon diff <fileA> <fileB>         Perform a diff between two recon files  [aliases: d]
-  pown recon group <name> <selectors...>  Group nodes  [aliases: g]
-  pown recon ungroup <selectors...>       Ungroup nodes  [aliases: u]
-  pown recon save <file>                  Save to file  [aliases: a]
-  pown recon import <file>                Import file  [aliases: i]
-  pown recon export <file>                Export to file  [aliases: e]
+  pown recon transform <transform>          Perform inline transformation  [aliases: t]
+  pown recon select <expressions...>        Select nodes  [aliases: s]
+  pown recon traverse <expressions...>      Traverse nodes  [aliases: v]
+  pown recon add <nodes...>                 Add nodes  [aliases: a]
+  pown recon remove <selectors...>          Remove nodes  [aliases: r]
+  pown recon merge <files...>               Perform a merge between at least two recon files  [aliases: m]
+  pown recon diff <fileA> <fileB>           Perform a diff between two recon files  [aliases: d]
+  pown recon group <name> <expressions...>  Group nodes  [aliases: g]
+  pown recon ungroup <selectors...>         Ungroup nodes  [aliases: u]
+  pown recon save <file>                    Save to file  [aliases: a]
+  pown recon import <file>                  Import file  [aliases: i]
+  pown recon export <file>                  Export to file  [aliases: e]
 
 Options:
   --version  Show version number  [boolean]
@@ -102,7 +102,8 @@ Commands:
   pown recon transform builtwithscraperelationships [options] <nodes...>  Performs scrape of builtwith.com relationships.  [aliases: builtwith_scrape_relationships, bwsr]
   pown recon transform cloudflarednsquery [options] <nodes...>            Query CloudFlare DNS API.  [aliases: cloudflare_dns_query, cfdq]
   pown recon transform commoncrawlindex [options] <nodes...>              Obtain a CommonCraw index for specific URL.  [aliases: commoncrawl_index, cci]
-  pown recon transform crtshdomainreport [options] <nodes...>             Obtain crt.sh domain report which helps enumerating potential target subdomains.  [aliases: crtsh_domain_report, crtshdr]
+  pown recon transform crtshcndomainreport [options] <nodes...>           Obtain crt.sh domain report which helps enumerating potential target subdomains.  [aliases: crtsh_cn_domain_report, crtshcdr]
+  pown recon transform crtshsandomainreport [options] <nodes...>          Obtain crt.sh domain report which helps enumerating potential target subdomains.  [aliases: crtsh_san_domain_report, crtshsdr]
   pown recon transform bakeimages [options] <nodes...>                    Convert external image into data URIs for self-embedding purposes.  [aliases: bake_images, be]
   pown recon transform dnsresolve [options] <nodes...>                    Does not do anything.  [aliases: dr, dns]
   pown recon transform dockerhublistrepos [options] <nodes...>            List the first 100 DockerHub repositories.  [aliases: dockerhub_list_repos, dhlr]
@@ -113,14 +114,19 @@ Commands:
   pown recon transform hackertargetreverseiplookup [options] <nodes...>   Obtain reverse IP information from hackertarget.com.  [aliases: hackertarget_reverse_ip_lookup, htril]
   pown recon transform hackertargetonlineportscan [options] <nodes...>    Obtain port information from hackertarget.com.  [aliases: hackertarget_online_port_scan, htps]
   pown recon transform hibpreport [options] <nodes...>                    Obtain haveibeenpwned.com breach report.  [aliases: hibp_report, hibpr]
+  pown recon transform httpfingerprint [options] <nodes...>               Performs a fingerprint on the HTTP server and application.  [aliases: http_fingerprint, hf]
   pown recon transform pkslookupkeys [options] <nodes...>                 Look the the PKS database at pool.sks-keyservers.net which pgp.mit.edu is part of.  [aliases: pks_lookup_keys, pkslk]
+  pown recon transform pwndbsearch [options] <nodes...>                   Searching the PownDB database  [aliases: pwndb_search, pds]
   pown recon transform riddleripsearch [options] <nodes...>               Searches for IP references using F-Secure riddler.io.  [aliases: riddler_ip_search, rdis]
   pown recon transform riddlerdomainsearch [options] <nodes...>           Searches for Domain references using F-Secure riddler.io.  [aliases: riddler_domain_search, rdds]
   pown recon transform securitytrailssuggestions [options] <nodes...>     Get a list of domain suggestions from securitytrails.com.  [aliases: securitytrails_domain_suggestions, stds]
   pown recon transform securitytrailsdomainreport [options] <nodes...>    Get a domain report from securitytrails.com.  [aliases: securitytrails_domain_report, stdr]
+  pown recon transform shodansslsearch [options] <nodes...>               Performs search using SSL filter.  [aliases: shodan_ssl_search, sss]
+  pown recon transform tcpportscan [options] <nodes...>                   Simple port scanner  [aliases: tcp_port_scan, tps]
   pown recon transform threatcrowddomainreport [options] <nodes...>       Obtain threatcrowd domain report which helps enumerating potential target subdomains and email addresses.  [aliases: threatcrowd_domain_report, tcdr]
   pown recon transform threatcrowdipreport [options] <nodes...>           Obtain threatcrowd ip report which helps enumerating virtual hosts.  [aliases: threatcrowd_ip_report, tcir]
-  pown recon transform urlscanliveshot [options] <nodes...>               Generates a liveshot of any public site via urlscan.  [aliases: usls]
+  pown recon transform urlscanliveshot [options] <nodes...>               Generates a liveshot of any public site via urlscan.  [aliases: urlscan_liveshot, usls]
+  pown recon transform urlscanliveshotsearchengines [options] <nodes...>  Generates a liveshot of a number of search engines.  [aliases: urlscan_liveshot_search_engines, uslsse]
   pown recon transform nop [options] <nodes...>                           Does not do anything.
   pown recon transform splitemail [options] <nodes...>                    Split email.  [aliases: split_email, se]
   pown recon transform buildemail [options] <nodes...>                    Build email.  [aliases: build_email, be]
@@ -131,7 +137,6 @@ Commands:
   pown recon transform analyzeip [options] <nodes...>                     Analyze IP.  [aliases: analyze_ip, ai]
   pown recon transform wappalyzerprofile [options] <nodes...>             Enumerate technologies with api.wappalyzer.com.  [aliases: wappalyzer_profile, wzp]
   pown recon transform whoaretheyreport [options] <nodes...>              Find social accounts with the help of whoarethey database.  [aliases: whoarethey_report, whoarethey, wmnr, wmn]
-  pown recon transform zoomeyescrapesearchresults [options] <nodes...>    Performs first page scrape on ZoomEye search results  [aliases: zoomeye_scrape_search_results, zyssr]
   pown recon transform auto [options] <nodes...>                          Select the most appropriate methods of transformation
 
 Options:
@@ -264,7 +269,7 @@ Options:
 ### `pown recon group`
 
 ```
-pown recon group <name> <selectors...>
+pown recon group <name> <expressions...>
 
 Group nodes
 
