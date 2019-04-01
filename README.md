@@ -99,6 +99,7 @@ Commands:
   pown recon transform bitbucketlistsnippets [options] <nodes...>         List Bitbucket snippets.  [aliases: bitbucket_list_snippets, bbls]
   pown recon transform bitbucketlistteamrepos [options] <nodes...>        List Bitbucket team repos.  [aliases: bitbucket_list_team_repos, bbltr]
   pown recon transform bitbucketlistteammembers [options] <nodes...>      List Bitbucket team members.  [aliases: bitbucket_list_team_members, bbltm]
+  pown recon transform bufferoverrunsubdomainsearch [options] <nodes...>  Obtain a list of subdomains using bufferover.run DNS service  [aliases: bufferoverrun_subdomain_search, brss]
   pown recon transform builtwithscraperelationships [options] <nodes...>  Performs scrape of builtwith.com relationships.  [aliases: builtwith_scrape_relationships, bwsr]
   pown recon transform cloudflarednsquery [options] <nodes...>            Query CloudFlare DNS API.  [aliases: cloudflare_dns_query, cfdq]
   pown recon transform commoncrawlindex [options] <nodes...>              Obtain a CommonCraw index for specific URL.  [aliases: commoncrawl_index, cci]
@@ -121,6 +122,7 @@ Commands:
   pown recon transform riddlerdomainsearch [options] <nodes...>           Searches for Domain references using F-Secure riddler.io.  [aliases: riddler_domain_search, rdds]
   pown recon transform securitytrailssuggestions [options] <nodes...>     Get a list of domain suggestions from securitytrails.com.  [aliases: securitytrails_domain_suggestions, stds]
   pown recon transform securitytrailsdomainreport [options] <nodes...>    Get a domain report from securitytrails.com.  [aliases: securitytrails_domain_report, stdr]
+  pown recon transform shodanorgsearch [options] <nodes...>               Performs search using ORG filter.  [aliases: shodan_org_search, sos]
   pown recon transform shodansslsearch [options] <nodes...>               Performs search using SSL filter.  [aliases: shodan_ssl_search, sss]
   pown recon transform tcpportscan [options] <nodes...>                   Simple port scanner  [aliases: tcp_port_scan, tps]
   pown recon transform threatcrowddomainreport [options] <nodes...>       Obtain threatcrowd domain report which helps enumerating potential target subdomains and email addresses.  [aliases: threatcrowd_domain_report, tcdr]
@@ -439,6 +441,7 @@ pown select '#some\\$funky\\@id'
 * Hacker Target Reverse IP Lookup
 * Have I Been Pwned Lookup
 * PKS Lookup
+* Bufferover.run
 * Urlscan Live Shot
 * Threatcrowd Lookup
 * Wappalyzer
