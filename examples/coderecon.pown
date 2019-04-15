@@ -1,0 +1,11 @@
+set -x
+
+recon add --node-type brand "$1"
+
+recon t auto --auto-group --auto-weight --name 'github*' -s 'node[type="brand"]'
+recon t auto --auto-group --auto-weight --name 'bitbucket*' -s 'node[type="brand"]'
+recon t auto --auto-group --auto-weight --name 'dockerhub*' -s 'node[type="brand"]'
+
+recon t auto --auto-group --auto-weight --name 'github*' -s 'node[type="github:member"]'
+
+recon save "$2"
