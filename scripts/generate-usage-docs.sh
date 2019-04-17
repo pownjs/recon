@@ -2,7 +2,7 @@
 
 COMMANDS="pown"
 SUBCOMMANDS="recon"
-SUBSUBCOMMANDS="transform select traverse add remove merge diff group ungroup save"
+SUBSUBCOMMANDS="transform select traverse add remove merge diff group ungroup save import export"
 
 export POWN_ROOT=.
 

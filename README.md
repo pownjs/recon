@@ -323,6 +323,44 @@ Options:
   --read, -r  Read file  [string]
 ```
 
+### `pown recon import`
+
+```
+pown recon import <file>
+
+Import file
+
+Options:
+  --version            Show version number  [boolean]
+  --help               Show help  [boolean]
+  --file-type          Import file type  [choices: "json"]
+  --node-type          Imported nodes types  [default: "string"]
+  --id-field, -i       The id field
+  --type-field, -i     The type field
+  --label-field, -l    The label field
+  --image-field, -m    The image field
+  --group, -g          Group nodes  [string] [default: ""]
+  --output-format, -o  Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
+  --output-fields      Output fields  [string] [default: ""]
+  --output-ids         Output ids  [boolean] [default: false]
+  --output-labels      Output labels  [boolean] [default: false]
+  --output-images      Output images  [boolean] [default: false]
+  --output-parents     Output parents  [boolean] [default: false]
+  --output-tags        Output tags  [boolean] [default: false]
+```
+
+### `pown recon export`
+
+```
+pown recon export <file>
+
+Export to file
+
+Options:
+  --version  Show version number  [boolean]
+  --help     Show help  [boolean]
+```
+
 ## Preview
 
 Generated graphs can be previewed in [SecApps Recon](https://recon.secapps.com) for convenience, which this tool is based on. You can access SecApps Recon from your browser but you can also invoke it from the command line.
