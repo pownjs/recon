@@ -37,7 +37,10 @@
     "@pown/preferences": "^2.2.1",
     "@pown/request": "^2.6.0",
     "@pown/whoarethey": "^2.0.0",
-    "cytoscape": "^3.5.0"
+    "cytoscape": "^3.5.3",
+    "stream-chain": "^2.1.0",
+    "stream-csv-as-json": "^1.0.1",
+    "stream-json": "^1.2.1"
   },
   "pown": {
     "commands": [
