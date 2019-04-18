@@ -7,6 +7,7 @@
     "recon": "POWN_ROOT=. pown-cli recon",
     "script": "POWN_ROOT=. pown-cli script",
     "shell": "POWN_ROOT=. pown-cli shell",
+    "prefs": "POWN_ROOT=. pown-cli prefs",
     "build": "node ./scripts/generate-transforms-index.js",
     "test": "mocha"
   },

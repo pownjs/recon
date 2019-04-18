@@ -17,14 +17,13 @@ const code = fs.readdirSync(root)
             .map(([transformer, module]) => {
                 const { alias, title, description, group, tags, types, options, priority, noise } = module
 
-                return `// WARNING: This is an auto-generated file.
-
+                return `
 exports[${JSON.stringify(transformer)}] = ${JSON.stringify({alias, title, description, group, tags, types, options, priority, noise}, '', '    ')}
 
 exports[${JSON.stringify(transformer)}].load = function () { return require(${JSON.stringify('.' + path.sep + name)})[${JSON.stringify(transformer)}] }`
             })
             .join('\n\n')
     })
-    .join('\n\n')
+    .join('\n')
 
-fs.writeFileSync(path.join(root, 'index.js'), code + '\n')
+fs.writeFileSync(path.join(root, 'index.js'), '// WARNING: This is an auto-generated file.\n' + code + '\n')
