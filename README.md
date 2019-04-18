@@ -76,9 +76,11 @@ Commands:
   pown recon diff <fileA> <fileB>           Perform a diff between two recon files  [aliases: d]
   pown recon group <name> <expressions...>  Group nodes  [aliases: g]
   pown recon ungroup <selectors...>         Ungroup nodes  [aliases: u]
+  pown recon load <file>                    Load a file  [aliases: l]
   pown recon save <file>                    Save to file  [aliases: a]
   pown recon import <file>                  Import file  [aliases: i]
   pown recon export <file>                  Export to file  [aliases: e]
+  pown recon remote <command>               Remote managment  [aliases: r]
 
 Options:
   --version  Show version number  [boolean]
@@ -139,6 +141,7 @@ Commands:
   pown recon transform analyzeip [options] <nodes...>                     Analyze IP.  [aliases: analyze_ip, ai]
   pown recon transform wappalyzerprofile [options] <nodes...>             Enumerate technologies with api.wappalyzer.com.  [aliases: wappalyzer_profile, wzp]
   pown recon transform whoaretheyreport [options] <nodes...>              Find social accounts with the help of whoarethey database.  [aliases: whoarethey_report, whoarethey, wmnr, wmn]
+  pown recon transform dnsenum [options] <nodes...>                       Perform full discovery of DNS subdomains.
   pown recon transform auto [options] <nodes...>                          Select the most appropriate methods of transformation
 
 Options:
@@ -310,6 +313,19 @@ Options:
   --output-tags        Output tags  [boolean] [default: false]
 ```
 
+### `pown recon load`
+
+```
+pown recon load <file>
+
+Load a file
+
+Options:
+  --version    Show version number  [boolean]
+  --help       Show help  [boolean]
+  --write, -w  Write file  [string]
+```
+
 ### `pown recon save`
 
 ```
@@ -355,6 +371,23 @@ Options:
 pown recon export <file>
 
 Export to file
+
+Options:
+  --version  Show version number  [boolean]
+  --help     Show help  [boolean]
+```
+
+### `pown recon remote`
+
+```
+pown recon remote <command>
+
+Remote managment
+
+Commands:
+  pown recon remote list          List remotes  [aliases: l]
+  pown recon remote add <uri>     Add remote  [aliases: a]
+  pown recon remote remove <uri>  Remove remote  [aliases: a]
 
 Options:
   --version  Show version number  [boolean]
