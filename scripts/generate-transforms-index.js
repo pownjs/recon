@@ -3,6 +3,24 @@
 const fs = require('fs')
 const path = require('path')
 
+const censor = (canary) => (key, value) => {
+    if (value == Infinity) {
+        return canary
+    }
+
+    return value
+}
+
+const objectdump = (object) => {
+    const canary = Math.random().toString(32).slice(2)
+
+    return JSON.stringify(object, censor(canary), '    ').split(`"${canary}"`).join('Infinity')
+}
+
+const quote = (input) => {
+    return JSON.stringify(input)
+}
+
 const root = path.join(__dirname, '..', 'lib', 'transforms')
 
 const code = fs.readdirSync(root)
@@ -18,9 +36,9 @@ const code = fs.readdirSync(root)
                 const { alias, title, description, group, tags, types, options, priority, noise } = module
 
                 return `
-exports[${JSON.stringify(transformer)}] = ${JSON.stringify({alias, title, description, group, tags, types, options, priority, noise}, '', '    ')}
+exports[${JSON.stringify(transformer)}] = ${objectdump({alias, title, description, group, tags, types, options, priority, noise})}
 
-exports[${JSON.stringify(transformer)}].load = function () { return require(${JSON.stringify('.' + path.sep + name)})[${JSON.stringify(transformer)}] }`
+exports[${JSON.stringify(transformer)}].load = function () { return require(${quote('.' + path.sep + name)})[${quote(transformer)}] }`
             })
             .join('\n\n')
     })
