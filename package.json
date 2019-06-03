@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/pownjs/pown-recon#readme",
   "devDependencies": {
-    "@pown/cli": "^2.15.0",
+    "@pown/cli": "^2.18.2",
     "@pown/preferences": "^2.3.0",
     "@pown/script": "^2.10.1",
     "@pown/shell": "^2.1.0",
@@ -36,10 +36,10 @@
   "dependencies": {
     "@pown/async": "^2.6.0",
     "@pown/file": "^2.0.0",
-    "@pown/request": "^2.6.1",
-    "@pown/whoarethey": "^2.1.0",
-    "cytoscape": "^3.6.2",
-    "jsonpath": "^1.0.1",
+    "@pown/request": "^2.8.0",
+    "@pown/whoarethey": "^2.2.0",
+    "cytoscape": "^3.7.0",
+    "jsonpath": "^1.0.2",
     "stream-chain": "^2.1.0",
     "stream-csv-as-json": "^1.0.1",
     "stream-json": "^1.2.1"
