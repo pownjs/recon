@@ -524,6 +524,7 @@ pown select '#some\\$funky\\@id'
 * Archive.org
 * Shodan
 * WhatsMyName
+* Certspotter
 * Utility Transforms
 * Security Trails
 * Auto Recon
