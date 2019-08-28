@@ -525,6 +525,7 @@ pown select '#some\\$funky\\@id'
 * Shodan
 * WhatsMyName
 * Certspotter
+* Virustotal
 * Utility Transforms
 * Security Trails
 * Auto Recon
