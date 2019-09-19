@@ -38,7 +38,7 @@ const code = fs.readdirSync(root)
                 return `
 exports[${JSON.stringify(transformer)}] = ${objectdump({alias, title, description, group, tags, types, options, priority, noise})}
 
-exports[${JSON.stringify(transformer)}].load = function () { return require(${quote('.' + path.sep + name)})[${quote(transformer)}] }`
+exports[${JSON.stringify(transformer)}].load = function() { return require(${quote('.' + path.sep + name)})[${quote(transformer)}] }`
             })
             .join('\n\n')
     })
