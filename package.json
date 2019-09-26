@@ -36,7 +36,7 @@
   "dependencies": {
     "@pown/async": "^2.6.0",
     "@pown/file": "^2.0.0",
-    "@pown/github": "^2.5.2",
+    "@pown/github": "^2.5.3",
     "@pown/request": "^2.8.1",
     "@pown/whoarethey": "^2.3.1",
     "cytoscape": "^3.10.1",
