@@ -38,7 +38,7 @@
     "@pown/file": "^2.0.0",
     "@pown/github": "^2.5.3",
     "@pown/request": "^2.8.1",
-    "@pown/whoarethey": "^2.3.1",
+    "@pown/whoarethey": "^2.4.0",
     "cytoscape": "^3.10.1",
     "jsonpath": "^1.0.2",
     "stream-chain": "^2.1.0",
