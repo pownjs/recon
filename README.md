@@ -72,16 +72,17 @@ Commands:
   pown recon select <expressions...>        Select nodes  [aliases: s]
   pown recon traverse <expressions...>      Traverse nodes  [aliases: v]
   pown recon add <nodes...>                 Add nodes  [aliases: a]
-  pown recon remove <selectors...>          Remove nodes  [aliases: r]
+  pown recon remove <expressions...>        Remove nodes  [aliases: r]
   pown recon merge <files...>               Perform a merge between at least two recon files  [aliases: m]
   pown recon diff <fileA> <fileB>           Perform a diff between two recon files  [aliases: d]
   pown recon group <name> <expressions...>  Group nodes  [aliases: g]
-  pown recon ungroup <selectors...>         Ungroup nodes  [aliases: u]
+  pown recon ungroup <expressions...>       Ungroup nodes  [aliases: u]
   pown recon load <file>                    Load a file  [aliases: l]
-  pown recon save <file>                    Save to file  [aliases: a]
+  pown recon save <file>                    Save to file  [aliases: o]
   pown recon import <file>                  Import file  [aliases: i]
   pown recon export <file>                  Export to file  [aliases: e]
-  pown recon remote <command>               Remote managment  [aliases: r]
+  pown recon remote <command>               Remote managment  [aliases: f]
+  pown recon summary                        Create a summary  [aliases: y]
 
 Options:
   --version  Show version number  [boolean]
@@ -97,13 +98,13 @@ Perform inline transformation
 
 Commands:
   pown recon transform archiveindex [options] <nodes...>                  Obtain archive.org index for specific URL.  [aliases: archive_index, arci]
-  pown recon transform awsiamendpoints [options] <nodes...>               Enumerate AWS IAM endpoints.  [aliases: aws_iam_endpoints, awsie]
   pown recon transform bitbucketlistrepos [options] <nodes...>            List Bitbucket repositories.  [aliases: bitbucket_list_repos, bblr]
   pown recon transform bitbucketlistsnippets [options] <nodes...>         List Bitbucket snippets.  [aliases: bitbucket_list_snippets, bbls]
   pown recon transform bitbucketlistteamrepos [options] <nodes...>        List Bitbucket team repos.  [aliases: bitbucket_list_team_repos, bbltr]
   pown recon transform bitbucketlistteammembers [options] <nodes...>      List Bitbucket team members.  [aliases: bitbucket_list_team_members, bbltm]
   pown recon transform bufferoverrunsubdomainsearch [options] <nodes...>  Obtain a list of subdomains using bufferover.run DNS service  [aliases: bufferoverrun_subdomain_search, brss]
   pown recon transform builtwithscraperelationships [options] <nodes...>  Performs scrape of builtwith.com relationships.  [aliases: builtwith_scrape_relationships, bwsr]
+  pown recon transform certspotterissuances [options] <nodes...>          Obtain issuances from Certspotter.  [aliases: certspotter_issuances, csi]
   pown recon transform cloudflarednsquery [options] <nodes...>            Query CloudFlare DNS API.  [aliases: cloudflare_dns_query, cfdq]
   pown recon transform commoncrawlindex [options] <nodes...>              Obtain a CommonCraw index for specific URL.  [aliases: commoncrawl_index, cci]
   pown recon transform crtshcndomainreport [options] <nodes...>           Obtain crt.sh domain report which helps enumerating potential target subdomains.  [aliases: crtsh_cn_domain_report, crtshcdr]
@@ -111,9 +112,13 @@ Commands:
   pown recon transform bakeimages [options] <nodes...>                    Convert external image into data URIs for self-embedding purposes.  [aliases: bake_images, be]
   pown recon transform dnsresolve [options] <nodes...>                    Does not do anything.  [aliases: dr, dns]
   pown recon transform dockerhublistrepos [options] <nodes...>            List DockerHub repositories for a given member or org.  [aliases: dockerhub_list_repos, dhlr]
-  pown recon transform githublistrepos [options] <nodes...>               List GitHub repositories for a given member or org.  [aliases: github_list_repos, ghlr]
-  pown recon transform githublistgists [options] <nodes...>               List GitHub gists for a given member or org.  [aliases: github_list_gists, ghlg]
-  pown recon transform githublistmembers [options] <nodes...>             List GitHub members in a given org.  [aliases: github_list_members, ghlm]
+  pown recon transform githubuser [options] <nodes...>                    Map GitHub user for a given term.  [aliases: github_user, ghu]
+  pown recon transform githuborg [options] <nodes...>                     Map GitHub org for a given term.  [aliases: github_org, gho]
+  pown recon transform githubsearchusers [options] <nodes...>             Search GitHub users for a given term.  [aliases: github_search_users, ghsu]
+  pown recon transform githublistorgs [options] <nodes...>                List GitHub orgs for a given member.  [aliases: github_list_orgs, ghlo]
+  pown recon transform githublistmembers [options] <nodes...>             List GitHub members for a given org.  [aliases: github_list_members, ghlm]
+  pown recon transform githublistrepos [options] <nodes...>               List GitHub repos for a given user/org.  [aliases: github_list_repos, ghlr]
+  pown recon transform githublistgists [options] <nodes...>               List GitHub gists for a given user/org.  [aliases: github_list_gists, ghlg]
   pown recon transform gravatar [options] <nodes...>                      Get gravatar.
   pown recon transform hackertargetreverseiplookup [options] <nodes...>   Obtain reverse IP information from hackertarget.com.  [aliases: hackertarget_reverse_ip_lookup, htril]
   pown recon transform hackertargetonlineportscan [options] <nodes...>    Obtain port information from hackertarget.com.  [aliases: hackertarget_online_port_scan, htps]
@@ -127,22 +132,30 @@ Commands:
   pown recon transform securitytrailsdomainreport [options] <nodes...>    Get a domain report from securitytrails.com.  [aliases: securitytrails_domain_report, stdr]
   pown recon transform shodanorgsearch [options] <nodes...>               Performs search using ORG filter.  [aliases: shodan_org_search, sos]
   pown recon transform shodansslsearch [options] <nodes...>               Performs search using SSL filter.  [aliases: shodan_ssl_search, sss]
-  pown recon transform tcpportscan [options] <nodes...>                   Simple port scanner  [aliases: tcp_port_scan, tps]
+  pown recon transform tcpportscan [options] <nodes...>                   Simple, full-handshake TCP port scanner (very slow and perhaps inaccurate)  [aliases: tcp_port_scan, tps]
   pown recon transform threatcrowddomainreport [options] <nodes...>       Obtain threatcrowd domain report which helps enumerating potential target subdomains and email addresses.  [aliases: threatcrowd_domain_report, tcdr]
   pown recon transform threatcrowdipreport [options] <nodes...>           Obtain threatcrowd ip report which helps enumerating virtual hosts.  [aliases: threatcrowd_ip_report, tcir]
   pown recon transform urlscanliveshot [options] <nodes...>               Generates a liveshot of any public site via urlscan.  [aliases: urlscan_liveshot, usls]
   pown recon transform urlscanliveshotsearchengines [options] <nodes...>  Generates a liveshot of a number of search engines.  [aliases: urlscan_liveshot_search_engines, uslsse]
-  pown recon transform nop [options] <nodes...>                           Does not do anything.
+  pown recon transform noop [options] <nodes...>                          Does not do anything.  [aliases: nop]
+  pown recon transform duplicate [options] <nodes...>                     Duplicate input.  [aliases: dup]
+  pown recon transform extract [options] <nodes...>                       Extract property.  [aliases: ext]
+  pown recon transform prefix [options] <nodes...>                        Adds a prefix.  [aliases: prepand]
+  pown recon transform suffix [options] <nodes...>                        Adds a suffix.  [aliases: append]
+  pown recon transform augment [options] <nodes...>                       Augment with prefix or suffix.
   pown recon transform splitemail [options] <nodes...>                    Split email.  [aliases: split_email, se]
   pown recon transform buildemail [options] <nodes...>                    Build email.  [aliases: build_email, be]
   pown recon transform splitdomain [options] <nodes...>                   Split domain.  [aliases: split_domain, ss]
   pown recon transform builddomain [options] <nodes...>                   Build domain.  [aliases: build_domain, bd]
   pown recon transform splituri [options] <nodes...>                      Split URI.  [aliases: split_uri, su]
   pown recon transform builduri [options] <nodes...>                      Build URI.  [aliases: build_uri, bu]
-  pown recon transform analyzeip [options] <nodes...>                     Analyze IP.  [aliases: analyze_ip, ai]
+  pown recon transform virustotalsubdomains [options] <nodes...>          Obtain subdomains from Virustotal.  [aliases: virustotal_subdomains, vtsd]
   pown recon transform wappalyzerprofile [options] <nodes...>             Enumerate technologies with api.wappalyzer.com.  [aliases: wappalyzer_profile, wzp]
   pown recon transform whoaretheyreport [options] <nodes...>              Find social accounts with the help of whoarethey database.  [aliases: whoarethey_report, whoarethey, wmnr, wmn]
-  pown recon transform dnsenum [options] <nodes...>                       Perform full discovery of DNS subdomains.
+  pown recon transform dnsamass [options] <nodes...>                      Perform full discovery of DNS subdomains.  [aliases: dns_amass]
+  pown recon transform webbuster [options] <nodes...>                     Perform web resource discovery.  [aliases: web_buster]
+  pown recon transform webscreenshot [options] <nodes...>                 Perform web screenshot.  [aliases: web_screenshot]
+  pown recon transform gitleaks [options] <nodes...>                      Perform web git leaks.  [aliases: git_leaks]
   pown recon transform auto [options] <nodes...>                          Select the most appropriate methods of transformation
 
 Options:
@@ -205,7 +218,11 @@ Options:
   --version            Show version number  [boolean]
   --help               Show help  [boolean]
   --group, -g          Group nodes  [string] [default: ""]
-  --node-type          The type for new nodes from the command line  [string] [default: "string"]
+  --node-type          The type for new nodes  [string] [default: "string"]
+  --node-props         The props for new nodes  [string] [default: ""]
+  --node-props-file    A file for the props for new nodes  [string] [default: ""]
+  --select, -s         Select graph. Nodes will be added only if graph contains at least one node.  [string] [default: ""]
+  --traverse, -v       Traverse graph. Nodes will be added only if graph contains at least one node.  [string] [default: false]
   --read, -r           Read file  [string]
   --write, -w          Write file  [string]
   --output-format, -o  Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
@@ -220,7 +237,7 @@ Options:
 ### `pown recon remove`
 
 ```
-pown recon remove <selectors...>
+pown recon remove <expressions...>
 
 Remove nodes
 
@@ -236,6 +253,7 @@ Options:
   --output-images      Output images  [boolean] [default: false]
   --output-parents     Output parents  [boolean] [default: false]
   --output-tags        Output tags  [boolean] [default: false]
+  --traverse, -v       Traverse graph  [boolean] [default: false]
 ```
 
 ### `pown recon merge`
@@ -291,12 +309,13 @@ Options:
   --output-images      Output images  [boolean] [default: false]
   --output-parents     Output parents  [boolean] [default: false]
   --output-tags        Output tags  [boolean] [default: false]
+  --traverse, -v       Traverse graph  [boolean] [default: false]
 ```
 
 ### `pown recon ungroup`
 
 ```
-pown recon ungroup <selectors...>
+pown recon ungroup <expressions...>
 
 Ungroup nodes
 
@@ -312,6 +331,7 @@ Options:
   --output-images      Output images  [boolean] [default: false]
   --output-parents     Output parents  [boolean] [default: false]
   --output-tags        Output tags  [boolean] [default: false]
+  --traverse, -v       Traverse graph  [boolean] [default: false]
 ```
 
 ### `pown recon load`
@@ -386,13 +406,29 @@ pown recon remote <command>
 Remote managment
 
 Commands:
-  pown recon remote list          List remotes  [aliases: l]
-  pown recon remote add <uri>     Add remote  [aliases: a]
-  pown recon remote remove <uri>  Remove remote  [aliases: a]
+  pown recon remote list              List remotes  [aliases: l]
+  pown recon remote add <uris...>     Add remote  [aliases: a]
+  pown recon remote remove <uris...>  Remove remote  [aliases: a]
 
 Options:
   --version  Show version number  [boolean]
   --help     Show help  [boolean]
+```
+
+### `pown recon summary`
+
+```
+pown recon summary
+
+Create a summary
+
+Options:
+  --version                            Show version number  [boolean]
+  --help                               Show help  [boolean]
+  --read, -r                           Read file  [string]
+  --kind, -k                           Summary kind  [string] [default: "type"]
+  --summary-file-name, --summary-file  Write summary to file  [string]
+  --summary-file-type, --summary-type  Write summary to file with type  [string] [default: "text"]
 ```
 
 ## Preview
