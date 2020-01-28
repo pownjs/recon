@@ -3,14 +3,20 @@ exports.yargs = {
     describe: 'Get option',
     aliases: ['g'],
 
-    builder: {},
+    builder: (yargs) => {
+        yargs.option('category', {
+            alias: ['c'],
+            describe: 'Select category',
+            default: 'global'
+        })
+    },
 
-    handler: async(argv) => {
+    handler: (argv) => {
         const { options } = require('../../../lib/globals/options')
 
-        const { name } = argv
+        const { category, name } = argv
 
-        const value = await options.getOption(name)
+        const value = options.getOption(category, name)
 
         console.log(value)
     }

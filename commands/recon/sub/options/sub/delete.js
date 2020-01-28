@@ -3,13 +3,19 @@ exports.yargs = {
     describe: 'Delete option',
     aliases: ['d'],
 
-    builder: {},
+    builder: (yargs) => {
+        yargs.option('category', {
+            alias: ['c'],
+            describe: 'Select category',
+            default: 'global'
+        })
+    },
 
-    handler: async(argv) => {
+    handler: (argv) => {
         const { options } = require('../../../lib/globals/options')
 
-        const { name } = argv
+        const { category, name } = argv
 
-        await options.deleteOption(name)
+        options.deleteOption(category, name)
     }
 }

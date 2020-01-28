@@ -52,8 +52,10 @@ exports.yargs = {
         const compoundTransforms = { ...transforms, ...remoteTransforms }
 
         Object.entries({ ...compoundTransforms, auto }).forEach(([transformName, transform]) => {
+            const niceTransformName = transformName.toLowerCase()
+
             yargs.command({
-                command: `${transformName.toLowerCase()} [options] <nodes...>`,
+                command: `${niceTransformName} [options] <nodes...>`,
                 aliases: transform.alias,
                 describe: transform.description,
 
@@ -147,13 +149,25 @@ exports.yargs = {
                         default: 'string'
                     })
 
+                    const { options: gOptions } = require('../../lib/globals/options')
+
+                    const defaultOptions = {}
+
+                    for (let category of [niceTransformName, ...transform.alias]) {
+                        for (let option of gOptions.listOptions(category)) {
+                            defaultOptions[option.name] = option.value
+                        }
+                    }
+
                     Object.entries(transform.options).forEach(([optionName, option]) => {
                         optionName = optionName.replace(/([A-Z])/g, '-$1').replace(/^-+/, '').toLowerCase()
 
                         yargs.option(optionName, {
                             ...option,
 
-                            describe: option.description
+                            describe: option.describe || option.description,
+
+                            default: defaultOptions.hasOwnProperty(optionName) ? defaultOptions[optionName] : option.default
                         })
                     })
                 },
@@ -161,7 +175,7 @@ exports.yargs = {
                 handler: async(argv) => {
                     const { timeout, select, traverse, noise, group, autoGroup, autoWeight, maxNodesWarn, maxNodesCap, extract, extractPrefix, extractSuffix, nodeType, nodes, ...rest } = argv
 
-                    const { recon } = require('../../lib/globals/recon')
+                    const { recon: gRecon } = require('../../lib/globals/recon')
 
                     let filter = {
                         noise
@@ -203,18 +217,18 @@ exports.yargs = {
                         }
 
                         Object.entries(compoundTransforms).forEach(([name, transform]) => {
-                            recon.registerTransforms({
+                            gRecon.registerTransforms({
                                 [name]: transform.load()
                             })
                         })
                     }
                     else {
-                        recon.registerTransforms({
+                        gRecon.registerTransforms({
                             [transformName]: transform.load()
                         })
                     }
 
-                    await handleReadOptions(argv, recon)
+                    await handleReadOptions(argv, gRecon)
 
                     const options = {}
 
@@ -223,16 +237,16 @@ exports.yargs = {
                     })
 
                     if (select) {
-                        recon.select(...nodes)
+                        gRecon.select(...nodes)
                     }
                     else
                     if (traverse) {
-                        recon.traverse(...nodes)
+                        gRecon.traverse(...nodes)
                     }
                     else {
                         const { makeId } = require('../../../../lib/utils')
 
-                        recon.addNodes(nodes.map((node) => ({
+                        gRecon.addNodes(nodes.map((node) => ({
                             id: makeId(nodeType, node),
                             type: nodeType,
                             label: node,
@@ -244,19 +258,19 @@ exports.yargs = {
                     }
 
                     try {
-                        await recon.transform(transformName === 'auto' ? '*' : transformName, options, { timeout, group: autoGroup, weight: autoWeight, maxNodesWarn, maxNodesCap, filter, extract: { property: extract, prefix: extractPrefix, suffix: extractSuffix } })
+                        await gRecon.transform(transformName === 'auto' ? '*' : transformName, options, { timeout, group: autoGroup, weight: autoWeight, maxNodesWarn, maxNodesCap, filter, extract: { property: extract, prefix: extractPrefix, suffix: extractSuffix } })
                     }
                     catch (e) {
                         console.error(e)
                     }
 
                     if (group) {
-                        recon.group(group)
+                        gRecon.group(group)
                     }
 
-                    const resultNodes = recon.selection.map(node => node.data())
+                    const resultNodes = gRecon.selection.map(node => node.data())
 
-                    await handleWriteOptions(argv, recon)
+                    await handleWriteOptions(argv, gRecon)
 
                     const { handleOutputOptions } = require('../../lib/handlers/output')
 

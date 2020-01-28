@@ -3,6 +3,7 @@ exports.yargs = {
     describe: 'Manage options',
 
     builder: (yargs) => {
+        yargs.command(require('./sub/list').yargs)
         yargs.command(require('./sub/set').yargs)
         yargs.command(require('./sub/get').yargs)
         yargs.command(require('./sub/delete').yargs)

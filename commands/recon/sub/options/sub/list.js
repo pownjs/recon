@@ -1,7 +1,7 @@
 exports.yargs = {
-    command: 'set <name> <value>',
-    describe: 'Set option',
-    aliases: ['s'],
+    command: 'list',
+    describe: 'List option',
+    aliases: ['l'],
 
     builder: (yargs) => {
         yargs.option('category', {
@@ -14,8 +14,14 @@ exports.yargs = {
     handler: (argv) => {
         const { options } = require('../../../lib/globals/options')
 
-        const { category, name, value } = argv
+        const { category } = argv
 
-        options.setOption(category, name, JSON.parse(value))
+        const table = []
+
+        for (let option of options.listOptions(category)) {
+            table.push(option)
+        }
+
+        console.table(table)
     }
 }
