@@ -50,7 +50,7 @@
   },
   "pown": {
     "commands": [
-      "lib/commands/recon.js"
+      "commands/recon.js"
     ]
   },
   "browserify": {

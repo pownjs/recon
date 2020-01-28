@@ -13,11 +13,11 @@ exports.yargs = {
 
         const { remotes = {} } = getPreferencesSync('recon')
 
-        const { buildRemoteTransforms } = require('../../remote')
+        const { buildRemoteTransforms } = require('../../lib/remote')
 
         const remoteTransforms = buildRemoteTransforms(remotes)
 
-        const transforms = require('../../transforms')
+        const transforms = require('../../lib/transforms')
 
         const auto = {
             aliases: ['a'],
@@ -230,7 +230,7 @@ exports.yargs = {
                         recon.traverse(...nodes)
                     }
                     else {
-                        const { makeId } = require('../../utils')
+                        const { makeId } = require('../../lib/utils')
 
                         recon.addNodes(nodes.map((node) => ({
                             id: makeId(nodeType, node),

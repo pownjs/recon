@@ -9,7 +9,7 @@ exports.yargs = {
         const colors = require('@pown/cli/lib/colors')
         const { getPreferences, setPreferences } = require('@pown/preferences')
 
-        const { fetchRemoteTransforms } = require('../../../remote')
+        const { fetchRemoteTransforms } = require('../../../lib/remote')
 
         const preferences = await getPreferences('recon')
 

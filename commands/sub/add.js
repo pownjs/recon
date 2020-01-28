@@ -73,7 +73,7 @@ exports.yargs = {
         }
 
         if (!ifNodes || (ifNodes && ifNodes.length > 0)) {
-            const { makeId } = require('../../utils')
+            const { makeId } = require('../../lib/utils')
 
             const { readFile } = require('fs')
             const { promisify } = require('util')

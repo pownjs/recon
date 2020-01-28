@@ -13,7 +13,7 @@ exports.yargs = {
     handler: async(argv) => {
         const { name } = argv
 
-        const { cytoscape } = require('../../cytoscape')
+        const { cytoscape } = require('../../lib/cytoscape')
 
         const klay = require('cytoscape-klay')
         const dagre = require('cytoscape-dagre')
