@@ -71,6 +71,7 @@ Commands:
   pown recon transform <transform>          Perform inline transformation  [aliases: t]
   pown recon select <expressions...>        Select nodes  [aliases: s]
   pown recon traverse <expressions...>      Traverse nodes  [aliases: v]
+  pown recon options <command>              Manage options
   pown recon add <nodes...>                 Add nodes  [aliases: a]
   pown recon remove <expressions...>        Remove nodes  [aliases: r]
   pown recon merge <files...>               Perform a merge between at least two recon files  [aliases: m]
@@ -82,6 +83,7 @@ Commands:
   pown recon import <file>                  Import file  [aliases: i]
   pown recon export <file>                  Export to file  [aliases: e]
   pown recon remote <command>               Remote managment  [aliases: f]
+  pown recon layout <name>                  Layout the graph  [aliases: r]
   pown recon summary                        Create a summary  [aliases: y]
 
 Options:
@@ -138,6 +140,7 @@ Commands:
   pown recon transform urlscanliveshot [options] <nodes...>               Generates a liveshot of any public site via urlscan.  [aliases: urlscan_liveshot, usls]
   pown recon transform urlscanliveshotsearchengines [options] <nodes...>  Generates a liveshot of a number of search engines.  [aliases: urlscan_liveshot_search_engines, uslsse]
   pown recon transform noop [options] <nodes...>                          Does not do anything.  [aliases: nop]
+  pown recon transform sleep [options] <nodes...>                         Sleeps for predefined time.  [aliases: sleep]
   pown recon transform duplicate [options] <nodes...>                     Duplicate input.  [aliases: dup]
   pown recon transform extract [options] <nodes...>                       Extract property.  [aliases: ext]
   pown recon transform prefix [options] <nodes...>                        Adds a prefix.  [aliases: prepand]
@@ -152,10 +155,6 @@ Commands:
   pown recon transform virustotalsubdomains [options] <nodes...>          Obtain subdomains from Virustotal.  [aliases: virustotal_subdomains, vtsd]
   pown recon transform wappalyzerprofile [options] <nodes...>             Enumerate technologies with api.wappalyzer.com.  [aliases: wappalyzer_profile, wzp]
   pown recon transform whoaretheyreport [options] <nodes...>              Find social accounts with the help of whoarethey database.  [aliases: whoarethey_report, whoarethey, wmnr, wmn]
-  pown recon transform dnsamass [options] <nodes...>                      Perform full discovery of DNS subdomains.  [aliases: dns_amass]
-  pown recon transform webbuster [options] <nodes...>                     Perform web resource discovery.  [aliases: web_buster]
-  pown recon transform webscreenshot [options] <nodes...>                 Perform web screenshot.  [aliases: web_screenshot]
-  pown recon transform gitleaks [options] <nodes...>                      Perform web git leaks.  [aliases: git_leaks]
   pown recon transform auto [options] <nodes...>                          Select the most appropriate methods of transformation
 
 Options:
@@ -207,6 +206,25 @@ Options:
   --output-tags        Output tags  [boolean] [default: false]
 ```
 
+### `pown recon options`
+
+```
+pown recon options <command>
+
+Manage options
+
+Commands:
+  pown recon options list                List option  [aliases: l]
+  pown recon options set <name> <value>  Set option  [aliases: s]
+  pown recon options get <name>          Get option  [aliases: g]
+  pown recon options delete <name>       Delete option  [aliases: d]
+  pown recon options clear               Clear options  [aliases: c]
+
+Options:
+  --version  Show version number  [boolean]
+  --help     Show help  [boolean]
+```
+
 ### `pown recon add`
 
 ```
@@ -221,8 +239,8 @@ Options:
   --node-type          The type for new nodes  [string] [default: "string"]
   --node-props         The props for new nodes  [string] [default: ""]
   --node-props-file    A file for the props for new nodes  [string] [default: ""]
-  --select, -s         Select graph. Nodes will be added only if graph contains at least one node.  [string] [default: ""]
-  --traverse, -v       Traverse graph. Nodes will be added only if graph contains at least one node.  [string] [default: false]
+  --select, -s         Select graph. Nodes will be added and linked only if graph contains at least one node.  [string] [default: ""]
+  --traverse, -v       Traverse graph. Nodes will be added and linked only if graph contains at least one node.  [string] [default: false]
   --read, -r           Read file  [string]
   --write, -w          Write file  [string]
   --output-format, -o  Output format  [string] [choices: "table", "grid", "csv", "json"] [default: "table"]
