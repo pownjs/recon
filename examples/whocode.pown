@@ -2,7 +2,7 @@ set -x
 
 recon add --node-type brand "$1"
 
-recon options set -c whoaretheyreport categories ["coding"]
+recon options set -c whoaretheyreport categories -j ["coding"]
 recon options list -c whoaretheyreport
 
 recon t whoaretheyreport -s 'node[type="brand"]'
