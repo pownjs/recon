@@ -1,15 +1,15 @@
 exports.yargs = {
-    command: 'ungroup <expressions...>',
-    describe: 'Ungroup nodes',
-    aliases: ['u'],
+    command: 'group <name> <expressions...>',
+    describe: 'Group nodes',
+    aliases: ['g'],
 
     builder: (yargs) => {
-        const { installReadOptions, installWriteOptions } = require('./handlers/file')
+        const { installReadOptions, installWriteOptions } = require('../../lib/handlers/file')
 
         installReadOptions(yargs)
         installWriteOptions(yargs)
 
-        const { installOutputOptions } = require('./handlers/output')
+        const { installOutputOptions } = require('../../lib/handlers/output')
 
         installOutputOptions(yargs)
 
@@ -22,11 +22,11 @@ exports.yargs = {
     },
 
     handler: async(argv) => {
-        const { traverse, expressions } = argv
+        const { traverse, name, expressions } = argv
 
-        const { recon } = require('./globals/recon')
+        const { recon } = require('../../lib/globals/recon')
 
-        const { handleReadOptions, handleWriteOptions } = require('./handlers/file')
+        const { handleReadOptions, handleWriteOptions } = require('../../lib/handlers/file')
 
         await handleReadOptions(argv, recon)
 
@@ -39,11 +39,11 @@ exports.yargs = {
             resultNodes = recon.select(...expressions).map(node => node.data())
         }
 
-        await recon.ungroup()
+        await recon.group(name)
 
         await handleWriteOptions(argv, recon)
 
-        const { handleOutputOptions } = require('./handlers/output')
+        const { handleOutputOptions } = require('../../lib/handlers/output')
 
         await handleOutputOptions(argv, resultNodes)
     }

@@ -11,11 +11,11 @@ exports.yargs = {
             describe: 'The subset to select'
         })
 
-        const { installWriteOptions } = require('./handlers/file')
+        const { installWriteOptions } = require('../../lib/handlers/file')
 
         installWriteOptions(yargs)
 
-        const { installOutputOptions } = require('./handlers/output')
+        const { installOutputOptions } = require('../../lib/handlers/output')
 
         installOutputOptions(yargs)
     },
@@ -25,7 +25,7 @@ exports.yargs = {
 
         const { readFile } = require('@pown/file/lib/file')
 
-        const { Recon } = require('../../lib/recon')
+        const { Recon } = require('../../../lib/recon')
 
         let fileAData
 
@@ -109,7 +109,7 @@ exports.yargs = {
 
         const resultNodes = collection.map(node => node.data())
 
-        const { handleWriteOptions } = require('./handlers/file')
+        const { handleWriteOptions } = require('../../lib/handlers/file')
 
         const recon = new Recon()
 
@@ -165,7 +165,7 @@ exports.yargs = {
 
         await handleWriteOptions(argv, recon)
 
-        const { handleOutputOptions } = require('./handlers/output')
+        const { handleOutputOptions } = require('../../lib/handlers/output')
 
         await handleOutputOptions(argv, resultNodes)
 

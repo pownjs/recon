@@ -4,7 +4,7 @@ exports.yargs = {
     aliases: ['t'],
 
     builder: (yargs) => {
-        const { installReadOptions, installWriteOptions, handleReadOptions, handleWriteOptions } = require('./handlers/file')
+        const { installReadOptions, installWriteOptions, handleReadOptions, handleWriteOptions } = require('../../lib/handlers/file')
 
         installReadOptions(yargs)
         installWriteOptions(yargs)
@@ -13,11 +13,11 @@ exports.yargs = {
 
         const { remotes = {} } = getPreferencesSync('recon')
 
-        const { buildRemoteTransforms } = require('../../lib/remote')
+        const { buildRemoteTransforms } = require('../../../lib/remote')
 
         const remoteTransforms = buildRemoteTransforms(remotes)
 
-        const transforms = require('../../lib/transforms')
+        const transforms = require('../../../lib/transforms')
 
         const auto = {
             aliases: ['a'],
@@ -58,7 +58,7 @@ exports.yargs = {
                 describe: transform.description,
 
                 builder: (yargs) => {
-                    const { installOutputOptions } = require('./handlers/output')
+                    const { installOutputOptions } = require('../../lib/handlers/output')
 
                     installOutputOptions(yargs)
 
@@ -161,7 +161,7 @@ exports.yargs = {
                 handler: async(argv) => {
                     const { timeout, select, traverse, noise, group, autoGroup, autoWeight, maxNodesWarn, maxNodesCap, extract, extractPrefix, extractSuffix, nodeType, nodes, ...rest } = argv
 
-                    const { recon } = require('./globals/recon')
+                    const { recon } = require('../../lib/globals/recon')
 
                     let filter = {
                         noise
@@ -230,7 +230,7 @@ exports.yargs = {
                         recon.traverse(...nodes)
                     }
                     else {
-                        const { makeId } = require('../../lib/utils')
+                        const { makeId } = require('../../../lib/utils')
 
                         recon.addNodes(nodes.map((node) => ({
                             id: makeId(nodeType, node),
@@ -258,7 +258,7 @@ exports.yargs = {
 
                     await handleWriteOptions(argv, recon)
 
-                    const { handleOutputOptions } = require('./handlers/output')
+                    const { handleOutputOptions } = require('../../lib/handlers/output')
 
                     await handleOutputOptions(argv, resultNodes)
                 }

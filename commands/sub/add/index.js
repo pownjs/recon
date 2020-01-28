@@ -43,12 +43,12 @@ exports.yargs = {
             default: false
         })
 
-        const { installReadOptions, installWriteOptions } = require('./handlers/file')
+        const { installReadOptions, installWriteOptions } = require('../../lib/handlers/file')
 
         installReadOptions(yargs)
         installWriteOptions(yargs)
 
-        const { installOutputOptions } = require('./handlers/output')
+        const { installOutputOptions } = require('../../lib/handlers/output')
 
         installOutputOptions(yargs)
     },
@@ -56,9 +56,9 @@ exports.yargs = {
     handler: async(argv) => {
         const { group, nodeType, nodeProps, nodePropsFile, select, traverse, nodes } = argv
 
-        const { recon } = require('./globals/recon')
+        const { recon } = require('../../lib/globals/recon')
 
-        const { handleReadOptions, handleWriteOptions } = require('./handlers/file')
+        const { handleReadOptions, handleWriteOptions } = require('../../lib/handlers/file')
 
         await handleReadOptions(argv, recon)
 
@@ -73,7 +73,7 @@ exports.yargs = {
         }
 
         if (!ifNodes || (ifNodes && ifNodes.length > 0)) {
-            const { makeId } = require('../../lib/utils')
+            const { makeId } = require('../../../lib/utils')
 
             const { readFile } = require('fs')
             const { promisify } = require('util')
@@ -111,7 +111,7 @@ exports.yargs = {
 
             await handleWriteOptions(argv, recon)
 
-            const { handleOutputOptions } = require('./handlers/output')
+            const { handleOutputOptions } = require('../../lib/handlers/output')
 
             await handleOutputOptions(argv, properNodes)
         }

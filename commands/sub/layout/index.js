@@ -4,7 +4,7 @@ exports.yargs = {
     aliases: ['r'],
 
     builder: (yargs) => {
-        const { installReadOptions, installWriteOptions } = require('./handlers/file')
+        const { installReadOptions, installWriteOptions } = require('../../lib/handlers/file')
 
         installReadOptions(yargs)
         installWriteOptions(yargs)
@@ -13,7 +13,7 @@ exports.yargs = {
     handler: async(argv) => {
         const { name } = argv
 
-        const { cytoscape } = require('../../lib/cytoscape')
+        const { cytoscape } = require('../../../lib/cytoscape')
 
         const klay = require('cytoscape-klay')
         const dagre = require('cytoscape-dagre')
@@ -23,9 +23,9 @@ exports.yargs = {
         cytoscape.use(dagre)
         cytoscape.use(euler)
 
-        const { recon } = require('./globals/recon')
+        const { recon } = require('../../lib/globals/recon')
 
-        const { handleReadOptions, handleWriteOptions } = require('./handlers/file')
+        const { handleReadOptions, handleWriteOptions } = require('../../lib/handlers/file')
 
         await handleReadOptions(argv, recon)
 

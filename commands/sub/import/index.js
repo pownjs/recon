@@ -41,7 +41,7 @@ exports.yargs = {
             default: ''
         })
 
-        const { installOutputOptions } = require('./handlers/output')
+        const { installOutputOptions } = require('../../lib/handlers/output')
 
         installOutputOptions(yargs)
     },
@@ -53,7 +53,7 @@ exports.yargs = {
 
         const fileType = _fileType ? _fileType : path.extname(file).slice(1)
 
-        const { recon } = require('./globals/recon')
+        const { recon } = require('../../lib/globals/recon')
 
         const nodes = []
 
@@ -125,7 +125,7 @@ exports.yargs = {
 
         const resultNodes = recon.addNodes(nodes).map(node => node.data())
 
-        const { handleOutputOptions } = require('./handlers/output')
+        const { handleOutputOptions } = require('../../lib/handlers/output')
 
         await handleOutputOptions(argv, resultNodes)
     }

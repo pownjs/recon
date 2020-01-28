@@ -6,7 +6,7 @@ exports.yargs = {
     builder: {},
 
     handler: async(argv) => {
-        const { options } = require('../../globals/options')
+        const { options } = require('../../../lib/globals/options')
 
         await options.clearOptions()
     }

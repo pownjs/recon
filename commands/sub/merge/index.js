@@ -4,7 +4,7 @@ exports.yargs = {
     aliases: ['m'],
 
     builder: (yargs) => {
-        const { installWriteOptions } = require('./handlers/file')
+        const { installWriteOptions } = require('../../lib/handlers/file')
 
         installWriteOptions(yargs)
     },
@@ -14,7 +14,7 @@ exports.yargs = {
 
         const { readFile } = require('@pown/file/lib/file')
 
-        const { Recon } = require('../../lib/recon')
+        const { Recon } = require('../../../lib/recon')
 
         const recon = new Recon()
 
@@ -65,7 +65,7 @@ exports.yargs = {
             recon.cy.add(reconFile.cy.elements())
         }))
 
-        const { handleWriteOptions } = require('./handlers/file')
+        const { handleWriteOptions } = require('../../lib/handlers/file')
 
         await handleWriteOptions(argv, recon)
     }

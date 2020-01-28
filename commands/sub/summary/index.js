@@ -4,7 +4,7 @@ exports.yargs = {
     aliases: ['y'],
 
     builder: (yargs) => {
-        const { installReadOptions } = require('./handlers/file')
+        const { installReadOptions } = require('../../lib/handlers/file')
 
         installReadOptions(yargs)
 
@@ -34,9 +34,9 @@ exports.yargs = {
     handler: async(argv) => {
         const { kind, summaryFile, summaryType } = argv
 
-        const { recon } = require('./globals/recon')
+        const { recon } = require('../../lib/globals/recon')
 
-        const { handleReadOptions } = require('./handlers/file')
+        const { handleReadOptions } = require('../../lib/handlers/file')
 
         await handleReadOptions(argv, recon)
 
