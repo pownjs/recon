@@ -1,4 +1,4 @@
-const { Options } = require('../../../lib/options')
+const { Options } = require('../../../../lib/options')
 
 const options = new Options()
 

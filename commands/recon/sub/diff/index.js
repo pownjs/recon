@@ -25,7 +25,7 @@ exports.yargs = {
 
         const { readFile } = require('@pown/file/lib/file')
 
-        const { Recon } = require('../../../lib/recon')
+        const { Recon } = require('../../../../lib/recon')
 
         let fileAData
 

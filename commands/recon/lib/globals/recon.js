@@ -1,4 +1,4 @@
-const { Recon } = require('../../../lib/recon')
+const { Recon } = require('../../../../lib/recon')
 
 const recon = new Recon()
 
