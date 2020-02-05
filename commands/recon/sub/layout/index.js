@@ -25,6 +25,12 @@ exports.yargs = {
 
         const { recon } = require('../../lib/globals/recon')
 
+        recon.resetGraph({
+            headless: true,
+
+            styleEnabled: true
+        })
+
         const { handleReadOptions, handleWriteOptions } = require('../../lib/handlers/file')
 
         await handleReadOptions(argv, recon)
