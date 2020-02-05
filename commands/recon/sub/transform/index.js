@@ -55,7 +55,7 @@ exports.yargs = {
             const niceTransformName = transformName.toLowerCase()
 
             const transformAlias = !transform.alias ? undefined : Array.isArray(transform.alias) ? transform.alias : [transform.alias]
-            const transformDescription = transform.description
+            const transformDescription = !transform.description ? undefined : transform.description
 
             yargs.command({
                 command: `${niceTransformName} [options] <nodes...>`,
