@@ -1,7 +1,7 @@
 exports.yargs = {
     command: 'layout <name>',
     describe: 'Layout the graph',
-    aliases: ['r'],
+    aliases: ['k'],
 
     builder: (yargs) => {
         const { installReadOptions, installWriteOptions } = require('../../lib/handlers/file')
