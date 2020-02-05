@@ -54,10 +54,13 @@ exports.yargs = {
         Object.entries({ ...compoundTransforms, auto }).forEach(([transformName, transform]) => {
             const niceTransformName = transformName.toLowerCase()
 
+            const transformAlias = Array.isArray(transform.alias) ? transform.alias : [transform.alias]
+            const transformDescription = transform.description
+
             yargs.command({
                 command: `${niceTransformName} [options] <nodes...>`,
-                aliases: transform.alias,
-                describe: transform.description,
+                aliases: transformAlias,
+                describe: transformDescription,
 
                 builder: (yargs) => {
                     const { installOutputOptions } = require('../../lib/handlers/output')
@@ -153,7 +156,7 @@ exports.yargs = {
 
                     const defaultOptions = {}
 
-                    for (let category of [niceTransformName, ...transform.alias]) {
+                    for (let category of [niceTransformName, ...transformAlias]) {
                         for (let option of gOptions.listOptions(category)) {
                             defaultOptions[option.name] = option.value
                         }
