@@ -54,7 +54,7 @@ exports.yargs = {
         Object.entries({ ...compoundTransforms, auto }).forEach(([transformName, transform]) => {
             const niceTransformName = transformName.toLowerCase()
 
-            const transformAlias = Array.isArray(transform.alias) ? transform.alias : [transform.alias]
+            const transformAlias = !transform.alias ? undefined : Array.isArray(transform.alias) ? transform.alias : [transform.alias]
             const transformDescription = transform.description
 
             yargs.command({
