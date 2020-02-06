@@ -179,6 +179,7 @@ exports.yargs = {
                     const { timeout, select, traverse, noise, group, autoGroup, autoWeight, maxNodesWarn, maxNodesCap, extract, extractPrefix, extractSuffix, nodeType, nodes, ...rest } = argv
 
                     const { recon: gRecon } = require('../../lib/globals/recon')
+                    const { options: gOptions } = require('../../lib/globals/options')
 
                     let filter = {
                         noise
@@ -261,7 +262,7 @@ exports.yargs = {
                     }
 
                     try {
-                        await gRecon.transform(transformName === 'auto' ? '*' : transformName, options, { timeout, group: autoGroup, weight: autoWeight, maxNodesWarn, maxNodesCap, filter, extract: { property: extract, prefix: extractPrefix, suffix: extractSuffix } })
+                        await gRecon.transform(transformName === 'auto' ? '*' : transformName, options, { timeout, group: autoGroup, weight: autoWeight, maxNodesWarn, maxNodesCap, filter, extract: { property: extract, prefix: extractPrefix, suffix: extractSuffix }, optionsInstance: gOptions })
                     }
                     catch (e) {
                         console.error(e)
