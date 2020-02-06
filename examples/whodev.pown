@@ -1,0 +1,8 @@
+set -x
+
+recon add --node-type brand "$1"
+
+recon options set -c whoaretheyreport categories -j ["coding"]
+recon options list -c whoaretheyreport
+
+recon t auto -s 'node[type="brand"]'
