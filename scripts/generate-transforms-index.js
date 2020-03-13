@@ -23,6 +23,8 @@ const quote = (input) => {
 
 const root = path.join(__dirname, '..', 'lib', 'transforms')
 
+const seenAliases = []
+
 const code = fs.readdirSync(root)
     .filter((name) => {
         return name !== 'index.js'
@@ -34,6 +36,15 @@ const code = fs.readdirSync(root)
         return Object.entries(module)
             .map(([transformer, module]) => {
                 const { alias, title, description, group, tags, types, options, priority, noise } = module
+
+                alias.forEach((a) => {
+                    if (seenAliases.includes(a)) {
+                        throw new Error(`Allias ${a} already used when processing module ${name}`)
+                    }
+                    else {
+                        seenAliases.push(a)
+                    }
+                })
 
                 return `
 exports[${JSON.stringify(transformer)}] = ${objectdump({alias, title, description, group, tags, types, options, priority, noise})}
