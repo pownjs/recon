@@ -9,6 +9,8 @@ recon.on('warn', console.warn.bind(console))
 recon.on('error', console.error.bind(console))
 recon.on('debug', console.debug.bind(console))
 
+// TODO: show internal-error
+
 const bars = {}
 
 recon.on('barStart', (name, { total = 0 }) => {
