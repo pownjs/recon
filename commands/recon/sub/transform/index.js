@@ -71,14 +71,14 @@ exports.yargs = {
                         alias: 'c',
                         type: 'number',
                         describe: 'Number of transform operations to execute at the same time',
-                        default: Infinity
+                        default: 100
                     })
 
                     yargs.options('run-concurrency', {
                         alias: 'C',
                         type: 'number',
                         describe: 'Number of run operations to execute at the same time',
-                        default: Infinity
+                        default: 500
                     })
 
                     yargs.options('timeout', {
