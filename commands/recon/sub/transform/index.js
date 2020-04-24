@@ -81,7 +81,7 @@ exports.yargs = {
                         default: 500
                     })
 
-                    yargs.options('timeout', {
+                    yargs.options('transform-timeout', {
                         alias: 'T',
                         type: 'number',
                         describe: 'Timeout transforms',
@@ -190,7 +190,7 @@ exports.yargs = {
                 },
 
                 handler: async(argv) => {
-                    const { transformConcurrency, runConcurrency, timeout, select, traverse, noise, group, autoGroup, autoWeight, maxNodesWarn, maxNodesCap, extract, extractPrefix, extractSuffix, nodeType, nodes, ...rest } = argv
+                    const { transformConcurrency, runConcurrency, transformTimeout, select, traverse, noise, group, autoGroup, autoWeight, maxNodesWarn, maxNodesCap, extract, extractPrefix, extractSuffix, nodeType, nodes, ...rest } = argv
 
                     const { recon: gRecon } = require('../../lib/globals/recon')
                     const { options: gOptions } = require('../../lib/globals/options')
@@ -276,7 +276,7 @@ exports.yargs = {
                     }
 
                     try {
-                        await gRecon.transform(transformName === 'auto' ? '*' : transformName, options, { transformConcurrency, runConcurrency, timeout, group: autoGroup, weight: autoWeight, maxNodesWarn, maxNodesCap, filter, extract: { property: extract, prefix: extractPrefix, suffix: extractSuffix }, optionsInstance: gOptions })
+                        await gRecon.transform(transformName === 'auto' ? '*' : transformName, options, { transformConcurrency, runConcurrency, timeout: transformTimeout, group: autoGroup, weight: autoWeight, maxNodesWarn, maxNodesCap, filter, extract: { property: extract, prefix: extractPrefix, suffix: extractSuffix }, optionsInstance: gOptions })
                     }
                     catch (e) {
                         console.error(e)
