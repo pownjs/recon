@@ -4,7 +4,7 @@
   "description": "Pownage guaranteed",
   "main": "lib/index.js",
   "bin": {
-    "pown-recon-generate-transforms-index": "bin/generate-transforms-index.js"
+    "pown-recon-generate-transforms-index": "bin/pown-recon-generate-transforms-index.js"
   },
   "scripts": {
     "build": "node bin/pown-recon-generate-transforms-index.js",
