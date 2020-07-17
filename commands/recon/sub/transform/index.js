@@ -19,6 +19,10 @@ exports.yargs = {
 
         const transforms = require('../../../../lib/transforms')
 
+        const { extractSync } = require('@pown/modules')
+
+        const { loadableTransforms } = extractSync()
+
         const auto = {
             aliases: ['a'],
 
@@ -49,7 +53,7 @@ exports.yargs = {
             noise: 0
         }
 
-        const compoundTransforms = { ...transforms, ...remoteTransforms }
+        const compoundTransforms = { ...transforms, ...remoteTransforms, ...Object.assign({}, ...loadableTransforms.map(t => require(t))) }
 
         Object.entries({ ...compoundTransforms, auto }).forEach(([transformName, transform]) => {
             const niceTransformName = transformName.toLowerCase()
@@ -234,17 +238,21 @@ exports.yargs = {
                             tag: tag ? regexify(tag) : undefined
                         }
 
-                        Object.entries(compoundTransforms).forEach(([name, transform]) => {
-                            gRecon.registerTransforms({
-                                [name]: transform.load()
-                            })
-                        })
+                        gRecon.registerTransforms(compoundTransforms)
                     }
                     else {
                         gRecon.registerTransforms({
-                            [transformName]: transform.load()
+                            [transformName]: transform
                         })
                     }
+
+                    const { extractSync } = require('@pown/modules')
+
+                    const { loadableTransforms } = extractSync()
+
+                    loadableTransforms.forEach((transforms) => {
+                        gRecon.registerTransforms(transforms)
+                    })
 
                     await handleReadOptions(argv, gRecon)
 
