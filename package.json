@@ -3,6 +3,9 @@
   "version": "2.84.0",
   "description": "Pownage guaranteed",
   "main": "lib/index.js",
+  "bin": {
+    "pown-recon-generate-transforms-index": "scripts/generate-transforms-index.js"
+  },
   "scripts": {
     "recon": "POWN_ROOT=. pown-cli recon",
     "script": "POWN_ROOT=. pown-cli script",

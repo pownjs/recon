@@ -21,7 +21,7 @@ const quote = (input) => {
     return JSON.stringify(input)
 }
 
-const root = path.join(__dirname, '..', 'lib', 'transforms')
+const root = process.argv[2] || path.join(__dirname, '..', 'lib', 'transforms')
 
 const seenAliases = []
 
