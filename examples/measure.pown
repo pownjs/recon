@@ -1,0 +1,4 @@
+echo Measure Example
+recon a a
+recon a b
+recon e --auto-weight '*'
