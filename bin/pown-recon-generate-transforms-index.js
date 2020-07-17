@@ -30,7 +30,7 @@ const code = fs.readdirSync(root)
         return name !== 'index.js'
     })
     .map((name) => {
-        return { name, module: require(path.join(root, name)) }
+        return { name, module: require(path.resolve(path.join(root, name))) }
     })
     .map(({ name, module }) => {
         return Object.entries(module)
