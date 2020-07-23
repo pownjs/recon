@@ -53,7 +53,19 @@ exports.yargs = {
             noise: 0
         }
 
-        const compoundTransforms = { ...transforms, ...remoteTransforms, ...Object.assign({}, ...loadableTransforms.map(t => require(t))) }
+        const compoundTransforms = {
+            ...transforms,
+            ...remoteTransforms,
+
+            ...Object.assign({}, ...loadableTransforms.map((m) => {
+                try {
+                    return require(m)
+                }
+                catch (e) {
+                    console.error(e)
+                }
+            }))
+        }
 
         Object.entries({ ...compoundTransforms, auto }).forEach(([transformName, transform]) => {
             const niceTransformName = transformName.toLowerCase()
