@@ -40,7 +40,7 @@
     "@pown/async": "^2.7.0",
     "@pown/file": "^2.0.0",
     "@pown/github": "^2.6.0",
-    "@pown/modules": "^2.3.1",
+    "@pown/modules": "^2.4.0",
     "@pown/request": "^2.13.0",
     "@pown/whoarethey": "^2.6.0",
     "cytoscape": "^3.15.2",
