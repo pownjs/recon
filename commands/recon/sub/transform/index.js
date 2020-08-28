@@ -262,8 +262,8 @@ exports.yargs = {
 
                     const { loadableTransforms } = extractSync()
 
-                    loadableTransforms.forEach((transforms) => {
-                        gRecon.registerTransforms(transforms)
+                    loadableTransforms.forEach((transform) => {
+                        gRecon.registerTransforms(require(transform))
                     })
 
                     await handleReadOptions(argv, gRecon)
