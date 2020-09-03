@@ -26,8 +26,8 @@ exports.yargs = {
             description: 'Write summary to file with type',
             type: 'string',
             alias: ['summary-type'],
-            options: ['text', 'json'],
-            default: 'text'
+            options: ['summary', 'json'],
+            default: 'summary'
         })
     },
 
@@ -85,7 +85,12 @@ exports.yargs = {
             let data
 
             switch (summaryType) {
-                case 'text':
+                case 'json':
+                    data = JSON.stringify(tree)
+
+                    break
+
+                default:
                     const lines = []
 
                     Object.entries(tree).forEach(([name, values]) => {
@@ -93,11 +98,6 @@ exports.yargs = {
                     })
 
                     data = lines.join('\n') + '\n'
-
-                    break
-
-                case 'json':
-                    data = JSON.stringify(tree, '', '  ')
 
                     break
             }
