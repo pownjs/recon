@@ -12,7 +12,7 @@ exports.yargs = {
             description: 'Summary kind',
             type: 'string',
             alias: ['k'],
-            options: ['group', 'type'],
+            options: ['type', 'group'],
             default: 'type'
         })
 
@@ -61,7 +61,7 @@ exports.yargs = {
 
                 break
 
-            case 'type':
+            default:
                 nodes = recon.select('node[type!="group"]')
 
                 nodes.forEach((node) => {
