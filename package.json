@@ -7,8 +7,8 @@
     "pown-recon-generate-transforms-index": "bin/pown-recon-generate-transforms-index.js"
   },
   "scripts": {
-    "build": "node bin/pown-recon-generate-transforms-index.js",
     "test": "mocha",
+    "build": "node bin/pown-recon-generate-transforms-index.js",
     "recon": "POWN_ROOT=. pown-cli recon",
     "script": "POWN_ROOT=. pown-cli script",
     "shell": "POWN_ROOT=. pown-cli shell",
@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/pownjs/pown-recon#readme",
   "devDependencies": {
-    "@pown/cli": "^2.22.0",
+    "@pown/cli": "^2.23.0",
     "@pown/script": "^2.10.1",
     "@pown/shell": "^2.1.0",
     "@pown/toolchain": "^2.0.0"
@@ -54,10 +54,10 @@
   },
   "pown": {
     "commands": [
-      "commands/recon/index.js"
+      "commands/recon"
     ],
     "transforms": [
-      "transforms/beep.js"
+      "transforms/beep"
     ]
   },
   "browserify": {
