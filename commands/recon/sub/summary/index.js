@@ -16,6 +16,20 @@ exports.yargs = {
             default: 'type'
         })
 
+        yargs.options('select', {
+            alias: 's',
+            type: 'string',
+            describe: 'Select graph. Nodes will be added and linked only if graph contains at least one node.',
+            default: ''
+        })
+
+        yargs.options('traverse', {
+            alias: 'v',
+            type: 'string',
+            describe: 'Traverse graph. Nodes will be added and linked only if graph contains at least one node.',
+            default: ''
+        })
+
         yargs.option('summary-file-name', {
             description: 'Write summary to file',
             type: 'string',
@@ -32,7 +46,7 @@ exports.yargs = {
     },
 
     handler: async(argv) => {
-        const { kind, summaryFile, summaryType } = argv
+        const { kind, select, traverse, summaryFile, summaryType } = argv
 
         const { recon } = require('../../lib/globals/recon')
 
@@ -62,7 +76,16 @@ exports.yargs = {
                 break
 
             default:
-                nodes = recon.select('node[type!="group"]')
+                if (select) {
+                    nodes = recon.select(select)
+                }
+                else
+                if (traverse) {
+                    nodes = recon.traverse(traverse)
+                }
+                else {
+                    nodes = recon.select('node[type!="group"]')
+                }
 
                 nodes.forEach((node) => {
                     const { type, label } = node.data()
