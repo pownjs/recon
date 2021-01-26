@@ -43,13 +43,13 @@
     "@pown/preferences": "^2.3.0",
     "@pown/request": "^2.13.1",
     "@pown/whoarethey": "^2.7.0",
-    "cytoscape": "^3.17.0",
+    "cytoscape": "^3.18.0",
     "cytoscape-dagre": "^2.3.2",
     "cytoscape-euler": "^1.2.2",
     "cytoscape-klay": "^3.1.4",
-    "jsonpath": "^1.0.2",
-    "stream-chain": "^2.2.3",
-    "stream-csv-as-json": "^1.0.3",
+    "jsonpath": "^1.1.0",
+    "stream-chain": "^2.2.4",
+    "stream-csv-as-json": "^1.0.4",
     "stream-json": "^1.7.1"
   },
   "pown": {
