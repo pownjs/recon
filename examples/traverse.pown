@@ -1,0 +1,10 @@
+set -xe
+
+recon add --node-type uri http://0.0.0.0
+recon add --node-type uri http://google.com
+
+recon t http_fingerprint --auto-group --auto-weight -s 'node[type="uri"]'
+
+recon remove -v 'filter node[type="code"] | neighborhood node[type="uri"]'
+
+recon select node
