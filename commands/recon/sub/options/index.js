@@ -1,6 +1,7 @@
 exports.yargs = {
     command: 'options <command>',
     describe: 'Manage options',
+    aliases: ['option'],
 
     builder: (yargs) => {
         yargs.command(require('./sub/list').yargs)

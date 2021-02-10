@@ -1,7 +1,7 @@
 exports.yargs = {
     command: 'remote <command>',
     describe: 'Remote managment',
-    aliases: ['f'],
+    aliases: ['remotes', 'f'],
 
     builder: (yargs) => {
         yargs.command(require('./list').yargs)
