@@ -38,7 +38,7 @@
   "dependencies": {
     "@pown/async": "^2.9.0",
     "@pown/file": "^2.0.0",
-    "@pown/github": "^2.7.0",
+    "@pown/github": "^2.8.0",
     "@pown/modules": "^2.6.0",
     "@pown/preferences": "^2.3.0",
     "@pown/request": "^2.15.0",
