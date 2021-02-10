@@ -90,10 +90,10 @@ exports.yargs = {
                         default: 100
                     })
 
-                    yargs.options('run-concurrency', {
+                    yargs.options('node-concurrency', {
                         alias: 'C',
                         type: 'number',
-                        describe: 'Number of run operations to execute at the same time',
+                        describe: 'Number of nodes to transform at the same time',
                         default: 500
                     })
 
@@ -206,7 +206,7 @@ exports.yargs = {
                 },
 
                 handler: async(argv) => {
-                    const { transformConcurrency, runConcurrency, transformTimeout, select, traverse, noise, group, autoGroup, autoWeight, maxNodesWarn, maxNodesCap, extract, extractPrefix, extractSuffix, nodeType, nodes, ...rest } = argv
+                    const { transformConcurrency, nodeConcurrency, transformTimeout, select, traverse, noise, group, autoGroup, autoWeight, maxNodesWarn, maxNodesCap, extract, extractPrefix, extractSuffix, nodeType, nodes, ...rest } = argv
 
                     const { recon: gRecon } = require('../../lib/globals/recon')
                     const { options: gOptions } = require('../../lib/globals/options')
@@ -296,7 +296,7 @@ exports.yargs = {
                     }
 
                     try {
-                        await gRecon.transform(transformName === 'auto' ? '*' : transformName, options, { transformConcurrency, runConcurrency, timeout: transformTimeout, group: autoGroup, weight: autoWeight, maxNodesWarn, maxNodesCap, filter, extract: { property: extract, prefix: extractPrefix, suffix: extractSuffix }, optionsInstance: gOptions })
+                        await gRecon.transform(transformName === 'auto' ? '*' : transformName, options, { transformConcurrency, nodeConcurrency, timeout: transformTimeout, group: autoGroup, weight: autoWeight, maxNodesWarn, maxNodesCap, filter, extract: { property: extract, prefix: extractPrefix, suffix: extractSuffix }, optionsInstance: gOptions })
                     }
                     catch (e) {
                         console.error(e)
