@@ -92,14 +92,16 @@ const handleOutputOptions = (argv, nodes) => {
 
         if (outputFields) {
             Object.entries(tables).forEach(([type, table]) => {
-                console.log(colors.bgRed.white.bold(`   ${type}   `))
+                console.group(type)
                 console.table(table, outputFields.split(',').map(f => f.trim()).filter(f => f))
+                console.groupEnd()
             })
         }
         else {
             Object.entries(tables).forEach(([type, table]) => {
-                console.log(colors.bgRed.white.bold(`   ${type}   `))
+                console.group(type)
                 console.table(table)
+                console.groupEnd()
             })
         }
     }
