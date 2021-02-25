@@ -14,6 +14,8 @@ exports.yargs = {
             Object.entries(defs).forEach(([name, def]) => {
                 console.table([{ ...def, name }], ['name', 'title', 'description'])
             })
+
+            console.groupEnd()
         })
     }
 }

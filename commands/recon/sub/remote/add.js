@@ -24,6 +24,8 @@ exports.yargs = {
                     console.table([{ ...def, name }], ['name', 'title', 'description'])
                 })
 
+                console.groupEnd()
+
                 return {
                     [uri]: transforms
                 }
