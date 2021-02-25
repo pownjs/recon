@@ -6,7 +6,6 @@ exports.yargs = {
     handler: async(argv) => {
         const { uris } = argv
 
-        const colors = require('@pown/cli/lib/colors')
         const { getPreferences, setPreferences } = require('@pown/preferences')
 
         const { fetchRemoteTransforms } = require('../../../../lib/remote')
@@ -19,7 +18,7 @@ exports.yargs = {
             ...Object.assign({}, ...(await Promise.all(uris.map(async(uri) => {
                 const transforms = await fetchRemoteTransforms(uri)
 
-                console.log(colors.bgRed.white.bold(`   ${uri}   `))
+                console.group(uri)
 
                 Object.entries(transforms).forEach(([name, def]) => {
                     console.table([{ ...def, name }], ['name', 'title', 'description'])
