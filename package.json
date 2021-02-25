@@ -44,7 +44,7 @@
     "@pown/preferences": "^2.3.0",
     "@pown/request": "^2.19.0",
     "@pown/whoarethey": "^2.8.0",
-    "cytoscape": "^3.18.0",
+    "cytoscape": "^3.18.1",
     "cytoscape-dagre": "^2.3.2",
     "cytoscape-euler": "^1.2.2",
     "cytoscape-klay": "^3.1.4",
