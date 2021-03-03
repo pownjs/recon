@@ -32,6 +32,8 @@
   "homepage": "https://github.com/pownjs/pown-recon#readme",
   "devDependencies": {
     "@pown/cli": "^2.29.0",
+    "@pown/script": "^2.16.0",
+    "@pown/shell": "^2.5.0",
     "@pown/toolchain": "^2.1.0"
   },
   "dependencies": {
