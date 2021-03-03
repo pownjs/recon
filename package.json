@@ -7,12 +7,13 @@
     "pown-recon-generate-transforms-index": "bin/pown-recon-generate-transforms-index.js"
   },
   "scripts": {
-    "test": "mocha",
-    "build": "node bin/pown-recon-generate-transforms-index.js",
+    "usage": "POWN_ROOT=. pown-cli recon; echo; POWN_ROOT=. pown-cli recon transform",
     "recon": "POWN_ROOT=. pown-cli recon",
     "script": "POWN_ROOT=. pown-cli script",
     "shell": "POWN_ROOT=. pown-cli shell",
-    "prefs": "POWN_ROOT=. pown-cli prefs"
+    "prefs": "POWN_ROOT=. pown-cli prefs",
+    "build": "node bin/pown-recon-generate-transforms-index.js",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
