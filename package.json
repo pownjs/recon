@@ -7,7 +7,7 @@
     "pown-recon-generate-transforms-index": "bin/pown-recon-generate-transforms-index.js"
   },
   "scripts": {
-    "usage": "POWN_ROOT=. pown-cli recon; echo; POWN_ROOT=. pown-cli recon transform",
+    "usage": "POWN_ROOT=. pown-cli recon --help; echo; POWN_ROOT=. pown-cli recon transform --help",
     "recon": "POWN_ROOT=. pown-cli recon",
     "script": "POWN_ROOT=. pown-cli script",
     "shell": "POWN_ROOT=. pown-cli shell",
