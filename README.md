@@ -123,6 +123,7 @@ Commands:
   pown-cli recon transform httpfingerprint [options] <nodes...>               Performs a fingerprint on the HTTP server and application.  [aliases: http_fingerprint, hf]
   pown-cli recon transform bakeimages [options] <nodes...>                    Convert external image into data URIs for self-embedding purposes.  [aliases: bake_images, bes]
   pown-cli recon transform ipinfoio [options] <nodes...>                      Obtain ipinfo.io whois report.  [aliases: ipinfo_io, iiio]
+  pown-cli recon transform omnisintsubdomainreport [options] <nodes...>       Obtain omnisint domain report which helps enumerating target subdomains.  [aliases: omnisint_subdomain_report]
   pown-cli recon transform pkslookupkeys [options] <nodes...>                 Look the the PKS database at pool.sks-keyservers.net which pgp.mit.edu is part of.  [aliases: pks_lookup_keys, pkslk]
   pown-cli recon transform pwndbsearch [options] <nodes...>                   Searching the PwnDB database  [aliases: pwndb_search, pds]
   pown-cli recon transform riddleripsearch [options] <nodes...>               Searches for IP references using F-Secure riddler.io.  [aliases: riddler_ip_search, rdis]
