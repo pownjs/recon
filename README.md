@@ -61,7 +61,7 @@ $ POWN_ROOT=. pown recon
 > **WARNING**: This pown command is currently under development and as a result will be subject to breaking changes.
 
 ```
-{"type":"log","data":"pown-cli recon <command>
+pown-cli recon <command>
 
 Target recon
 
@@ -87,9 +87,9 @@ Commands:
 
 Options:
   --version  Show version number  [boolean]
-  --help     Show help  [boolean]"}
+  --help     Show help  [boolean]
 
-{"type":"log","data":"pown-cli recon transform <transform>
+pown-cli recon transform <transform>
 
 Perform inline transformation
 
@@ -165,7 +165,7 @@ Options:
   --version    Show version number  [boolean]
   --help       Show help  [boolean]
   --read, -r   Read file  [string]
-  --write, -w  Write file  [string]"}
+  --write, -w  Write file  [string]
 ```
 
 ## Preview
@@ -191,10 +191,6 @@ Once the recon is complete, open the graph for preview in SecApps Recon:
 ```sh
 $ pown apps recon < path/to/file.network
 ```
-
-You will see a screen similar to the following:
-
-![screenshot](https://media.githubusercontent.com/media/pownjs/pown-recon/master/screenshots/02.png)
 
 ## Scripting
 
