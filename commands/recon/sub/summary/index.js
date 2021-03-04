@@ -12,8 +12,8 @@ exports.yargs = {
             description: 'Summary kind',
             type: 'string',
             alias: ['k'],
-            options: ['type', 'group'],
-            default: 'type'
+            default: 'type',
+            options: ['type', 'group']
         })
 
         yargs.options('select', {
@@ -40,13 +40,20 @@ exports.yargs = {
             description: 'Write summary to file with type',
             type: 'string',
             alias: ['summary-type'],
-            options: ['summary', 'json'],
-            default: 'summary'
+            default: 'summary',
+            options: ['summary', 'json']
+        })
+
+        yargs.option('sample-size', {
+            description: 'The summary sample size.',
+            type: 'number',
+            alias: ['size'],
+            default: Infinity
         })
     },
 
     handler: async(argv) => {
-        const { kind, select, traverse, summaryFile, summaryType } = argv
+        const { kind, select, traverse, summaryFile, summaryType, sampleSize } = argv
 
         const { recon } = require('../../lib/globals/recon')
 
@@ -100,7 +107,16 @@ exports.yargs = {
                 break
         }
 
-        console.table(tree)
+        Object.entries(tree).forEach(([name, value]) => {
+            tree[name] = {
+                total: value.length,
+                sample: value.slice(0, sampleSize)
+            }
+        })
+
+        console.table(Object.entries(tree).map(([kind, { total, sample }]) => {
+            return { kind, total, sample }
+        }))
 
         if (summaryFile) {
             const { writeFile } = require('@pown/file/lib/file')
@@ -116,8 +132,8 @@ exports.yargs = {
                 default:
                     const lines = []
 
-                    Object.entries(tree).forEach(([name, values]) => {
-                        lines.push(`${name}: ${values.length} ${values.slice(0, 5).join(', ')}${values.length > 5 ? '...' : ''}`)
+                    Object.entries(tree).forEach(([kind, { total, sample }]) => {
+                        lines.push(`${kind}: total: ${total} sample: ${sample.join(', ')}${total > sample.length ? '...' : ''}`)
                     })
 
                     data = lines.join('\n') + '\n'
