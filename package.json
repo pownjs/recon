@@ -41,7 +41,7 @@
     "@pown/file": "^2.0.0",
     "@pown/github": "^2.8.0",
     "@pown/lau": "^2.9.0",
-    "@pown/modules": "^2.8.0",
+    "@pown/modules": "^2.9.0",
     "@pown/preferences": "^2.5.0",
     "@pown/request": "^2.20.0",
     "@pown/whoarethey": "^2.8.0",
