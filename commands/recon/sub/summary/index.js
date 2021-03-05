@@ -48,7 +48,7 @@ exports.yargs = {
             description: 'The summary sample size.',
             type: 'number',
             alias: ['size'],
-            default: Infinity
+            default: 10
         })
     },
 
