@@ -16,8 +16,8 @@ exports.yargs = {
 
         const { handleWriteOptions, handleReadOptions } = require('../../lib/handlers/file')
 
-        await handleWriteOptions(argv, recon)
+        await handleReadOptions({ read: file }, recon)
 
-        await handleReadOptions({ write: file }, recon)
+        await handleWriteOptions(argv, recon)
     }
 }
