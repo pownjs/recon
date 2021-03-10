@@ -9,20 +9,6 @@ exports.yargs = {
         installReadOptions(yargs)
         installWriteOptions(yargs)
 
-        const { getPreferencesSync } = require('@pown/preferences')
-
-        const { remotes = {} } = getPreferencesSync('recon')
-
-        const { buildRemoteTransforms } = require('../../../../lib/remote')
-
-        const remoteTransforms = buildRemoteTransforms(remotes)
-
-        const transforms = require('../../../../lib/transforms')
-
-        const { extractSync } = require('@pown/modules')
-
-        const { loadableTransforms } = extractSync()
-
         const auto = {
             aliases: ['a'],
 
@@ -53,19 +39,9 @@ exports.yargs = {
             noise: 0
         }
 
-        const compoundTransforms = {
-            ...transforms,
-            ...remoteTransforms,
+        const { getCompoundTransforms } = require('./transforms')
 
-            ...Object.assign({}, ...loadableTransforms.map((m) => {
-                try {
-                    return require(m)
-                }
-                catch (e) {
-                    console.error(e)
-                }
-            }))
-        }
+        const compoundTransforms = getCompoundTransforms()
 
         Object.entries({ ...compoundTransforms, auto }).forEach(([transformName, transform]) => {
             const niceTransformName = transformName.toLowerCase()
