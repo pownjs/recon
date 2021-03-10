@@ -133,7 +133,7 @@ exports.yargs = {
                     const lines = []
 
                     Object.entries(tree).forEach(([kind, { total, sample }]) => {
-                        lines.push(`${kind}: total: ${total} sample: ${sample.join(', ')}${total > sample.length ? '...' : ''}`)
+                        lines.push(`${kind} (${total}): ${sample.join(', ')}${total > sample.length ? '...' : ''}`)
                     })
 
                     data = lines.join('\n') + '\n'
