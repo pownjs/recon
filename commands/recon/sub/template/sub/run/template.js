@@ -112,7 +112,7 @@ class MatcherSet {
     }
 
     async match(object) {
-        return getConditionFunc(this.matcherCondition)(this.matchers, (matcher) => {
+        return getConditionFunc(this.matchersCondition)(this.matchers, (matcher) => {
             if (!matcher) {
                 return false
             }
