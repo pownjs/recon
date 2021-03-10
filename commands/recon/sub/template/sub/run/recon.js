@@ -1,6 +1,6 @@
 const { Task, TaskSet, Template, TemplateSet, getArray } = require('./template')
 
-class ReconAddTask extends Task {
+class AddTask extends Task {
     async run(recon) {
         const { select, traverse } = this.task
 
@@ -47,7 +47,7 @@ class ReconAddTask extends Task {
     }
 }
 
-class ReconAddTaskSet extends TaskSet {
+class AddTaskSet extends TaskSet {
     async run(recon) {
         for (let task of this.tasks) {
             if (!task) {
@@ -55,7 +55,7 @@ class ReconAddTaskSet extends TaskSet {
             }
 
             if (!task.run) {
-                task = new ReconAddTask(task)
+                task = new AddTask(task)
             }
 
             await task.run(recon)
@@ -63,7 +63,7 @@ class ReconAddTaskSet extends TaskSet {
     }
 }
 
-class ReconTransformTask extends Task {
+class TransformTask extends Task {
     async run(recon) {
         const { select, traverse } = this.task
 
@@ -103,7 +103,7 @@ class ReconTransformTask extends Task {
     }
 }
 
-class ReconTransformTaskSet extends TaskSet {
+class TransformTaskSet extends TaskSet {
     async run(recon) {
         for (let task of this.tasks) {
             if (!task) {
@@ -111,7 +111,7 @@ class ReconTransformTaskSet extends TaskSet {
             }
 
             if (!task.run) {
-                task = new ReconTransformTask(task)
+                task = new TransformTask(task)
             }
 
             await task.run(recon)
@@ -119,7 +119,7 @@ class ReconTransformTaskSet extends TaskSet {
     }
 }
 
-class ReconRemoveTask extends Task {
+class RemoveTask extends Task {
     async run(recon) {
         const { select, traverse } = this.task
 
@@ -152,7 +152,7 @@ class ReconRemoveTask extends Task {
     }
 }
 
-class ReconRemoveTaskSet extends TaskSet {
+class RemoveTaskSet extends TaskSet {
     async run(recon) {
         for (let task of this.tasks) {
             if (!task) {
@@ -160,7 +160,7 @@ class ReconRemoveTaskSet extends TaskSet {
             }
 
             if (!task.run) {
-                task = new ReconRemoveTask(task)
+                task = new RemoveTask(task)
             }
 
             await task.run(recon)
@@ -168,27 +168,39 @@ class ReconRemoveTaskSet extends TaskSet {
     }
 }
 
-class ReconOperationTask extends Task {
+class OperationTask extends Task {
     async runAddTask(recon, def) {
-        const addTaskSet = new ReconAddTaskSet(getArray(def))
+        const ts = new AddTaskSet(getArray(def))
 
-        await addTaskSet.run(recon)
+        await ts.run(recon)
     }
 
     async runTransformTask(recon, def) {
-        const transformTaskSet = new ReconTransformTaskSet(getArray(def))
+        const ts = new TransformTaskSet(getArray(def))
 
-        await transformTaskSet.run(recon)
+        await ts.run(recon)
     }
 
     async runRemoveTask(recon, def) {
-        const removeTaskSet = new ReconRemoveTaskSet(getArray(def))
+        const ts = new RemoveTaskSet(getArray(def))
 
-        await removeTaskSet.run(recon)
+        await ts.run(recon)
+    }
+
+    async runSelectTask(recon, def) {
+        const ts = new SelectTaskSet(getArray(def))
+
+        await ts.run(recon)
+    }
+
+    async runTraverseTask(recon, def) {
+        const ts = new TraverseTaskSet(getArray(def))
+
+        await ts.run(recon)
     }
 
     async run(recon) {
-        const { add, transform, remove } = this.task
+        const { add, transform, remove, select, traverse } = this.task
 
         if (add) {
             await this.runAddTask(recon, add)
@@ -201,10 +213,18 @@ class ReconOperationTask extends Task {
         if (remove) {
             await this.runRemoveTask(recon, remove)
         }
+
+        if (select) {
+            await this.runSelectTask(recon, select)
+        }
+
+        if (traverse) {
+            await this.runTraverseTrask(recon, traverse)
+        }
     }
 }
 
-class ReconOperationTaskSet extends TaskSet {
+class OperationTaskSet extends TaskSet {
     async run(recon) {
         for (let task of this.tasks) {
             if (!task) {
@@ -212,7 +232,89 @@ class ReconOperationTaskSet extends TaskSet {
             }
 
             if (!task.run) {
-                task = new ReconOperationTask(task)
+                task = new OperationTask(task)
+            }
+
+            await task.run(recon)
+        }
+    }
+}
+
+class SelectTask extends Task {
+    async run(recon) {
+        const { select, ...rest } = this.task
+
+        let nodes
+
+        if (select) {
+            nodes = recon.select(select)
+        }
+
+        if (nodes) {
+            if (!nodes.length) {
+                return
+            }
+
+            const task = new OperationTask(rest)
+
+            await task.run(recon)
+        }
+        else {
+            void(0)
+        }
+    }
+}
+
+class SelectTaskSet extends TaskSet {
+    async run(recon) {
+        for (let task of this.tasks) {
+            if (!task) {
+                continue
+            }
+
+            if (!task.run) {
+                task = new SelectTask(task)
+            }
+
+            await task.run(recon)
+        }
+    }
+}
+
+class TraverseTask extends Task {
+    async run(recon) {
+        const { traverse, ...rest } = this.task
+
+        let nodes
+
+        if (traverse) {
+            nodes = recon.traverse(traverse)
+        }
+
+        if (nodes) {
+            if (!nodes.length) {
+                return
+            }
+
+            const task = new OperationTask(rest)
+
+            await task.run(recon)
+        }
+        else {
+            void(0)
+        }
+    }
+}
+
+class TraverseTaskSet extends TaskSet {
+    async run(recon) {
+        for (let task of this.tasks) {
+            if (!task) {
+                continue
+            }
+
+            if (!task.run) {
+                task = new TraverseTask(task)
             }
 
             await task.run(recon)
@@ -221,32 +323,14 @@ class ReconOperationTaskSet extends TaskSet {
 }
 
 class ReconTemplate extends Template {
-    async runAddTask(recon, def) {
-        const addTaskSet = new ReconAddTaskSet(getArray(def))
-
-        await addTaskSet.run(recon)
-    }
-
-    async runRemoveTask(recon, def) {
-        const removeTaskSet = new ReconRemoveTaskSet(getArray(def))
-
-        await removeTaskSet.run(recon)
-    }
-
-    async runTransformTask(recon, def) {
-        const transformTaskSet = new ReconTransformTaskSet(getArray(def))
-
-        await transformTaskSet.run(recon)
-    }
-
     async run(recon) {
         const { add, transform, remove, op, ops, operation, operations } = this.template
 
-        const ot = new ReconOperationTask({ add, transform, remove })
+        const ot = new OperationTask({ add, transform, remove })
 
         await ot.run(recon)
 
-        const ots = new ReconOperationTaskSet(getArray(op || ops || operation || operations))
+        const ots = new OperationTaskSet(getArray(op || ops || operation || operations))
 
         await ots.run(recon)
     }
