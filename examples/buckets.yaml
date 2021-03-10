@@ -1,0 +1,27 @@
+select:
+  select: node[type="uri"],node[type="url"]
+  add:
+    - label: Identified AWS S3 Bucket
+      type: issue
+      props:
+        level: 1
+        
+      matcher-condition: or
+      matcher:
+        - type: word
+          word: <Error><Code>NoSuchKey
+          part: props.responseBodySniff
+          
+        - type: word
+          word: <Error><Code>NoSuchBucket
+          part: props.responseBodySniff
+          
+    - label: Identified Azure Blob Storage
+      type: issue
+      props:
+        level: 1
+        
+      matcher:
+        - type: word
+          word: <Error><Code>InvalidQueryParameterValue
+          part: props.responseBodySniff
