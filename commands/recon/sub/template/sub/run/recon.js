@@ -1,10 +1,17 @@
 const { Task, TaskSet, Template, TemplateSet, getArray } = require('./template')
 
-class AddTask extends Task {
-    async run(recon) {
-        const { select, traverse } = this.task
+const nodesToArray = (nodes) => {
+    if (nodes) {
+        return nodes.map(node => node.data())
+    }
+    else {
+        []
+    }
+}
 
-        let nodes
+class AddTask extends Task {
+    async run(recon, nodes) {
+        const { select, traverse } = this.task
 
         if (select) {
             nodes = recon.select(select)
@@ -14,31 +21,31 @@ class AddTask extends Task {
             nodes = recon.traverse(traverse)
         }
         else {
-            nodes = recon.selection
+            nodes = nodes || recon.selection
         }
 
+        const results = []
+
         if (nodes) {
-            if (!nodes.length) {
-                return
+            if (nodes.length) {
+                nodes = await Promise.all(nodes.map(async(node) => {
+                    const data = node.data()
+
+                    const result = await super.run(data)
+
+                    if (result) {
+                        const { id: source } = data
+
+                        const { id, type, label, props } = result
+
+                        return { id: id ? id : `${type}:${label}`, type, label, props: props || {}, edges: [source] }
+                    }
+                }))
+
+                nodes = nodes.filter(node => node)
+
+                results.push(nodesToArray(...await recon.addNodes(nodes)))
             }
-
-            nodes = await Promise.all(nodes.map(async(node) => {
-                const data = node.data()
-
-                const result = await super.run(data)
-
-                if (result) {
-                    const { id: source } = data
-
-                    const { id, type, label, props } = result
-
-                    return { id: id ? id : `${type}:${label}`, type, label, props: props || {}, edges: [source] }
-                }
-            }))
-
-            nodes = nodes.filter(node => node)
-
-            await recon.addNodes(nodes)
         }
         else {
             const result = await super.run({})
@@ -46,14 +53,20 @@ class AddTask extends Task {
             if (result) {
                 const { id, type, label, props } = result
 
-                await recon.addNodes([{ id: id ? id : `${type}:${label}`, type, label, props: props || {} }])
+                results.push(nodesToArray(...await recon.addNodes([{ id: id ? id : `${type}:${label}`, type, label, props: props || {} }])))
             }
         }
+
+        return results
     }
 }
 
 class AddTaskSet extends TaskSet {
     async run(recon) {
+        const selection = recon.selection
+
+        const results = []
+
         for (let task of this.tasks) {
             if (!task) {
                 continue
@@ -63,16 +76,16 @@ class AddTaskSet extends TaskSet {
                 task = new AddTask(task)
             }
 
-            await task.run(recon)
+            results.push(...await task.run(recon, selection))
         }
+
+        return results
     }
 }
 
 class TransformTask extends Task {
-    async run(recon) {
+    async run(recon, nodes) {
         const { select, traverse } = this.task
-
-        let nodes
 
         if (select) {
             nodes = recon.select(select)
@@ -82,36 +95,42 @@ class TransformTask extends Task {
             nodes = recon.traverse(traverse)
         }
         else {
-            nodes = recon.selection
+            nodes = nodes || recon.selection
         }
 
+        const results = []
+
         if (nodes) {
-            if (!nodes.length) {
-                return
-            }
+            if (nodes.length) {
+                // TODO: rather than doing this, filter all nodes and apply the transform at once
 
-            // TODO: rather than doing this, filter all nodes and apply the transform at once
+                for (let node of nodes) {
+                    const data = node.data()
 
-            for (let node of nodes) {
-                const data = node.data()
+                    const result = await super.run(data)
 
-                const result = await super.run(data)
+                    if (result) {
+                        const { transform, transformation, name, ...rest } = result
 
-                if (result) {
-                    const { transform, transformation, name, ...rest } = result
-
-                    await recon.transform(transform || transformation || name || '', rest, rest)
+                        results.push(nodesToArray(...await recon.transform(transform || transformation || name || '', rest, rest)))
+                    }
                 }
             }
         }
         else {
             void(0)
         }
+
+        return results
     }
 }
 
 class TransformTaskSet extends TaskSet {
     async run(recon) {
+        const selection = recon.selection
+
+        const results = []
+
         for (let task of this.tasks) {
             if (!task) {
                 continue
@@ -121,16 +140,16 @@ class TransformTaskSet extends TaskSet {
                 task = new TransformTask(task)
             }
 
-            await task.run(recon)
+            results.push(...await task.run(recon, selection))
         }
+
+        return results
     }
 }
 
 class RemoveTask extends Task {
-    async run(recon) {
+    async run(recon, nodes) {
         const { select, traverse } = this.task
-
-        let nodes
 
         if (select) {
             nodes = recon.select(select)
@@ -140,32 +159,38 @@ class RemoveTask extends Task {
             nodes = recon.traverse(traverse)
         }
         else {
-            nodes = recon.selection
+            nodes = nodes || recon.selection
         }
 
+        const results = []
+
         if (nodes) {
-            if (!nodes.length) {
-                return
+            if (nodes.length) {
+                nodes = await Promise.all(nodes.map((node) => {
+                    const data = node.data()
+
+                    return super.run(data)
+                }))
+
+                nodes = nodes.filter(node => node)
+
+                results.push(nodesToArray(...await recon.addNodes(nodes)))
             }
-
-            nodes = await Promise.all(nodes.map((node) => {
-                const data = node.data()
-
-                return super.run(data)
-            }))
-
-            nodes = nodes.filter(node => node)
-
-            await recon.addNodes(nodes)
         }
         else {
             void(0)
         }
+
+        return results
     }
 }
 
 class RemoveTaskSet extends TaskSet {
     async run(recon) {
+        const selection = recon.selection
+
+        const results = []
+
         for (let task of this.tasks) {
             if (!task) {
                 continue
@@ -175,8 +200,10 @@ class RemoveTaskSet extends TaskSet {
                 task = new RemoveTask(task)
             }
 
-            await task.run(recon)
+            results.push(...await task.run(recon, selection))
         }
+
+        return results
     }
 }
 
@@ -184,60 +211,66 @@ class OperationTask extends Task {
     async runAddTask(recon, def) {
         const ts = new AddTaskSet(getArray(def))
 
-        await ts.run(recon)
+        return ts.run(recon)
     }
 
     async runTransformTask(recon, def) {
         const ts = new TransformTaskSet(getArray(def))
 
-        await ts.run(recon)
+        return ts.run(recon)
     }
 
     async runRemoveTask(recon, def) {
         const ts = new RemoveTaskSet(getArray(def))
 
-        await ts.run(recon)
+        return ts.run(recon)
     }
 
     async runSelectTask(recon, def) {
         const ts = new SelectTaskSet(getArray(def))
 
-        await ts.run(recon)
+        return ts.run(recon)
     }
 
     async runTraverseTask(recon, def) {
         const ts = new TraverseTaskSet(getArray(def))
 
-        await ts.run(recon)
+        return ts.run(recon)
     }
 
     async run(recon) {
         const { add, transform, remove, select, traverse } = this.task
 
+        const results = {}
+
         if (add) {
-            await this.runAddTask(recon, add)
+            results.add = await this.runAddTask(recon, add)
         }
 
         if (transform) {
-            await this.runTransformTask(recon, transform)
+            results.transform = await this.runTransformTask(recon, transform)
         }
 
         if (remove) {
-            await this.runRemoveTask(recon, remove)
+            results.remove = await this.runRemoveTask(recon, remove)
         }
 
         if (select) {
-            await this.runSelectTask(recon, select)
+            results.select = await this.runSelectTask(recon, select)
         }
 
         if (traverse) {
-            await this.runTraverseTrask(recon, traverse)
+            results.traverse = await this.runTraverseTrask(recon, traverse)
         }
+
+        return results
     }
 }
 
 class OperationTaskSet extends TaskSet {
     async run(recon) {
+        const results = []
+
         for (let task of this.tasks) {
             if (!task) {
                 continue
@@ -247,8 +280,10 @@ class OperationTaskSet extends TaskSet {
                 task = new OperationTask(task)
             }
 
-            await task.run(recon)
+            results.push(...await task.run(recon))
         }
+
+        return results
     }
 }
 
@@ -264,23 +299,27 @@ class SelectTask extends Task {
             nodes = recon.select(expr)
         }
 
+        const results = []
+
         if (nodes) {
-            if (!nodes.length) {
-                return
+            if (nodes.length) {
+                const task = new OperationTask(rest)
+
+                results.push(await task.run(recon))
             }
-
-            const task = new OperationTask(rest)
-
-            await task.run(recon)
         }
         else {
             void(0)
         }
+
+        return results
     }
 }
 
 class SelectTaskSet extends TaskSet {
     async run(recon) {
+        const results = []
+
         for (let task of this.tasks) {
             if (!task) {
                 continue
@@ -290,8 +329,10 @@ class SelectTaskSet extends TaskSet {
                 task = new SelectTask(task)
             }
 
-            await task.run(recon)
+            results.push(...await task.run(recon))
         }
+
+        return results
     }
 }
 
@@ -307,23 +348,27 @@ class TraverseTask extends Task {
             nodes = recon.traverse(expr)
         }
 
+        const results = []
+
         if (nodes) {
-            if (!nodes.length) {
-                return
+            if (nodes.length) {
+                const task = new OperationTask(rest)
+
+                results.push(await task.run(recon))
             }
-
-            const task = new OperationTask(rest)
-
-            await task.run(recon)
         }
         else {
             void(0)
         }
+
+        return results
     }
 }
 
 class TraverseTaskSet extends TaskSet {
     async run(recon) {
+        const results = []
+
         for (let task of this.tasks) {
             if (!task) {
                 continue
@@ -333,8 +378,10 @@ class TraverseTaskSet extends TaskSet {
                 task = new TraverseTask(task)
             }
 
-            await task.run(recon)
+            results.push(...await task.run(recon))
         }
+
+        return results
     }
 }
 
@@ -342,18 +389,24 @@ class ReconTemplate extends Template {
     async run(recon) {
         const { add, transform, remove, select, traverse, op, ops, operation, operations } = this.template
 
+        const results = []
+
         const ot = new OperationTask({ add, transform, remove, select, traverse })
 
-        await ot.run(recon)
+        results.push(await ot.run(recon))
 
         const ots = new OperationTaskSet(getArray(op || ops || operation || operations))
 
-        await ots.run(recon)
+        results.push(...await ots.run(recon))
+
+        return results
     }
 }
 
 class ReconTemplateSet extends TemplateSet {
     async run(recon) {
+        const results = {}
+
         for (let template of this.templates) {
             if (!template) {
                 continue
@@ -363,8 +416,10 @@ class ReconTemplateSet extends TemplateSet {
                 template = new ReconTemplate(template)
             }
 
-            await template.run(recon)
+            results[template.id || Math.random().toString(32).slice(2)] = await template.run(recon)
         }
+
+        return results
     }
 }
 
