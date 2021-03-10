@@ -67,7 +67,7 @@ Target recon
 
 Commands:
   pown-cli recon transform <transform>          Perform inline transformation  [aliases: t]
-  pown-cli recon template <command>             Recon template commands
+  pown-cli recon template <command>             Recon template commands  [aliases: p]
   pown-cli recon select <expressions...>        Select nodes  [aliases: s]
   pown-cli recon traverse <expressions...>      Traverse nodes  [aliases: v]
   pown-cli recon options <command>              Manage options  [aliases: option]
