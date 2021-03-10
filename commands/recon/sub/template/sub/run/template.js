@@ -175,7 +175,7 @@ class ExtractorSet {
     async extract(object) {
         const result = {}
 
-        for await (let extractor of this.extractors) {
+        for (let extractor of this.extractors) {
             if (!extractor) {
                 continue
             }
@@ -283,7 +283,7 @@ class TaskSet {
     async run(object) {
         const result = {}
 
-        for await (let task of this.tasks) {
+        for (let task of this.tasks) {
             if (!task) {
                 continue
             }
@@ -335,7 +335,7 @@ class TemplateSet {
     async run(action, object) {
         const results = {}
 
-        for await (let template of this.templates) {
+        for (let template of this.templates) {
             if (!template) {
                 continue
             }
