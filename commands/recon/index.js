@@ -4,6 +4,7 @@ exports.yargs = {
 
     builder: (yargs) => {
         yargs.command(require('./sub/transform').yargs)
+        yargs.command(require('./sub/template').yargs)
         yargs.command(require('./sub/select').yargs)
         yargs.command(require('./sub/traverse').yargs)
         yargs.command(require('./sub/options').yargs)
