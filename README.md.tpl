@@ -6,7 +6,7 @@
 
 # Pown Recon
 
-Pown Recon is a target reconnaissance framework powered by graph theory. The benefit of using graph theory instead of flat table representation is that it is easier to find the relationships between different types of information which comes quite handy in many situations. Graph theory algorithms also help with diffing, searching, like finding the shortest path, and many other helpful tasks to aid information discovery and intelligence gathering.
+Pown Recon is a target reconnaissance framework powered by graph theory. Using graph theory instead of flat table representation is easier to find the relationships between different types of information, which comes quite handy in many situations. Graph theory algorithms also help with diffing, searching, finding the shortest path, and many other helpful tasks to aid information discovery and intelligence gathering.
 
 ## Credits
 
@@ -235,8 +235,6 @@ The representation is tabular for convenience but underneath we've got a model w
 If you are wondering what that looks like you can use [SecApps Recon](https://recon.secapps.com). The command line does not have the necessary level of interactivity to present the complexity of graphs.
 
 The `-w google.network` command line option exported the network to a file. You can load the file directly into SecApps Recon with the file open feature. The result will look like this:
-
-![screenshot](https://media.githubusercontent.com/media/pownjs/pown-recon/master/screenshots/01.png)
 
 Now imagine that we want to query what repositories these Google engineers are working on. This is easy. First, we need to select the nodes in the graph and then transform them with the "GitHub List Repositories" transformation. This is how we do it from the command line:
 
