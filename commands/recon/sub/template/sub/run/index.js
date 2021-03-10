@@ -72,9 +72,29 @@ exports.yargs = {
 
         const templateSet = new ReconTemplateSet(Array.from(findTemplates(templates)))
 
-        await templateSet.run(gRecon)
+        const results = await templateSet.run(gRecon)
 
-        const resultNodes = gRecon.selection.map(node => node.data())
+        const generateResult = function*(results) {
+            if (!results) {
+                return
+            }
+            else
+            if (Array.isArray(results)) {
+                for (let result of results) {
+                    yield* generateResult(result)
+                }
+            }
+            else {
+                if (results.id) {
+                    yield results
+                }
+                else {
+                    yield* generateResult(Object.values(results))
+                }
+            }
+        }
+
+        const resultNodes = Array.from(generateResult(results))
 
         await handleWriteOptions(argv, gRecon)
 
