@@ -26,4 +26,8 @@ add:
   props:
     level: 1
     title: Permissive Cross-Origin Resource Sharing
-    description: Cross-origin Resource Sharing (CORS) is a specification, which allows Web applications the ability to offer its resources for public consumption from different domains. CORS is typically used in cross-origin APIs designed to be consumed by JavaScript applications.
+    description: >
+      Cross-origin Resource Sharing (CORS) is a specification, which allows
+      Web applications the ability to offer its resources for public consumption
+      from different domains. CORS is typically used in cross-origin APIs designed
+      to be consumed by JavaScript applications.
