@@ -13,6 +13,9 @@ class AddTask extends Task {
         if (traverse) {
             nodes = recon.traverse(traverse)
         }
+        else {
+            nodes = recon.selection
+        }
 
         if (nodes) {
             if (!nodes.length) {
@@ -20,10 +23,12 @@ class AddTask extends Task {
             }
 
             nodes = await Promise.all(nodes.map(async(node) => {
-                const result = await super.run(node.data())
+                const data = node.data()
+
+                const result = await super.run(data)
 
                 if (result) {
-                    const { id: source } = node.data()
+                    const { id: source } = data
 
                     const { id, type, label, props } = result
 
@@ -88,7 +93,9 @@ class TransformTask extends Task {
             // TODO: rather than doing this, filter all nodes and apply the transform at once
 
             for (let node of nodes) {
-                const result = await super.run(node)
+                const data = node.data()
+
+                const result = await super.run(data)
 
                 if (result) {
                     const { transform, transformation, name, ...rest } = result
@@ -132,6 +139,9 @@ class RemoveTask extends Task {
         if (traverse) {
             nodes = recon.traverse(traverse)
         }
+        else {
+            nodes = recon.selection
+        }
 
         if (nodes) {
             if (!nodes.length) {
@@ -139,7 +149,9 @@ class RemoveTask extends Task {
             }
 
             nodes = await Promise.all(nodes.map((node) => {
-                return super.run(node.data())
+                const data = node.data()
+
+                return super.run(data)
             }))
 
             nodes = nodes.filter(node => node)
@@ -242,12 +254,14 @@ class OperationTaskSet extends TaskSet {
 
 class SelectTask extends Task {
     async run(recon) {
-        const { select, ...rest } = this.task
+        const { select, expression, ...rest } = this.task
+
+        const expr = select || expression
 
         let nodes
 
-        if (select) {
-            nodes = recon.select(select)
+        if (expr) {
+            nodes = recon.select(expr)
         }
 
         if (nodes) {
@@ -283,12 +297,14 @@ class SelectTaskSet extends TaskSet {
 
 class TraverseTask extends Task {
     async run(recon) {
-        const { traverse, ...rest } = this.task
+        const { traverse, expression, ...rest } = this.task
+
+        const expr = traverse || expression
 
         let nodes
 
-        if (traverse) {
-            nodes = recon.traverse(traverse)
+        if (expr) {
+            nodes = recon.traverse(expr)
         }
 
         if (nodes) {
@@ -324,9 +340,9 @@ class TraverseTaskSet extends TaskSet {
 
 class ReconTemplate extends Template {
     async run(recon) {
-        const { add, transform, remove, op, ops, operation, operations } = this.template
+        const { add, transform, remove, select, traverse, op, ops, operation, operations } = this.template
 
-        const ot = new OperationTask({ add, transform, remove })
+        const ot = new OperationTask({ add, transform, remove, select, traverse })
 
         await ot.run(recon)
 
