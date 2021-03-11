@@ -260,7 +260,7 @@ class OperationTask extends Task {
         }
 
         if (traverse) {
-            results.traverse = await this.runTraverseTrask(recon, traverse)
+            results.traverse = await this.runTraverseTask(recon, traverse)
         }
 
         return results
