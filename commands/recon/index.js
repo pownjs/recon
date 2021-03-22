@@ -22,5 +22,6 @@ exports.yargs = {
         yargs.command(require('./sub/remote').yargs)
         yargs.command(require('./sub/layout').yargs)
         yargs.command(require('./sub/summary').yargs)
+        yargs.command(require('./sub/exec').yargs)
     }
 }
