@@ -14,7 +14,7 @@ exports.yargs = {
         const { recon } = require('../../lib/globals/recon')
 
         for (let file of Array.isArray(files) ? files : [files]) {
-            const module = require(path.join(process.cwd(), file))
+            const module = require(path.join(process.cwd(), file)) // TODO: we should not be doing our own path resolve
 
             if (typeof(module) === 'function') {
                 await module(recon)
