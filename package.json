@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "@pown/async": "^2.11.0",
+    "@pown/connect": "^2.0.3",
     "@pown/file": "^2.0.0",
     "@pown/github": "^2.8.0",
     "@pown/lau": "^2.9.0",
