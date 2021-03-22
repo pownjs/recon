@@ -16,7 +16,9 @@ exports.yargs = {
         for (let file of Array.isArray(files) ? files : [files]) {
             const module = require(path.join(process.cwd(), file))
 
-            await module(recon)
+            if (typeof(module) === 'function') {
+                await module(recon)
+            }
         }
     }
 }
