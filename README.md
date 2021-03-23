@@ -85,6 +85,7 @@ Commands:
   pown-cli recon remote <command>               Remote managment  [aliases: remotes, f]
   pown-cli recon layout <name>                  Layout the graph  [aliases: k]
   pown-cli recon summary                        Create a summary  [aliases: y]
+  pown-cli recon exec <files...>                Execute js file  [aliases: c]
 
 Options:
   --version  Show version number  [boolean]
