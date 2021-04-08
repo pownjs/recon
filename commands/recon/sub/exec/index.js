@@ -8,6 +8,10 @@ exports.yargs = {
 
         installReadOptions(yargs)
         installWriteOptions(yargs)
+
+        const { installOutputOptions } = require('../../lib/handlers/output')
+
+        installOutputOptions(yargs)
     },
 
     handler: async(argv) => {
@@ -30,6 +34,12 @@ exports.yargs = {
             }
         }
 
+        const resultNodes = recon.selection.map(node => node.data())
+
         await handleWriteOptions(argv, recon)
+
+        const { handleOutputOptions } = require('../../lib/handlers/output')
+
+        await handleOutputOptions(argv, resultNodes)
     }
 }
