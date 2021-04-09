@@ -1,6 +1,6 @@
 {
   "name": "@pown/recon",
-  "version": "2.133.4",
+  "version": "2.133.5",
   "description": "Pownage guaranteed",
   "main": "lib/index.js",
   "bin": {
