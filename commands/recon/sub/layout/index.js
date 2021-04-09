@@ -35,7 +35,7 @@ exports.yargs = {
 
         await handleReadOptions(argv, recon)
 
-        const layout = recon.getCurrentElements().layout({
+        const layout = recon.elements().layout({
             boundingBox: { x1: 0, y1: 0, w: 4096, h: 3072 },
 
             name: name,

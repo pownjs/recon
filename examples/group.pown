@@ -1,0 +1,11 @@
+set -xe
+
+# The following script demonstrates that grouped nodes can be regroupd into new groups.
+
+recon add a b
+recon group 'AB' 'node[type!="group"]'
+recon s 'node[id="group:AB"] > node'
+
+recon add c d
+recon group 'CD' 'node[type!="group"]'
+recon s 'node[id="group:CD"] > node'
