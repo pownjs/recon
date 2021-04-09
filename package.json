@@ -58,7 +58,8 @@
     "static-eval": "^2.1.0",
     "stream-chain": "^2.2.4",
     "stream-csv-as-json": "^1.0.4",
-    "stream-json": "^1.7.1"
+    "stream-json": "^1.7.1",
+    "uuid": "^8.3.2"
   },
   "pown": {
     "commands": [
