@@ -34,7 +34,7 @@ exports.yargs = {
         const { extname, join } = require('path')
         const { statSync, readdirSync, readFileSync } = require('fs')
 
-        const { ReconTemplate, ReconTemplateSet } = require('./recon')
+        const { ReconTemplate, ReconTemplateSet } = require('../../../../../../lib/template')
 
         const findTemplates = function*(paths) {
             for (let path of paths) {
