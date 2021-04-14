@@ -52,6 +52,7 @@
     "cytoscape-dagre": "^2.3.2",
     "cytoscape-euler": "^1.2.2",
     "cytoscape-klay": "^3.1.4",
+    "deepmerge": "^4.2.2",
     "js-yaml": "^4.0.0",
     "jsonpath": "^1.1.1",
     "stream-chain": "^2.2.4",
