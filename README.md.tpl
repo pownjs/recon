@@ -1,3 +1,5 @@
+[![License](https://img.shields.io/badge/license-MIT-_red.svg)](https://opensource.org/licenses/MIT)
+[![GitHub Release](https://img.shields.io/github/release/projectdiscovery/naabu)](https://github.com/projectdiscovery/naabu/releases)
 [![Follow on Twitter](https://img.shields.io/twitter/follow/pownjs.svg?logo=twitter)](https://twitter.com/pownjs)
 [![NPM](https://img.shields.io/npm/v/@pown/recon.svg)](https://www.npmjs.com/package/@pown/recon)
 [![Fury](https://img.shields.io/badge/version-2x%20Fury-red.svg)](https://github.com/pownjs/lobby)
@@ -169,30 +171,27 @@ pown select '#some\\$funky\\@id'
 
 ## Transforms
 
-* GitHub Search of Repos, Gists and Members
+Here are some of the transforms available in Recon. Additional transforms are available in optional pown modules.
+
+* GitHub Search of Repos, Gists and Members (via @pown/github)
 * Bitbucket Search of Repos, Snippets and Members
 * CloudFlare 1.1.1.1 DNS API
 * CRTSH (CN & SAN)
 * DockerHub Repo Search
 * Gravatar URLs
 * Hacker Target Reverse IP Lookup
-* Have I Been Pwned Lookup
 * PKS Lookup
 * Bufferover.run
-* Urlscan Live Shot
-* Threatcrowd Lookup
+* Urlscan
+* Threatcrowd
 * Wappalyzer
-* AWS IAM Pages
-* Builtwith
 * Riddler
-* CommonCraw
-* Archive.org
 * Shodan
-* WhatsMyName
+* WhoAreThey(via @pown/whoarethey)
 * Certspotter
 * Virustotal
-* Utility Transforms
 * Security Trails
+* Utility Transforms
 * Auto Recon
 
 ## Tutorial
