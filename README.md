@@ -1,3 +1,5 @@
+[![License](https://img.shields.io/badge/license-MIT-_red.svg)](https://opensource.org/licenses/MIT)
+[![GitHub Release](https://img.shields.io/github/release/projectdiscovery/naabu)](https://github.com/projectdiscovery/naabu/releases)
 [![Follow on Twitter](https://img.shields.io/twitter/follow/pownjs.svg?logo=twitter)](https://twitter.com/pownjs)
 [![NPM](https://img.shields.io/npm/v/@pown/recon.svg)](https://www.npmjs.com/package/@pown/recon)
 [![Fury](https://img.shields.io/badge/version-2x%20Fury-red.svg)](https://github.com/pownjs/lobby)
@@ -96,7 +98,6 @@ pown-cli recon transform <transform>
 Perform inline transformation
 
 Commands:
-  pown-cli recon transform archiveindex [options] <nodes...>                  Obtain archive.org index for specific URL.  [aliases: archive_index, arci]
   pown-cli recon transform bitbucketlistrepos [options] <nodes...>            List Bitbucket repositories.  [aliases: bitbucket_list_repos, bblr]
   pown-cli recon transform bitbucketlistsnippets [options] <nodes...>         List Bitbucket snippets.  [aliases: bitbucket_list_snippets, bbls]
   pown-cli recon transform bitbucketlistteamrepos [options] <nodes...>        List Bitbucket team repos.  [aliases: bitbucket_list_team_repos, bbltr]
@@ -104,23 +105,13 @@ Commands:
   pown-cli recon transform bufferoverrunsubdomainsearch [options] <nodes...>  Obtain a list of subdomains using bufferover.run DNS service  [aliases: bufferoverrun_subdomain_search, brss]
   pown-cli recon transform certspotterissuances [options] <nodes...>          Obtain issuances from Certspotter.  [aliases: certspotter_issuances, csi]
   pown-cli recon transform cloudflarednsquery [options] <nodes...>            Query CloudFlare DNS API.  [aliases: cloudflare_dns_query, cfdq]
-  pown-cli recon transform commoncrawlindex [options] <nodes...>              Obtain a CommonCraw index for specific URL.  [aliases: commoncrawl_index, cci]
   pown-cli recon transform crtshcndomainreport [options] <nodes...>           Obtain crt.sh domain report which helps enumerating potential target subdomains.  [aliases: crtsh_cn_domain_report, crtshcdr]
   pown-cli recon transform crtshsandomainreport [options] <nodes...>          Obtain crt.sh domain report which helps enumerating potential target subdomains.  [aliases: crtsh_san_domain_report, crtshsdr]
   pown-cli recon transform dnsresolve [options] <nodes...>                    Performs DNS resolution  [aliases: dns_resolve, dr, dns]
   pown-cli recon transform dockerhublistrepos [options] <nodes...>            List DockerHub repositories for a given member or org.  [aliases: dockerhub_list_repos, dhlr]
-  pown-cli recon transform githubuser [options] <nodes...>                    Map GitHub user for a given term.  [aliases: github_user, ghu]
-  pown-cli recon transform githuborg [options] <nodes...>                     Map GitHub org for a given term.  [aliases: github_org, gho]
-  pown-cli recon transform githubsearchusers [options] <nodes...>             Search GitHub users for a given term.  [aliases: github_search_users, ghsu]
-  pown-cli recon transform githublistorgs [options] <nodes...>                List GitHub orgs for a given member.  [aliases: github_list_orgs, ghlo]
-  pown-cli recon transform githublistmembers [options] <nodes...>             List GitHub members for a given org.  [aliases: github_list_members, ghlm]
-  pown-cli recon transform githublistrepos [options] <nodes...>               List GitHub repos for a given user/org.  [aliases: github_list_repos, ghlr]
-  pown-cli recon transform githublistgists [options] <nodes...>               List GitHub gists for a given user/org.  [aliases: github_list_gists, ghlg]
   pown-cli recon transform gravatar [options] <nodes...>                      Get gravatar.
   pown-cli recon transform hackertargetreverseiplookup [options] <nodes...>   Obtain reverse IP information from hackertarget.com.  [aliases: hackertarget_reverse_ip_lookup, htril]
   pown-cli recon transform hackertargetonlineportscan [options] <nodes...>    Obtain port information from hackertarget.com.  [aliases: hackertarget_online_port_scan, htps]
-  pown-cli recon transform sha1hash [options] <nodes...>                      Create SHA1 Hash  [aliases: sha1_hash, sha1]
-  pown-cli recon transform hibpreport [options] <nodes...>                    Obtain haveibeenpwned.com breach report.  [aliases: hibp_report, hibpr]
   pown-cli recon transform httpfingerprint [options] <nodes...>               Performs a fingerprint on the HTTP server and application.  [aliases: http_fingerprint, hf]
   pown-cli recon transform bakeimages [options] <nodes...>                    Convert external image into data URIs for self-embedding purposes.  [aliases: bake_images, bes]
   pown-cli recon transform ipinfoio [options] <nodes...>                      Obtain ipinfo.io whois report.  [aliases: ipinfo_io, iiio]
@@ -139,7 +130,6 @@ Commands:
   pown-cli recon transform threatcrowddomainreport [options] <nodes...>       Obtain threatcrowd domain report which helps enumerating potential target subdomains and email addresses.  [aliases: threatcrowd_domain_report, tcdr]
   pown-cli recon transform threatcrowdipreport [options] <nodes...>           Obtain threatcrowd ip report which helps enumerating virtual hosts.  [aliases: threatcrowd_ip_report, tcir]
   pown-cli recon transform urlscanliveshot [options] <nodes...>               Generates a liveshot of any public site via urlscan.  [aliases: urlscan_liveshot, usls]
-  pown-cli recon transform urlscanliveshotsearchengines [options] <nodes...>  Generates a liveshot of a number of search engines.  [aliases: urlscan_liveshot_search_engines, uslsse]
   pown-cli recon transform urlscansubdomains [options] <nodes...>             Find subdomains via urlscan.  [aliases: urlscan_subdomains, uss]
   pown-cli recon transform noop [options] <nodes...>                          Does not do anything.  [aliases: nop]
   pown-cli recon transform sleep [options] <nodes...>                         Sleeps for predefined time.  [aliases: sleep, wait]
@@ -157,7 +147,6 @@ Commands:
   pown-cli recon transform virustotalsubdomains [options] <nodes...>          Obtain subdomains from Virustotal.  [aliases: virustotal_subdomains, vtsd]
   pown-cli recon transform vulnerssearch [options] <nodes...>                 Obtain vulnerability information via vulners.com.  [aliases: vulners_search, vs]
   pown-cli recon transform wappalyzerprofile [options] <nodes...>             Enumerate technologies with api.wappalyzer.com.  [aliases: wappalyzer_profile, wzp]
-  pown-cli recon transform whoaretheyreport [options] <nodes...>              Find social accounts with the help of whoarethey database.  [aliases: whoarethey_report, whoarethey, wmnr, wmn]
   pown-cli recon transform zonecrunchersubdomains [options] <nodes...>        Performs subdomain searching with Zonecruncher.  [aliases: zonecruncher_subdomains, zcss]
   pown-cli recon transform beep [options] <nodes...>                          Example loadable transform.  [aliases: beep]
   pown-cli recon transform auto [options] <nodes...>                          Select the most appropriate methods of transformation
@@ -274,30 +263,27 @@ pown select '#some\\$funky\\@id'
 
 ## Transforms
 
-* GitHub Search of Repos, Gists and Members
+Here are some of the transforms available in Recon. Additional transforms are available in optional pown modules.
+
+* GitHub Search of Repos, Gists and Members (via @pown/github)
 * Bitbucket Search of Repos, Snippets and Members
 * CloudFlare 1.1.1.1 DNS API
 * CRTSH (CN & SAN)
 * DockerHub Repo Search
 * Gravatar URLs
 * Hacker Target Reverse IP Lookup
-* Have I Been Pwned Lookup
 * PKS Lookup
 * Bufferover.run
-* Urlscan Live Shot
-* Threatcrowd Lookup
+* Urlscan
+* Threatcrowd
 * Wappalyzer
-* AWS IAM Pages
-* Builtwith
 * Riddler
-* CommonCraw
-* Archive.org
 * Shodan
-* WhatsMyName
+* WhoAreThey(via @pown/whoarethey)
 * Certspotter
 * Virustotal
-* Utility Transforms
 * Security Trails
+* Utility Transforms
 * Auto Recon
 
 ## Tutorial
