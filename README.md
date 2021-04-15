@@ -6,9 +6,9 @@
 ![default workflow](https://github.com/pownjs/git/actions/workflows/default.yaml/badge.svg)
 [![SecApps](https://img.shields.io/badge/credits-SecApps-black.svg)](https://secapps.com)
 
-# Pown Recon
+# Recon
 
-Pown Recon is a target reconnaissance framework powered by graph theory. Using graph theory instead of flat table representation is easier to find the relationships between different types of information, which comes quite handy in many situations. Graph theory algorithms also help with diffing, searching, finding the shortest path, and many other helpful tasks to aid information discovery and intelligence gathering.
+Recon is a target reconnaissance framework powered by graph theory. Using graph theory instead of flat table representation is easier to find the relationships between different types of information, which comes quite handy in many situations. Graph theory algorithms also help with diffing, searching, finding the shortest path, and many other helpful tasks to aid information discovery and intelligence gathering.
 
 ## Credits
 
@@ -22,7 +22,7 @@ This tool is part of [secapps.com](https://secapps.com) open-source initiative.
   https://secapps.com
 ```
 
-> **NB**: Pown Recon is the result of an almost direct copy of SecApps' excellent [Recon](https://recon.secapps.com) tool.
+> **NB**: Recon is the result of an almost direct copy of SecApps' excellent [Recon](https://recon.secapps.com) tool.
 
 ## Quickstart
 
@@ -288,7 +288,7 @@ Here are some of the transforms available in Recon. Additional transforms are av
 
 ## Tutorial
 
-To demonstrate the power of Pown Recon and graph-based OSINT (Open Source Intelligence), let's have a look at the following trivial example.
+To demonstrate the power of Recon and graph-based OSINT (Open Source Intelligence), let's have a look at the following trivial example.
 
 Let's start by querying everyone who is a member of Google's engineering team and contributes to their GitHub account.
 
