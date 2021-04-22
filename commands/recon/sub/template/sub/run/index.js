@@ -34,7 +34,7 @@ exports.yargs = {
         const { extname, join } = require('path')
         const { statSync, readdirSync, readFileSync } = require('fs')
 
-        const { ReconTemplate, ReconTemplateSet } = require('../../../../../../lib/template')
+        const { ReconTemplate } = require('../../../../../../lib/template')
 
         const findTemplates = function*(paths) {
             for (let path of paths) {
@@ -65,41 +65,27 @@ exports.yargs = {
                         return
                     }
 
-                    yield new ReconTemplate(doc)
+                    const template = new ReconTemplate(doc)
+
+                    template.path = path
+
+                    yield template
                 }
             }
         }
-
-        const templateSet = new ReconTemplateSet(Array.from(findTemplates(templates)))
-
-        const results = await templateSet.run(gRecon)
-
-        const generateResult = function*(results) {
-            if (!results) {
-                return
-            }
-            else
-            if (Array.isArray(results)) {
-                for (let result of results) {
-                    yield* generateResult(result)
-                }
-            }
-            else {
-                if (results.id) {
-                    yield results
-                }
-                else {
-                    yield* generateResult(Object.values(results))
-                }
-            }
-        }
-
-        const resultNodes = Array.from(generateResult(results))
-
-        await handleWriteOptions(argv, gRecon)
 
         const { handleOutputOptions } = require('../../../../lib/handlers/output')
 
-        await handleOutputOptions(argv, resultNodes)
+        for (let template of findTemplates(templates)) {
+            console.info(`running template ${template.id || template.path}`)
+
+            await template.run({}, gRecon)
+
+            const resultNodes = gRecon.selection.map(node => node.data())
+
+            await handleOutputOptions(argv, resultNodes)
+        }
+
+        await handleWriteOptions(argv, gRecon)
     }
 }
