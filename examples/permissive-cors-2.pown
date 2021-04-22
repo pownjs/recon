@@ -1,0 +1,10 @@
+set -x
+
+recon a --node-type uri 'https://www.googleoptimize.com/optimize.js?id=GTM-WLFPCHW'
+
+recon t http_fingerprint -s 'node[type="uri"]'
+
+# TODO: files cannot be relative to the script because of bug in the script module
+# the script should be setting the cwd to its folder
+
+recon template run ./examples/permissive-cors-2.yaml

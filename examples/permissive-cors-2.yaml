@@ -1,0 +1,35 @@
+id: permissive-cors
+
+select:
+  select: node[type="uri"]
+  
+  add:
+    matchers:
+      - type: word
+        word: '*'
+        part: props.responseHeaders['access-control-allow-origin']
+        
+      - type: word
+        word: 'true'
+        part: props.responseHeaders['access-control-allow-credentials']
+        
+    extractors:
+      - type: value
+        path: props.responseHeaders['access-control-allow-origin']
+        name: props.origin
+        
+      - type: value
+        path: props.responseHeaders['access-control-allow-credentials']
+        name: props.credentials
+        
+    type: issue
+    label: Permissive Cross-Origin Resource Sharing
+    props:
+      level: 1
+      title: Permissive Cross-Origin Resource Sharing
+      description: >
+        Cross-origin Resource Sharing (CORS) is a specification, which allows
+        Web applications the ability to offer its resources for public consumption
+        from different domains. CORS is typically used in cross-origin APIs designed
+        to be consumed by JavaScript applications.
+  
