@@ -1,16 +1,10 @@
 const installOutputOptions = (yargs) => {
-    yargs.options('output-format', {
+    yargs.options('recon-output-format', {
         description: 'Output format',
         alias: 'o',
         type: 'string',
         default: 'table',
-        choices: ['table', 'grid', 'csv', 'json']
-    })
-
-    yargs.options('output-fields', {
-        description: 'Output fields',
-        type: 'string',
-        default: ''
+        choices: ['table', 'grid', 'csv', 'json', 'jsonstream', 'none']
     })
 
     yargs.options('output-ids', {
@@ -25,200 +19,160 @@ const installOutputOptions = (yargs) => {
         default: false
     })
 
-    yargs.options('output-images', {
-        description: 'Output images',
-        type: 'boolean',
-        default: false
-    })
-
-    yargs.options('output-parents', {
-        description: 'Output parents',
-        type: 'boolean',
-        default: false
-    })
-
-    yargs.options('output-tags', {
-        description: 'Output tags',
-        type: 'boolean',
-        default: false
+    yargs.options('output-fields', {
+        description: 'Output fields',
+        type: 'string',
+        default: ''
     })
 }
 
 const handleOutputOptions = (argv, nodes) => {
-    const { outputFormat, outputFields, outputIds, outputLabels, outputImages, outputParents, outputTags } = argv
+    const { reconOutputFormat, outputIds, outputLabels, outputFields } = argv
 
-    if (outputFormat === 'table') {
-        const colors = require('@pown/cli/lib/colors')
+    let propsFilter
 
-        const tables = {}
+    if (outputFields) {
+        const fields = outputFields.split(/[\s,]+/g).map(f => f.trim()).filter(f => f)
 
-        nodes.forEach(({ type, id, label, image, parent, props = {} }) => {
-            const row = {}
+        propsFilter = (props) => Object.entries(props).filter(([key]) => fields.includes(key)).slice(0, 5)
+    }
+    else {
+        propsFilter = (props) => Object.entries(props).slice(0, 5)
+    }
 
-            if (type === 'group') {
-                row['label'] = label
-            }
+    switch (reconOutputFormat) {
+        case 'table':
+            const tables = {}
 
-            if (outputIds) {
-                row['id'] = id
-            }
+            nodes.forEach(({ type, id, label, image, parent, props = {} }) => {
+                const row = {}
 
-            if (outputLabels) {
-                row['label'] = label
-            }
-
-            if (outputImages) {
-                row['image'] = image
-            }
-
-            if (outputParents) {
-                row['parent'] = parent
-            }
-
-            Object.entries(props).forEach(([name, value]) => {
-                row[name] = value
-
-                if (!outputLabels && outputTags && value === label) {
-                    row[name] += ' ' + colors.bgBlue.white.bold('   label   ')
+                if (type === 'group') {
+                    row['label'] = label
                 }
+
+                if (outputIds) {
+                    row['id'] = id
+                }
+
+                if (outputLabels) {
+                    row['label'] = label
+                }
+
+                propsFilter(props).forEach(([name, value]) => {
+                    row[name] = value
+                })
+
+                let table = tables[type] || []
+
+                table.push(row)
+
+                tables[type] = table
             })
 
-            let table = tables[type] || []
-
-            table.push(row)
-
-            tables[type] = table
-        })
-
-        if (outputFields) {
-            Object.entries(tables).forEach(([type, table]) => {
-                console.group(type)
-                console.table(table, outputFields.split(',').map(f => f.trim()).filter(f => f))
-                console.groupEnd()
-            })
-        }
-        else {
             Object.entries(tables).forEach(([type, table]) => {
                 console.group(type)
                 console.table(table)
                 console.groupEnd()
             })
-        }
-    }
-    else
-    if (outputFormat === 'grid') {
-        const colors = require('@pown/cli/lib/colors')
 
-        const table = []
+            break
 
-        nodes.forEach(({ type, id, label, image, parent, props = {} }) => {
-            const row = {}
+        case 'grid':
+            const table = []
 
-            row['type'] = type
+            nodes.forEach(({ type, id, label, image, parent, props = {} }) => {
+                const row = {}
 
-            if (type === 'group') {
-                row['label'] = label
-            }
+                row['type'] = type
 
-            if (outputIds) {
-                row['id'] = id
-            }
-
-            if (outputLabels) {
-                row['label'] = label
-            }
-
-            if (outputImages) {
-                row['image'] = image
-            }
-
-            if (outputParents) {
-                row['parent'] = parent
-            }
-
-            Object.entries(props).forEach(([name, value]) => {
-                row[name] = value
-
-                if (!outputLabels && outputTags && value === label) {
-                    row[name] += ' ' + colors.bgBlue.white.bold('   label   ')
+                if (type === 'group') {
+                    row['label'] = label
                 }
+
+                if (outputIds) {
+                    row['id'] = id
+                }
+
+                if (outputLabels) {
+                    row['label'] = label
+                }
+
+                propsFilter(props).forEach(([name, value]) => {
+                    row[name] = value
+                })
+
+                table.push(row)
             })
 
-            table.push(row)
-        })
-
-        if (outputFields) {
-            console.table(table, outputFields.split(',').map(f => f.trim()).filter(f => f))
-        }
-        else {
             console.table(table)
-        }
-    }
-    else
-    if (outputFormat === 'csv') {
-        const fields = {}
-        const lines = []
 
-        nodes.forEach(({ id, type, label, image, parent, props }) => {
-            const line = {}
+            break
 
-            fields['type'] = 1
-            line['type'] = type
+        case 'csv':
+            const fields = {}
+            const lines = []
 
-            if (type === 'group') {
-                fields['label'] = 1
-                line['label'] = label
-            }
+            nodes.forEach(({ id, type, label, image, parent, props }) => {
+                const line = {}
 
-            if (outputIds) {
-                fields['id'] = 1
-                line['id'] = id
-            }
+                fields['type'] = 1
+                line['type'] = type
 
-            if (outputLabels) {
-                fields['label'] = 1
-                line['label'] = label
-            }
+                if (type === 'group') {
+                    fields['label'] = 1
+                    line['label'] = label
+                }
 
-            if (outputImages) {
-                fields['image'] = 1
-                line['image'] = image
-            }
+                if (outputIds) {
+                    fields['id'] = 1
+                    line['id'] = id
+                }
 
-            if (outputParents) {
-                fields['parent'] = 1
-                line['parent'] = parent
-            }
+                if (outputLabels) {
+                    fields['label'] = 1
+                    line['label'] = label
+                }
 
-            Object.entries(props).forEach(([name, value]) => {
-                fields[name] = 1
-                line[name] = value
+                propsFilter(props).forEach(([name, value]) => {
+                    fields[name] = 1
+                    line[name] = value
+                })
+
+                lines.push(line)
             })
 
-            lines.push(line)
-        })
+            const fieldNames = Object.keys(fields)
 
-        const fieldNames = Object.keys(fields)
+            console.log('#' + fieldNames.join(','))
 
-        console.log('#' + fieldNames.join(','))
+            lines.forEach((line) => {
+                const fieldValues = fieldNames.map((name) => JSON.stringify(line[name] || ''))
 
-        lines.forEach((line) => {
-            const fieldValues = fieldNames.map((name) => JSON.stringify(line[name] || ''))
+                console.log(fieldValues.join(','))
+            })
 
-            console.log(fieldValues.join(','))
-        })
-    }
-    else
-    if (outputFormat === 'json') {
-        console.log('[');
+            break
 
-        const lastIndex = nodes.length - 1
+        case 'json':
+            console.log('[');
 
-        nodes.forEach((node, index) => {
-            console.log(JSON.stringify(node) + (index === lastIndex ? '' : ','))
-        })
+            const lastIndex = nodes.length - 1
 
-        console.log(']');
+            nodes.forEach((node, index) => {
+                console.log('  ', JSON.stringify(node) + (index === lastIndex ? '' : ','))
+            })
+
+            console.log(']');
+
+            break
+
+        case 'jsonstream':
+            nodes.forEach((node) => {
+                console.log(JSON.stringify(node))
+            })
+
+            break
     }
 }
 
