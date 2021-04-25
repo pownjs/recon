@@ -8,7 +8,7 @@ describe('recon', () => {
         it('must add node', async function() {
             const r = new Recon()
 
-            r.addNodes([makeNode({ type: 'string', label: 'test' })])
+            await r.addNodes([makeNode({ type: 'string', label: 'test' })])
 
             r.select('*')
 
@@ -19,14 +19,14 @@ describe('recon', () => {
         it('must update node if node exists', async function() {
             const r = new Recon()
 
-            r.addNodes([makeNode({ type: 'string', label: 'test' })])
+            await r.addNodes([makeNode({ type: 'string', label: 'test' })])
 
             r.select('*')
 
             assert.ok(r.selection.length === 1)
             assert.ok(r.selection[0].data('props').string === undefined)
 
-            r.addNodes([makeNode({ type: 'string', label: 'test', props: { string: 'test' } })])
+            await r.addNodes([makeNode({ type: 'string', label: 'test', props: { string: 'test' } })])
 
             r.select('*')
 
