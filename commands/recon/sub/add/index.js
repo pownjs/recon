@@ -103,7 +103,7 @@ exports.yargs = {
                     edges: nodeEdges
                 }))
 
-            recon.addNodes(properNodes)
+            await recon.addNodes(properNodes)
 
             if (group) {
                 recon.group(group)

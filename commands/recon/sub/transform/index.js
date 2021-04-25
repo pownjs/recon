@@ -260,7 +260,7 @@ exports.yargs = {
                     else {
                         const { makeId } = require('../../../../lib/utils')
 
-                        gRecon.addNodes(nodes.map((node) => ({
+                        await gRecon.addNodes(nodes.map((node) => ({
                             id: makeId(nodeType, node),
                             type: nodeType,
                             label: node,
