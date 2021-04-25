@@ -123,7 +123,7 @@ exports.yargs = {
             })
         })
 
-        const resultNodes = await recon.addNodes(nodes).map(node => node.data())
+        const resultNodes = (await recon.addNodes(nodes)).map(node => node.data())
 
         const { handleOutputOptions } = require('../../lib/handlers/output')
 

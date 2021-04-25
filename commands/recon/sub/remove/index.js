@@ -39,7 +39,7 @@ exports.yargs = {
             resultNodes = recon.select(...expressions).map(node => node.data())
         }
 
-        recon.selection.remove()
+        recon.removeNodes(resultNodes)
 
         await handleWriteOptions(argv, recon)
 
