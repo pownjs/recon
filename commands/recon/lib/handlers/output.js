@@ -160,7 +160,12 @@ const handleOutputOptions = (argv, nodes) => {
             const lastIndex = nodes.length - 1
 
             nodes.forEach((node, index) => {
-                console.log('  ', JSON.stringify(node) + (index === lastIndex ? '' : ','))
+                try {
+                    console.log('  ', JSON.stringify(node) + (index === lastIndex ? '' : ','))
+                }
+                catch (e) {
+                    console.error(e)
+                }
             })
 
             console.log(']');
@@ -169,7 +174,12 @@ const handleOutputOptions = (argv, nodes) => {
 
         case 'jsonstream':
             nodes.forEach((node) => {
-                console.log(JSON.stringify(node))
+                try {
+                    console.log(JSON.stringify(node))
+                }
+                catch (e) {
+                    console.error(e)
+                }
             })
 
             break
