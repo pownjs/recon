@@ -51,6 +51,7 @@
     "deepmerge": "^4.2.2",
     "js-yaml": "^4.1.0",
     "jsonpath": "^1.1.1",
+    "memcached": "^2.2.2",
     "stream-chain": "^2.2.4",
     "stream-csv-as-json": "^1.0.4",
     "stream-json": "^1.7.1",
