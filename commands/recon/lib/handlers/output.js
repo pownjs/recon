@@ -24,10 +24,16 @@ const installOutputOptions = (yargs) => {
         type: 'string',
         default: ''
     })
+
+    yargs.options('max-output-size', {
+        description: 'Maximum amount of nodes to output',
+        type: 'boolean',
+        default: Infinity
+    })
 }
 
 const handleOutputOptions = (argv, nodes) => {
-    const { reconOutputFormat, outputIds, outputLabels, outputFields } = argv
+    const { reconOutputFormat, outputIds, outputLabels, outputFields, maxOutputSize } = argv
 
     let propsFilter
 
@@ -38,6 +44,10 @@ const handleOutputOptions = (argv, nodes) => {
     }
     else {
         propsFilter = (props) => Object.entries(props).slice(0, 5)
+    }
+
+    if (maxOutputSize !== Infinity) {
+        nodes = nodes.slice(0, maxOutputSize)
     }
 
     switch (reconOutputFormat) {
