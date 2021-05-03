@@ -27,7 +27,7 @@ const installOutputOptions = (yargs) => {
 
     yargs.options('max-output-size', {
         description: 'Maximum amount of nodes to output',
-        type: 'boolean',
+        type: 'number',
         default: Infinity
     })
 }
@@ -44,10 +44,6 @@ const handleOutputOptions = (argv, nodes) => {
     }
     else {
         propsFilter = (props) => Object.entries(props).slice(0, 5)
-    }
-
-    if (maxOutputSize !== Infinity) {
-        nodes = nodes.slice(0, maxOutputSize)
     }
 
     switch (reconOutputFormat) {
@@ -82,7 +78,7 @@ const handleOutputOptions = (argv, nodes) => {
 
             Object.entries(tables).forEach(([type, table]) => {
                 console.group(type)
-                console.table(table)
+                console.table(table.slice(0, maxOutputSize))
                 console.groupEnd()
             })
 
@@ -115,7 +111,7 @@ const handleOutputOptions = (argv, nodes) => {
                 table.push(row)
             })
 
-            console.table(table)
+            console.table(table.slice(0, maxOutputSize))
 
             break
 
@@ -156,7 +152,7 @@ const handleOutputOptions = (argv, nodes) => {
 
             console.log('#' + fieldNames.join(','))
 
-            lines.forEach((line) => {
+            lines.slice(0, maxOutputSize).forEach((line) => {
                 const fieldValues = fieldNames.map((name) => JSON.stringify(line[name] || ''))
 
                 console.log(fieldValues.join(','))
@@ -169,7 +165,7 @@ const handleOutputOptions = (argv, nodes) => {
 
             const lastIndex = nodes.length - 1
 
-            nodes.forEach((node, index) => {
+            nodes.slice(0, maxOutputSize).forEach((node, index) => {
                 try {
                     console.log('  ', JSON.stringify(node) + (index === lastIndex ? '' : ','))
                 }
@@ -183,7 +179,7 @@ const handleOutputOptions = (argv, nodes) => {
             break
 
         case 'jsonstream':
-            nodes.forEach((node) => {
+            nodes.slice(0, maxOutputSize).forEach((node) => {
                 try {
                     console.log(JSON.stringify(node))
                 }
