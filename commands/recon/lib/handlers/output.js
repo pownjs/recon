@@ -1,5 +1,5 @@
 const installOutputOptions = (yargs) => {
-    yargs.options('recon-output-format', {
+    yargs.options('output-format', {
         description: 'Output format',
         alias: 'o',
         type: 'string',
@@ -33,7 +33,7 @@ const installOutputOptions = (yargs) => {
 }
 
 const handleOutputOptions = (argv, nodes) => {
-    const { reconOutputFormat, outputIds, outputLabels, outputFields, maxOutputSize } = argv
+    const { outputFormat, outputIds, outputLabels, outputFields, maxOutputSize } = argv
 
     let propsFilter
 
@@ -46,7 +46,7 @@ const handleOutputOptions = (argv, nodes) => {
         propsFilter = (props) => Object.entries(props).slice(0, 5)
     }
 
-    switch (reconOutputFormat) {
+    switch (outputFormat) {
         case 'table':
             const tables = {}
 
