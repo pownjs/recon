@@ -158,10 +158,22 @@ exports.yargs = {
                         default: ''
                     })
 
-                    yargs.options('cache-timeout', {
+                    yargs.options('cache-ttl', {
                         type: 'number',
-                        describe: 'Cache max lifetime (milliseconds)',
-                        default: 60000
+                        describe: 'Cache max lifetime (seconds)',
+                        default: 60
+                    })
+
+                    yargs.options('cache-key-prefix', {
+                        type: 'string',
+                        describe: 'Prefix to add to keys',
+                        default: ''
+                    })
+
+                    yargs.options('cache-key-suffix', {
+                        type: 'string',
+                        describe: 'Suffix to add to keys',
+                        default: ''
                     })
 
                     yargs.option('node-type', {
@@ -194,7 +206,7 @@ exports.yargs = {
                 },
 
                 handler: async(argv) => {
-                    const { transformConcurrency, nodeConcurrency, transformTimeout, select, traverse, noise, group, autoGroup, autoWeight, maxNodesWarn, maxNodesCap, extract, extractPrefix, extractSuffix, cacheServer, cacheTimeout, nodeType, nodes, ...rest } = argv
+                    const { transformConcurrency, nodeConcurrency, transformTimeout, select, traverse, noise, group, autoGroup, autoWeight, maxNodesWarn, maxNodesCap, extract, extractPrefix, extractSuffix, cacheServer, cacheTtl, cacheKeyPrefix, cacheKeySuffix, nodeType, nodes, ...rest } = argv
 
                     const { Scheduler } = require('../../../../lib/scheduler')
                     const { recon: gRecon } = require('../../lib/globals/recon')
@@ -289,7 +301,7 @@ exports.yargs = {
                     if (cacheServer) {
                         const { Cache } = require('../../../../lib/cache')
 
-                        cache = new Cache(cacheServer, { lifetime: Math.round(cacheTimeout / 1000) })
+                        cache = new Cache({ hosts: [cacheServer], ttl: cacheTtl, keyPrefix: cacheKeyPrefix, keySuffix: cacheKeySuffix })
                     }
 
                     const scheduler = new Scheduler()
