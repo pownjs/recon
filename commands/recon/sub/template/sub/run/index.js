@@ -36,6 +36,10 @@ exports.yargs = {
 
         const { ReconTemplate } = require('../../../../../../lib/template')
 
+        const { Scheduler } = require('../../../../../../lib/scheduler')
+
+        const scheduler = new Scheduler()
+
         const findTemplates = function*(paths) {
             for (let path of paths) {
                 const stat = statSync(path)
@@ -65,7 +69,7 @@ exports.yargs = {
                         return
                     }
 
-                    const template = new ReconTemplate(doc)
+                    const template = new ReconTemplate(doc, { scheduler })
 
                     template.path = path
 
