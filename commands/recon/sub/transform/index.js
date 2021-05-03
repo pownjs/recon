@@ -76,7 +76,7 @@ exports.yargs = {
                     yargs.options('transform-timeout', {
                         alias: 'T',
                         type: 'number',
-                        describe: 'Timeout transforms',
+                        describe: 'Transform max lifetime (milliseconds)',
                         default: 0
                     })
 
@@ -152,6 +152,18 @@ exports.yargs = {
                         default: ''
                     })
 
+                    yargs.options('cache-server', {
+                        type: 'string',
+                        describe: 'A memcache server address:port',
+                        default: ''
+                    })
+
+                    yargs.options('cache-timeout', {
+                        type: 'number',
+                        describe: 'Cache max lifetime (milliseconds)',
+                        default: 60000
+                    })
+
                     yargs.option('node-type', {
                         type: 'string',
                         describe: 'The type for new nodes from the command line',
@@ -182,8 +194,9 @@ exports.yargs = {
                 },
 
                 handler: async(argv) => {
-                    const { transformConcurrency, nodeConcurrency, transformTimeout, select, traverse, noise, group, autoGroup, autoWeight, maxNodesWarn, maxNodesCap, extract, extractPrefix, extractSuffix, nodeType, nodes, ...rest } = argv
+                    const { transformConcurrency, nodeConcurrency, transformTimeout, select, traverse, noise, group, autoGroup, autoWeight, maxNodesWarn, maxNodesCap, extract, extractPrefix, extractSuffix, cacheServer, cacheTimeout, nodeType, nodes, ...rest } = argv
 
+                    const { Scheduler } = require('../../../../lib/scheduler')
                     const { recon: gRecon } = require('../../lib/globals/recon')
                     const { options: gOptions } = require('../../lib/globals/options')
 
@@ -271,8 +284,18 @@ exports.yargs = {
                         })))
                     }
 
+                    let cache
+
+                    if (cacheServer) {
+                        const { Cache } = require('../../../../lib/cache')
+
+                        cache = new Cache(cacheServer, { lifetime: Math.round(cacheTimeout / 1000) })
+                    }
+
+                    const scheduler = new Scheduler()
+
                     try {
-                        await gRecon.transform(transformName === 'auto' ? '*' : transformName, options, { transformConcurrency, nodeConcurrency, timeout: transformTimeout, group: autoGroup, weight: autoWeight, maxNodesWarn, maxNodesCap, filter, extract: { property: extract, prefix: extractPrefix, suffix: extractSuffix }, optionsInstance: gOptions })
+                        await gRecon.transform(transformName === 'auto' ? '*' : transformName, options, { transformConcurrency, nodeConcurrency, timeout: transformTimeout, group: autoGroup, weight: autoWeight, maxNodesWarn, maxNodesCap, filter, extract: { property: extract, prefix: extractPrefix, suffix: extractSuffix }, optionsInstance: gOptions, scheduler, cache })
                     }
                     catch (e) {
                         console.error(e)
@@ -289,6 +312,10 @@ exports.yargs = {
                     const { handleOutputOptions } = require('../../lib/handlers/output')
 
                     await handleOutputOptions(argv, resultNodes)
+
+                    if (cache) {
+                        await cache.end()
+                    }
                 }
             })
         })
