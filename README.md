@@ -33,13 +33,21 @@ Install Pown first as usual:
 $ npm install -g pown@latest
 ```
 
+Install recon:
+
+```sh
+$ pown modules install @pown/recon
+```
+
 Invoke directly from Pown:
 
 ```sh
 $ pown recon
 ```
 
-Otherwise, install this module locally from the root of your project:
+## Standalone Use
+
+Install this module locally from the root of your project:
 
 ```sh
 $ npm install @pown/recon --save
@@ -56,6 +64,10 @@ You can also use the global pown to invoke the tool locally:
 ```sh
 $ POWN_ROOT=. pown recon
 ```
+
+## Library Use
+
+The module is also a library. Check out the code and examples for idea how to use. Documentation is coming soon.
 
 ## Usage
 
@@ -184,7 +196,7 @@ $ pown apps recon < path/to/file.network
 
 ## Scripting
 
-Pown recon is designed to be scripted either via your favorite shell environment or [Pown Script](https://github.com/pownjs/pown-script). If you use Pown Script you will benefit from preserved context between each command execution. This means that you can build a graph without then need to save and restore into intermediate files.
+Pown recon is designed to be scripted either via your favorite shell environment, [Pown Script](https://github.com/pownjs/script), [Pown Engine Templates](https://github.com/pownjs/engine) and JavaScript. Scripts benefit from preserved context between each command execution. This means that you can build a graph without then need to save and restore into intermediate files.
 
 Using your favourite editor create a file called `example.pown` with the following contents:
 
@@ -200,7 +212,7 @@ Execute the script from pown:
 $ pown script path/to/example.pown
 ```
 
-For more information, see the examples.
+For more information, see the `./examples` for more ideas how to use scripts.
 
 ## Selectors
 
@@ -260,6 +272,10 @@ pown select '#some\\$funky\\@id'
 * `>` (child selector) Matches direct children of the parent node (e.g. `node > node`).
 * ` ` (descendant selector) Matches descendants of the parent node (e.g. `node node`).
 * `$` (subject selector) Sets the subject of the selector (e.g. `$node > node` to select the parent nodes instead of the children).
+
+## Traversals
+
+A complex type of selection is known as traversal.
 
 ## Transforms
 
