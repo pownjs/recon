@@ -30,11 +30,17 @@
     "url": "https://github.com/pownjs/pown-recon/issues"
   },
   "homepage": "https://github.com/pownjs/pown-recon#readme",
+  "peerDependencies": {
+    "aws-sdk": "^2.899.0",
+    "memcached": "^2.2.2"
+  },
   "devDependencies": {
     "@pown/cli": "^2.31.2",
     "@pown/script": "^2.18.1",
     "@pown/shell": "^2.5.0",
-    "@pown/toolchain": "^2.1.0"
+    "@pown/toolchain": "^2.1.0",
+    "aws-sdk": "^2.899.0",
+    "memcached": "^2.2.2"
   },
   "dependencies": {
     "@pown/async": "^2.12.0",
@@ -51,7 +57,6 @@
     "deepmerge": "^4.2.2",
     "js-yaml": "^4.1.0",
     "jsonpath": "^1.1.1",
-    "memcached": "^2.2.2",
     "stream-chain": "^2.2.4",
     "stream-csv-as-json": "^1.0.4",
     "stream-json": "^1.7.1",

@@ -152,9 +152,15 @@ exports.yargs = {
                         default: ''
                     })
 
-                    yargs.options('cache-server', {
+                    yargs.options('cache-memcached-server', {
                         type: 'string',
-                        describe: 'A memcache server address:port',
+                        describe: 'A memcached server address[:port]',
+                        default: ''
+                    })
+
+                    yargs.options('cache-dynamodb-table', {
+                        type: 'string',
+                        describe: 'A dynamodb table name',
                         default: ''
                     })
 
@@ -206,7 +212,7 @@ exports.yargs = {
                 },
 
                 handler: async(argv) => {
-                    const { transformConcurrency, nodeConcurrency, transformTimeout, select, traverse, noise, group, autoGroup, autoWeight, maxNodesWarn, maxNodesCap, extract, extractPrefix, extractSuffix, cacheServer, cacheTtl, cacheKeyPrefix, cacheKeySuffix, nodeType, nodes, ...rest } = argv
+                    const { transformConcurrency, nodeConcurrency, transformTimeout, select, traverse, noise, group, autoGroup, autoWeight, maxNodesWarn, maxNodesCap, extract, extractPrefix, extractSuffix, cacheMemcachedServer, cacheDynamodbTable, cacheTtl, cacheKeyPrefix, cacheKeySuffix, nodeType, nodes, ...rest } = argv
 
                     const { Scheduler } = require('../../../../lib/scheduler')
                     const { recon: gRecon } = require('../../lib/globals/recon')
@@ -298,10 +304,16 @@ exports.yargs = {
 
                     let cache
 
-                    if (cacheServer) {
+                    if (cacheMemcachedServer) {
                         const { Cache } = require('../../../../lib/cache/memcached')
 
-                        cache = new Cache({ hosts: [cacheServer], ttl: cacheTtl, keyPrefix: cacheKeyPrefix, keySuffix: cacheKeySuffix })
+                        cache = new Cache({ hosts: [cacheMemcachedServer], ttl: cacheTtl, keyPrefix: cacheKeyPrefix, keySuffix: cacheKeySuffix })
+                    }
+                    else
+                    if (cacheDynamodbTable) {
+                        const { Cache } = require('../../../../lib/cache/dynamodb')
+
+                        cache = new Cache({ table: cacheDynamodbTable, ttl: cacheTtl, keyPrefix: cacheKeyPrefix, keySuffix: cacheKeySuffix })
                     }
 
                     const scheduler = new Scheduler()
