@@ -299,7 +299,7 @@ exports.yargs = {
                     let cache
 
                     if (cacheServer) {
-                        const { Cache } = require('../../../../lib/cache')
+                        const { Cache } = require('../../../../lib/cache/memcached')
 
                         cache = new Cache({ hosts: [cacheServer], ttl: cacheTtl, keyPrefix: cacheKeyPrefix, keySuffix: cacheKeySuffix })
                     }
