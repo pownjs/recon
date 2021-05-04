@@ -305,16 +305,24 @@ exports.yargs = {
 
                     let cache = getCache()
 
+                    if (cache) {
+                        console.info('using global cache')
+                    }
+
                     if (cacheMemcachedServer) {
                         const { Cache } = require('../../../../lib/cache/memcached')
 
                         cache = new Cache({ hosts: [cacheMemcachedServer], ttl: cacheTtl, keyPrefix: cacheKeyPrefix, keySuffix: cacheKeySuffix })
+
+                        console.info('caching with memcached server', JSON.stringify(cacheMemcachedServer))
                     }
                     else
                     if (cacheDynamodbTable) {
                         const { Cache } = require('../../../../lib/cache/dynamodb')
 
                         cache = new Cache({ table: cacheDynamodbTable, ttl: cacheTtl, keyPrefix: cacheKeyPrefix, keySuffix: cacheKeySuffix })
+
+                        console.info('caching with dynamodb table', JSON.stringify(cacheDynamodbTable))
                     }
 
                     const scheduler = new Scheduler()

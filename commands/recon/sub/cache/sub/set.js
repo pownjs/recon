@@ -51,14 +51,20 @@ exports.yargs = {
             const { Cache } = require('../../../../../lib/cache/memcached')
 
             cache = new Cache({ hosts: [cacheMemcachedServer], ttl: cacheTtl, keyPrefix: cacheKeyPrefix, keySuffix: cacheKeySuffix })
+
+            console.info('caching with memcached server', JSON.stringify(cacheMemcachedServer))
         }
         else
         if (cacheDynamodbTable) {
             const { Cache } = require('../../../../../lib/cache/dynamodb')
 
             cache = new Cache({ table: cacheDynamodbTable, ttl: cacheTtl, keyPrefix: cacheKeyPrefix, keySuffix: cacheKeySuffix })
+
+            console.info('caching with dynamodb table', JSON.stringify(cacheDynamodbTable))
         }
 
-        setCache(cache)
+        if (cache) {
+            setCache(cache)
+        }
     }
 }
