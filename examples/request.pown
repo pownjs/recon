@@ -1,0 +1,6 @@
+set -x
+
+# TODO: files cannot be relative to the script because of bug in the script module
+# the script should be setting the cwd to its folder
+
+recon template run ./examples/request.yaml

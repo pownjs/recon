@@ -1,0 +1,14 @@
+id: request
+
+request:
+  uri: https://httpbin.org/status/200
+
+  extract:
+    value: responseCode
+    name: code
+    
+add:
+  type: string
+  label: HTTP/${code}
+  props:
+    string: HTTP/${code}
