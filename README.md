@@ -84,6 +84,7 @@ Commands:
   pown-cli recon select <expressions...>        Select nodes  [aliases: s]
   pown-cli recon traverse <expressions...>      Traverse nodes  [aliases: v]
   pown-cli recon options <command>              Manage options  [aliases: option]
+  pown-cli recon cache <command>                Manage cache
   pown-cli recon add <nodes...>                 Add nodes  [aliases: a]
   pown-cli recon remove <expressions...>        Remove nodes  [aliases: r]
   pown-cli recon edit <expressions...>          Edit nodes  [aliases: e]
