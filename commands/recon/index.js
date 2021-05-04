@@ -8,6 +8,7 @@ exports.yargs = {
         yargs.command(require('./sub/select').yargs)
         yargs.command(require('./sub/traverse').yargs)
         yargs.command(require('./sub/options').yargs)
+        yargs.command(require('./sub/cache').yargs)
         yargs.command(require('./sub/add').yargs)
         yargs.command(require('./sub/remove').yargs)
         yargs.command(require('./sub/edit').yargs)

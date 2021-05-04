@@ -214,6 +214,7 @@ exports.yargs = {
                 handler: async(argv) => {
                     const { transformConcurrency, nodeConcurrency, transformTimeout, select, traverse, noise, group, autoGroup, autoWeight, maxNodesWarn, maxNodesCap, extract, extractPrefix, extractSuffix, cacheMemcachedServer, cacheDynamodbTable, cacheTtl, cacheKeyPrefix, cacheKeySuffix, nodeType, nodes, ...rest } = argv
 
+                    const { getCache } = require('../../lib/globals/cache')
                     const { Scheduler } = require('../../../../lib/scheduler')
                     const { recon: gRecon } = require('../../lib/globals/recon')
                     const { options: gOptions } = require('../../lib/globals/options')
@@ -302,7 +303,7 @@ exports.yargs = {
                         })))
                     }
 
-                    let cache
+                    let cache = getCache()
 
                     if (cacheMemcachedServer) {
                         const { Cache } = require('../../../../lib/cache/memcached')

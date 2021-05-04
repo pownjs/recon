@@ -1,0 +1,11 @@
+# The following script demonstrates how to use cache features with options. The options
+# can be used to persist cache configurations across multiple transforms
+
+set -x
+
+recon cache set --dynamodb-table Cache
+
+recon add --node-type domain "secapps.com"
+
+recon t build_uri -s 'node[type="domain"]'
+recon t http_fingerprint -s 'node[type="uri"]'
