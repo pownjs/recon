@@ -70,8 +70,8 @@ exports.yargs = {
                 nodes = recon.select('node[type="group"] > node')
 
                 nodes.forEach((node) => {
-                    const { label: group } = node.parent().data()
-                    const { label } = node.data()
+                    const { label: group = '' } = node.parent().data()
+                    const { label = '' } = node.data()
 
                     if (!tree.hasOwnProperty(group)) {
                         tree[group] = []
@@ -95,7 +95,7 @@ exports.yargs = {
                 }
 
                 nodes.forEach((node) => {
-                    const { type, label } = node.data()
+                    const { type = '', label = '' } = node.data()
 
                     if (!tree.hasOwnProperty(type)) {
                         tree[type] = []
