@@ -39,7 +39,7 @@
     "@pown/script": "^2.20.0",
     "@pown/shell": "^2.6.0",
     "@pown/toolchain": "^2.5.0",
-    "aws-sdk": "^2.913.0",
+    "aws-sdk": "^2.914.0",
     "memcached": "^2.2.2"
   },
   "dependencies": {
