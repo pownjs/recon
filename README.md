@@ -125,7 +125,7 @@ Commands:
   pown-cli recon transform hackertargetreverseiplookup [options] <nodes...>   Obtain reverse IP information from hackertarget.com.  [aliases: hackertarget_reverse_ip_lookup, htril]
   pown-cli recon transform hackertargetonlineportscan [options] <nodes...>    Obtain port information from hackertarget.com.  [aliases: hackertarget_online_port_scan, htps]
   pown-cli recon transform httpfingerprint [options] <nodes...>               Performs a fingerprint on the HTTP server and application.  [aliases: http_fingerprint, hf]
-  pown-cli recon transform ipinfoio [options] <nodes...>                      Obtain ipinfo.io whois report.  [aliases: ipinfo_io, iiio]
+  pown-cli recon transform ipinfoiowidgetsearch [options] <nodes...>          Obtain ipinfo.io whois report via the web widget.  [aliases: ipinfoio_widget_search, iiiows]
   pown-cli recon transform omnisintsubdomainreport [options] <nodes...>       Obtain omnisint domain report which helps enumerating target subdomains.  [aliases: omnisint_subdomain_report]
   pown-cli recon transform pkslookupkeys [options] <nodes...>                 Look the the PKS database at pool.sks-keyservers.net which pgp.mit.edu is part of.  [aliases: pks_lookup_keys, pkslk]
   pown-cli recon transform pwndbsearch [options] <nodes...>                   Searching the PwnDB database  [aliases: pwndb_search, pds]
