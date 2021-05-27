@@ -12,8 +12,8 @@ const getCompoundTransforms = () => {
     const { loadableTransforms } = extractSync()
 
     return {
-        ...transforms,
         ...remoteTransforms,
+        ...transforms,
 
         ...Object.assign({}, ...loadableTransforms.map((m) => {
             try {
