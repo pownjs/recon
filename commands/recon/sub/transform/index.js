@@ -204,6 +204,10 @@ exports.yargs = {
                         yargs.option(optionName, {
                             ...option,
 
+                            alias: (option.alias || []).filter(l => l.length > 1),
+
+                            aliases: (option.aliases || []).filter(l => l.length > 1),
+
                             describe: option.describe || option.description,
 
                             default: defaultOptions.hasOwnProperty(optionName) ? defaultOptions[optionName] : option.default
