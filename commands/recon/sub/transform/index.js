@@ -198,19 +198,17 @@ exports.yargs = {
                         }
                     }
 
-                    Object.entries(transform.options).forEach(([optionName, option]) => {
+                    Object.entries(transform.options).forEach(([optionName, { aliases, alias = aliases, description, describe = description, 'default': _default, ...rest }]) => {
                         optionName = optionName.replace(/([A-Z])/g, '-$1').replace(/^-+/, '').toLowerCase()
 
                         yargs.option(optionName, {
-                            ...option,
+                            ...rest,
 
-                            alias: (option.alias || []).filter(l => l.length > 1),
+                            alias: (Array.isArray(alias) ? alias : [alias]).filter(l => l && l.length > 1),
 
-                            aliases: (option.aliases || []).filter(l => l.length > 1),
+                            describe: describe,
 
-                            describe: option.describe || option.description,
-
-                            default: defaultOptions.hasOwnProperty(optionName) ? defaultOptions[optionName] : option.default
+                            default: defaultOptions.hasOwnProperty(optionName) ? defaultOptions[optionName] : _default
                         })
                     })
                 },
