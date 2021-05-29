@@ -269,14 +269,6 @@ exports.yargs = {
                         })
                     }
 
-                    const { extractSync } = require('@pown/modules')
-
-                    const { loadableTransforms } = extractSync()
-
-                    loadableTransforms.forEach((transform) => {
-                        gRecon.registerTransforms(require(transform))
-                    })
-
                     await handleReadOptions(argv, gRecon)
 
                     const options = {}
