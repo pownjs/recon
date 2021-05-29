@@ -1,4 +1,5 @@
 const { EventEmitter } = require('events')
+const { parentPort } = require('worker_threads')
 const { iterateOverEmitter } = require('@pown/async/lib/iterateOverEmitter')
 
 const { Scheduler } = require('../../../../lib/scheduler')
@@ -14,40 +15,54 @@ const stream = new class extends EventEmitter {
         if (this.finished) {
             throw new Error(`Stream already finished`)
         }
+        else {
+            const { node } = options
 
-        const { node } = options
-
-        this.emit('node', node)
+            this.emit('node', node)
+        }
     }
 
     end() {
         if (this.finished) {
             throw new Error(`Stream already finished`)
         }
+        else {
+            this.finished = true
+        }
 
         this.emit('end')
-
-        this.finished = true
     }
 }
 
-const run = async(options) => {
-    const { transformModule, transformName, transformOptions, transformConcurrency } = options
-
-    const module = require(transformModule)
-
-    const Transform = transformName ? module[transformName] : module
-
-    const transform = new Transform({ scheduler: new Scheduler() })
-
-    for await (let result of transform.itr(iterateOverEmitter(stream, 'node'), transformOptions, transformConcurrency)) {
-        self.postMessage({ type: 'yield', result })
+const transform = new class {
+    constructor() {
+        this.running = false
     }
 
-    self.postMessage({ type: 'end' })
+    async run(options) {
+        if (this.running) {
+            throw new Error(`Transform already running`)
+        } else {
+            this.running = true
+        }
+
+        const { transformModule, transformName, transformOptions, transformConcurrency } = options
+
+        const module = require(transformModule)
+
+        const Transform = transformName ? module[transformName] : module
+
+        const transform = new Transform({ scheduler: new Scheduler() })
+
+        for await (let result of transform.itr(iterateOverEmitter(stream, 'node'), transformOptions, transformConcurrency)) {
+            parentPort.postMessage({ type: 'yield', result })
+        }
+
+        parentPort.postMessage({ type: 'end' })
+    }
 }
 
-addEventListener('message', ({ type, ...options }) => {
+parentPort.on('message', ({ type, ...options }) => {
     switch (type) {
         case 'stream.put':
             stream.put(options)
@@ -60,7 +75,7 @@ addEventListener('message', ({ type, ...options }) => {
             break
 
         case 'run':
-            run(options)
+            transform.run(options).catch((error) => parentPort.postMessage({ type: 'error', error: { message: error.message, stack: error.stack } }))
 
             break
 

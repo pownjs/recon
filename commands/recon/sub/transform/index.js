@@ -81,6 +81,13 @@ exports.yargs = {
                         default: 0
                     })
 
+                    yargs.options('run-in-worker', {
+                        alias: 'W',
+                        type: 'boolean',
+                        describe: 'Run transforms in worker threads',
+                        default: false
+                    })
+
                     yargs.options('select', {
                         alias: 's',
                         type: 'boolean',
@@ -215,8 +222,9 @@ exports.yargs = {
                 },
 
                 handler: async(argv) => {
-                    const { transformConcurrency, nodeConcurrency, transformTimeout, select, traverse, noise, group, autoGroup, autoWeight, maxNodesWarn, maxNodesCap, extract, extractPrefix, extractSuffix, cacheMemcachedServer, cacheDynamodbTable, cacheTtl, cacheKeyPrefix, cacheKeySuffix, nodeType, nodes, ...rest } = argv
+                    const { transformConcurrency, nodeConcurrency, runInWorker, transformTimeout, select, traverse, noise, group, autoGroup, autoWeight, maxNodesWarn, maxNodesCap, extract, extractPrefix, extractSuffix, cacheMemcachedServer, cacheDynamodbTable, cacheTtl, cacheKeyPrefix, cacheKeySuffix, nodeType, nodes, ...rest } = argv
 
+                    const { wrapInWorker } = require('./utils')
                     const { getCache } = require('../../lib/globals/cache')
                     const { Scheduler } = require('../../../../lib/scheduler')
                     const { recon: gRecon } = require('../../lib/globals/recon')
@@ -261,11 +269,11 @@ exports.yargs = {
                             tag: tag ? regexify(tag) : undefined
                         }
 
-                        gRecon.registerTransforms(compoundTransforms)
+                        gRecon.registerTransforms(runInWorker ? wrapInWorker(compoundTransforms) : compoundTransforms)
                     }
                     else {
                         gRecon.registerTransforms({
-                            [transformName]: transform
+                            [transformName]: runInWorker ? wrapInWorker(transform) : transform
                         })
                     }
 
@@ -344,6 +352,8 @@ exports.yargs = {
                     if (cache) {
                         await cache.end()
                     }
+
+                    await gRecon.resetTransforms()
                 }
             })
         })
