@@ -69,12 +69,16 @@ const wrap = (Transform) => {
                     }
                 })
 
+                worker.on('mesageerror', (error) => {
+                    emitter.emit('error', error)
+                })
+
                 worker.on('error', (error) => {
                     emitter.emit('error', error)
                 })
 
                 worker.on('exit', (code) => {
-                    if (code > 1) {
+                    if (code) {
                         emitter.emit('error', new Error(`Worker exited with code ${code}`))
                     }
 
@@ -84,6 +88,8 @@ const wrap = (Transform) => {
                 unroll(nodes, worker)
 
                 yield* iterateOverEmitter(emitter, 'yield')
+
+                worker.removeAllListeners('exit')
 
                 worker.terminate()
 
