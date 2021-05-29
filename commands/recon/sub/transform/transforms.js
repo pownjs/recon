@@ -1,7 +1,6 @@
 const { extractSync } = require('@pown/modules')
 const { getPreferencesSync } = require('@pown/preferences')
 
-const transforms = require('../../../../lib/transforms')
 const { buildRemoteTransforms } = require('../../../../lib/remote')
 
 const getCompoundTransforms = () => {
@@ -13,7 +12,6 @@ const getCompoundTransforms = () => {
 
     return {
         ...remoteTransforms,
-        ...transforms,
 
         ...Object.assign({}, ...loadableTransforms.map((m) => {
             try {

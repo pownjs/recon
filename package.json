@@ -3,16 +3,14 @@
   "version": "2.159.0",
   "description": "Pownage guaranteed",
   "main": "lib/index.js",
-  "bin": {
-    "pown-recon-generate-transforms-index": "bin/pown-recon-generate-transforms-index.js"
-  },
+  "bin": {},
   "scripts": {
     "usage": "POWN_ROOT=. pown-cli recon --help; echo; POWN_ROOT=. pown-cli recon transform --help",
     "recon": "POWN_ROOT=. pown-cli recon",
     "script": "POWN_ROOT=. pown-cli script",
     "shell": "POWN_ROOT=. pown-cli shell",
     "prefs": "POWN_ROOT=. pown-cli prefs",
-    "build": "node bin/pown-recon-generate-transforms-index.js",
+    "build": "true",
     "test": "mocha"
   },
   "repository": {
@@ -67,7 +65,35 @@
       "commands/recon"
     ],
     "transforms": [
-      "transforms/beep"
+      "transforms/bitbucket",
+      "transforms/bufferoverrun",
+      "transforms/certspotter",
+      "transforms/cloudflare",
+      "transforms/crtsh",
+      "transforms/dns",
+      "transforms/dockerhub",
+      "transforms/gravatar",
+      "transforms/hackertarget",
+      "transforms/http",
+      "transforms/ipinfoio",
+      "transforms/omnisint",
+      "transforms/pks",
+      "transforms/pwndb",
+      "transforms/riddler",
+      "transforms/script",
+      "transforms/scylla",
+      "transforms/securitytrails",
+      "transforms/shodan",
+      "transforms/spyse",
+      "transforms/tcp",
+      "transforms/threatcrowd",
+      "transforms/urlscan",
+      "transforms/utils",
+      "transforms/virustotal",
+      "transforms/vulners",
+      "transforms/wappalyzer",
+      "transforms/worker",
+      "transforms/zonecruncher"
     ]
   },
   "browserify": {
