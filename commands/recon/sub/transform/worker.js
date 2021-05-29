@@ -4,6 +4,22 @@ const { iterateOverEmitter } = require('@pown/async/lib/iterateOverEmitter')
 
 const { Scheduler } = require('../../../../lib/scheduler')
 
+console.info = (...args) => {
+    parentPort.postMessage({ type: 'info', args })
+}
+
+console.warn = (...args) => {
+    parentPort.postMessage({ type: 'warn', args })
+}
+
+console.error = (...args) => {
+    parentPort.postMessage({ type: 'error', args })
+}
+
+console.debug = (...args) => {
+    parentPort.postMessage({ type: 'debug', args })
+}
+
 const stream = new class extends EventEmitter {
     constructor() {
         super()
@@ -39,10 +55,32 @@ const transform = new class {
         this.running = false
     }
 
+    info(...args) {
+        parentPort.postMessage({ type: 'info', args })
+    }
+
+    warn(...args) {
+        parentPort.postMessage({ type: 'warn', args })
+    }
+
+    error(...args) {
+        parentPort.postMessage({ type: 'error', args })
+    }
+
+    debug(...args) {
+        console.log('>>>>', args)
+        parentPort.postMessage({ type: 'debug', args })
+    }
+
+    progress(...args) {
+        parentPort.postMessage({ type: 'progress', args })
+    }
+
     async run(options) {
         if (this.running) {
             throw new Error(`Transform already running`)
-        } else {
+        }
+        else {
             this.running = true
         }
 

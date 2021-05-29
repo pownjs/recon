@@ -25,7 +25,7 @@ const wrap = (Transform) => {
 
                 worker.postMessage({ type: 'run', transformModule: loadableTransformModule, transformName: loadableTransformName, transformOptions: options, transformConcurrency: concurrency })
 
-                worker.on('message', ({ type, result, error }) => {
+                worker.on('message', ({ type, result, error, args }) => {
                     switch (type) {
                         case 'yield':
                             emitter.emit('yield', result)
@@ -39,6 +39,31 @@ const wrap = (Transform) => {
 
                         case 'end':
                             emitter.emit('end')
+
+                            break
+
+                        case 'info':
+                            this.info(...args)
+
+                            break
+
+                        case 'warn':
+                            this.warn(...args)
+
+                            break
+
+                        case 'error':
+                            this.error(...args)
+
+                            break
+
+                        case 'debug':
+                            this.debug(...args)
+
+                            break
+
+                        case 'progress':
+                            this.progress(...args)
 
                             break
                     }
