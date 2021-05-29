@@ -14,12 +14,22 @@ const getCompoundTransforms = () => {
         ...remoteTransforms,
 
         ...Object.assign({}, ...loadableTransforms.map((m) => {
+            let transforms
+
             try {
-                return require(m)
+                transforms = require(m)
             }
             catch (e) {
                 console.error(e)
+
+                return {}
             }
+
+            if (!transforms) {
+                return {}
+            }
+
+            return transforms
         }))
     }
 }
