@@ -81,7 +81,7 @@ exports.yargs = {
                         default: 0
                     })
 
-                    yargs.options('run-in-worker', {
+                    yargs.options('transform-in-worker', {
                         alias: 'W',
                         type: 'boolean',
                         describe: 'Run transforms in worker threads',
@@ -222,7 +222,7 @@ exports.yargs = {
                 },
 
                 handler: async(argv) => {
-                    const { transformConcurrency, nodeConcurrency, runInWorker, transformTimeout, select, traverse, noise, group, autoGroup, autoWeight, maxNodesWarn, maxNodesCap, extract, extractPrefix, extractSuffix, cacheMemcachedServer, cacheDynamodbTable, cacheTtl, cacheKeyPrefix, cacheKeySuffix, nodeType, nodes, ...rest } = argv
+                    const { transformConcurrency, nodeConcurrency, transformInWorker, transformTimeout, select, traverse, noise, group, autoGroup, autoWeight, maxNodesWarn, maxNodesCap, extract, extractPrefix, extractSuffix, cacheMemcachedServer, cacheDynamodbTable, cacheTtl, cacheKeyPrefix, cacheKeySuffix, nodeType, nodes, ...rest } = argv
 
                     const { wrapInWorker } = require('./utils')
                     const { getCache } = require('../../lib/globals/cache')
@@ -269,11 +269,11 @@ exports.yargs = {
                             tag: tag ? regexify(tag) : undefined
                         }
 
-                        gRecon.registerTransforms(runInWorker ? wrapInWorker(compoundTransforms) : compoundTransforms)
+                        gRecon.registerTransforms(transformInWorker ? wrapInWorker(compoundTransforms) : compoundTransforms)
                     }
                     else {
                         gRecon.registerTransforms({
-                            [transformName]: runInWorker ? wrapInWorker(transform) : transform
+                            [transformName]: transformInWorker ? wrapInWorker(transform) : transform
                         })
                     }
 
