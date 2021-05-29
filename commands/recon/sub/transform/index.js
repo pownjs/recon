@@ -9,6 +9,10 @@ exports.yargs = {
         installReadOptions(yargs)
         installWriteOptions(yargs)
 
+        const { getCompoundTransforms } = require('./transforms')
+
+        const compoundTransforms = getCompoundTransforms()
+
         const auto = {
             aliases: ['a'],
 
@@ -36,12 +40,9 @@ exports.yargs = {
                 }
             },
 
-            noise: 0
+            noise: 0,
+            priority: 0
         }
-
-        const { getCompoundTransforms } = require('./transforms')
-
-        const compoundTransforms = getCompoundTransforms()
 
         Object.entries({ ...compoundTransforms, auto }).forEach(([transformName, transform]) => {
             const niceTransformName = transformName.toLowerCase()
@@ -330,7 +331,7 @@ exports.yargs = {
                     const scheduler = new Scheduler()
 
                     try {
-                        await gRecon.transform(transformName === 'auto' ? '*' : transformName, options, { transformConcurrency, nodeConcurrency, timeout: transformTimeout, group: autoGroup, weight: autoWeight, maxNodesWarn, maxNodesCap, filter, extract: { property: extract, prefix: extractPrefix, suffix: extractSuffix }, optionsInstance: gOptions, scheduler, cache })
+                        await gRecon.transform(transformName, options, { transformConcurrency, nodeConcurrency, timeout: transformTimeout, group: autoGroup, weight: autoWeight, maxNodesWarn, maxNodesCap, filter, extract: { property: extract, prefix: extractPrefix, suffix: extractSuffix }, optionsInstance: gOptions, scheduler, cache })
                     }
                     catch (e) {
                         console.error(e)
