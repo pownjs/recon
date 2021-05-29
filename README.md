@@ -161,7 +161,6 @@ Commands:
   pown-cli recon transform wappalyzerprofile [options] <nodes...>             Enumerate technologies with api.wappalyzer.com.  [aliases: wappalyzer_profile, wzp]
   pown-cli recon transform worker [options] <nodes...>                        Perform transformation with external worker  [aliases: worker]
   pown-cli recon transform zonecrunchersubdomains [options] <nodes...>        Performs subdomain searching with Zonecruncher.  [aliases: zonecruncher_subdomains, zcss]
-  pown-cli recon transform beep [options] <nodes...>                          Example loadable transform.  [aliases: beep]
   pown-cli recon transform auto [options] <nodes...>                          Select the most appropriate methods of transformation
 
 Options:
