@@ -224,8 +224,8 @@ exports.yargs = {
                 handler: async(argv) => {
                     const { transformConcurrency, nodeConcurrency, transformInWorker, transformTimeout, select, traverse, noise, group, autoGroup, autoWeight, maxNodesWarn, maxNodesCap, extract, extractPrefix, extractSuffix, cacheMemcachedServer, cacheDynamodbTable, cacheTtl, cacheKeyPrefix, cacheKeySuffix, nodeType, nodes, ...rest } = argv
 
-                    const { wrapInWorker } = require('./utils')
                     const { getCache } = require('../../lib/globals/cache')
+                    const { wrapInWorker } = require('../../../../lib/worker')
                     const { Scheduler } = require('../../../../lib/scheduler')
                     const { recon: gRecon } = require('../../lib/globals/recon')
                     const { options: gOptions } = require('../../lib/globals/options')
