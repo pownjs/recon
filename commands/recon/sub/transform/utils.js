@@ -3,7 +3,24 @@ const { EventEmitter } = require('events')
 const { Worker } = require('worker_threads')
 const { iterateOverEmitter } = require('@pown/async/lib/iterateOverEmitter')
 
-const unroll = async(iterable, worker) => {
+class WorkerError extends Error {
+    constructor({ message, stack }) {
+        super()
+
+        this.message = message
+        this.stack = stack
+    }
+}
+
+const unwrapError = (error) => {
+    return new WorkerError(error)
+}
+
+const unwrapArgs = (args) => {
+    return args.map((arg) => arg && arg.__isError ? unwrapError(arg) : arg)
+}
+
+const streamIterable = async(iterable, worker) => {
     for await (let node of iterable) {
         worker.postMessage({ type: 'stream.put', node })
     }
@@ -11,7 +28,20 @@ const unroll = async(iterable, worker) => {
     worker.postMessage({ type: 'stream.end' })
 }
 
-const wrap = (Transform) => {
+const wrapInWorker = (Transform) => {
+    if (typeof(Transform) !== 'function') {
+        if (Array.isArray(Transform)) {
+            return Transform.map(t => wrapInWorker(t))
+        }
+        else {
+            return Object.assign({}, ...Object.entries(Transform).map(([name, transform]) => {
+                return {
+                    [name]: wrapInWorker(transform)
+                }
+            }))
+        }
+    }
+
     const { loadableTransformModule, loadableTransformName } = Transform
 
     if (loadableTransformModule && loadableTransformModule) {
@@ -33,7 +63,7 @@ const wrap = (Transform) => {
                             break
 
                         case 'error':
-                            emitter.emit('error', error)
+                            emitter.emit('error', unwrapError(error))
 
                             break
 
@@ -43,27 +73,27 @@ const wrap = (Transform) => {
                             break
 
                         case 'info':
-                            this.info(...args)
+                            this.info(...unwrapArgs(args))
 
                             break
 
                         case 'warn':
-                            this.warn(...args)
+                            this.warn(...unwrapArgs(args))
 
                             break
 
                         case 'error':
-                            this.error(...args)
+                            this.error(...unwrapArgs(args))
 
                             break
 
                         case 'debug':
-                            this.debug(...args)
+                            this.debug(...unwrapArgs(args))
 
                             break
 
                         case 'progress':
-                            this.progress(...args)
+                            this.progress(...unwrapArgs(args))
 
                             break
                     }
@@ -85,37 +115,29 @@ const wrap = (Transform) => {
                     emitter.emit('end')
                 })
 
-                unroll(nodes, worker)
+                streamIterable(nodes, worker)
 
-                yield* iterateOverEmitter(emitter, 'yield')
+                let error
+
+                try {
+                    yield* iterateOverEmitter(emitter, 'yield')
+                }
+                catch (e) {
+                    error = unwrapError(e)
+                }
 
                 worker.removeAllListeners('exit')
 
                 worker.terminate()
 
                 this.warn('finished in worker')
+
+                throw error
             }
         }
     }
     else {
         return Transform
-    }
-}
-
-const wrapInWorker = (transforms) => {
-    if (Array.isArray(transforms)) {
-        return transforms.map(wrap)
-    }
-    else
-    if (typeof(transforms) == 'function') {
-        return wrap(transforms)
-    }
-    else {
-        return Object.assign({}, ...Object.entries(transforms).map(([name, transform]) => {
-            return {
-                [name]: wrap(transform)
-            }
-        }))
     }
 }
 

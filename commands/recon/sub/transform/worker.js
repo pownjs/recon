@@ -4,20 +4,28 @@ const { iterateOverEmitter } = require('@pown/async/lib/iterateOverEmitter')
 
 const { Scheduler } = require('../../../../lib/scheduler')
 
+const getSafeError = (error) => {
+    return { __isError: true, type: error.type, message: error.message, stack: error.stack }
+}
+
+const getSafeArgs = (args) => {
+    return args.map((arg) => arg && arg instanceof Error ? getSafeError(arg) : arg)
+}
+
 console.info = (...args) => {
-    parentPort.postMessage({ type: 'info', args })
+    parentPort.postMessage({ type: 'info', args: getSafeArgs(args) })
 }
 
 console.warn = (...args) => {
-    parentPort.postMessage({ type: 'warn', args })
+    parentPort.postMessage({ type: 'warn', args: getSafeArgs(args) })
 }
 
 console.error = (...args) => {
-    parentPort.postMessage({ type: 'error', args })
+    parentPort.postMessage({ type: 'error', args: getSafeArgs(args) })
 }
 
 console.debug = (...args) => {
-    parentPort.postMessage({ type: 'debug', args })
+    parentPort.postMessage({ type: 'debug', args: getSafeArgs(args) })
 }
 
 const stream = new class extends EventEmitter {
@@ -27,7 +35,7 @@ const stream = new class extends EventEmitter {
         this.finished = false
     }
 
-    put(options) {
+    async put(options) {
         if (this.finished) {
             throw new Error(`Stream already finished`)
         }
@@ -38,7 +46,7 @@ const stream = new class extends EventEmitter {
         }
     }
 
-    end() {
+    async end() {
         if (this.finished) {
             throw new Error(`Stream already finished`)
         }
@@ -56,24 +64,23 @@ const transform = new class {
     }
 
     info(...args) {
-        parentPort.postMessage({ type: 'info', args })
+        parentPort.postMessage({ type: 'info', args: getSafeArgs(args) })
     }
 
     warn(...args) {
-        parentPort.postMessage({ type: 'warn', args })
+        parentPort.postMessage({ type: 'warn', args: getSafeArgs(args) })
     }
 
     error(...args) {
-        parentPort.postMessage({ type: 'error', args })
+        parentPort.postMessage({ type: 'error', args: getSafeArgs(args) })
     }
 
     debug(...args) {
-        console.log('>>>>', args)
-        parentPort.postMessage({ type: 'debug', args })
+        parentPort.postMessage({ type: 'debug', args: getSafeArgs(args) })
     }
 
     progress(...args) {
-        parentPort.postMessage({ type: 'progress', args })
+        parentPort.postMessage({ type: 'progress', args: getSafeArgs(args) })
     }
 
     async run(options) {
@@ -100,24 +107,28 @@ const transform = new class {
     }
 }
 
-parentPort.on('message', ({ type, ...options }) => {
+const onMessage = async({ type, ...options }) => {
     switch (type) {
         case 'stream.put':
-            stream.put(options)
+            await stream.put(options)
 
             break
 
         case 'stream.end':
-            stream.end(options)
+            await stream.end(options)
 
             break
 
         case 'run':
-            transform.run(options).catch((error) => parentPort.postMessage({ type: 'error', error: { message: error.message, stack: error.stack } }))
+            await transform.run(options)
 
             break
 
         default:
             throw new Error(`Unrecognized message type ${type}`)
     }
+}
+
+parentPort.on('message', (message) => {
+    onMessage(message).catch((error) => parentPort.postMessage({ type: 'error', error: getSafeError(error) }))
 })
