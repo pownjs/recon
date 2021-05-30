@@ -269,7 +269,11 @@ exports.yargs = {
                             tag: tag ? regexify(tag) : undefined
                         }
 
-                        gRecon.registerTransforms(transformInWorker ? wrapInWorker(compoundTransforms) : compoundTransforms)
+                        gRecon.registerTransforms(transformInWorker ? Object.assign({}, ...Object.entries(compoundTransforms).map(([name, transform]) => {
+                            return {
+                                [name]: wrapInWorker(transform)
+                            }
+                        })) : compoundTransforms)
                     }
                     else {
                         gRecon.registerTransforms({
