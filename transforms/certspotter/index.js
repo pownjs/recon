@@ -50,7 +50,7 @@ const certspotterIssuances = class extends Transform {
 
         const items = await this.scheduler.tryRequest({ uri: `https://api.certspotter.com/v1/issuances?${query}`, toJson: true })
 
-        return !Array.isArray(items) ? [] : [].concat(...items.map(({ dns_names }) => {
+        return [].concat(...items.map(({ dns_names }) => {
             return dns_names
                 .filter((name) => name.slice(-label.length - 1) === `.${label}`)
                 .map((name) => name.replace(/^\*\./, ''))
