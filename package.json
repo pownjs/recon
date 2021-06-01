@@ -33,7 +33,7 @@
     "memcached": "^2.2.2"
   },
   "devDependencies": {
-    "@pown/script": "^2.20.1",
+    "@pown/script": "^2.21.0",
     "@pown/shell": "^2.6.0",
     "@pown/toolchain": "^2.5.0",
     "aws-sdk": "^2.918.0",
@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@pown/async": "^2.15.0",
-    "@pown/cli": "^2.34.0",
+    "@pown/cli": "^2.35.0",
     "@pown/connect": "^2.1.0",
     "@pown/engine": "^2.8.0",
     "@pown/file": "^2.0.0",
