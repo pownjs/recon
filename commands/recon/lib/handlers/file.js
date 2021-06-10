@@ -23,7 +23,7 @@ const handleReadOptions = async(argv, recon) => {
 
     console.warn(`reading from file ${read}`)
 
-    const { readFile } = require('@pown/file/lib/file') // TODO: remove and use fs instead
+    const { readFile } = require('@pown/file/lib/readFile')
 
     let data
 
@@ -66,7 +66,7 @@ const handleWriteOptions = async(argv, recon) => {
 
     console.warn(`writing to file ${write}`)
 
-    const { writeFile } = require('@pown/file/lib/file') // TODO: remove and use fs instead
+    const { writeFile } = require('@pown/file/lib/writeFile')
 
     let json
 

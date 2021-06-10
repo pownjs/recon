@@ -40,11 +40,11 @@
     "memcached": "^2.2.2"
   },
   "dependencies": {
-    "@pown/async": "^2.15.0",
+    "@pown/async": "^2.17.0",
     "@pown/cli": "^2.35.0",
     "@pown/connect": "^2.1.0",
     "@pown/engine": "^2.8.0",
-    "@pown/file": "^2.0.0",
+    "@pown/file": "^2.1.0",
     "@pown/modules": "^2.10.0",
     "@pown/preferences": "^2.6.0",
     "@pown/request": "^2.26.2",

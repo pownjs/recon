@@ -88,6 +88,13 @@ exports.yargs = {
                         default: false
                     })
 
+                    yargs.options('load', {
+                        alias: 'l',
+                        type: 'boolean',
+                        describe: 'Load nodes from file',
+                        default: false
+                    })
+
                     yargs.options('select', {
                         alias: 's',
                         type: 'boolean',
@@ -222,7 +229,7 @@ exports.yargs = {
                 },
 
                 handler: async(argv) => {
-                    const { transformConcurrency, nodeConcurrency, transformInWorker, transformTimeout, select, traverse, noise, group, autoGroup, autoWeight, maxNodesWarn, maxNodesCap, extract, extractPrefix, extractSuffix, cacheMemcachedServer, cacheDynamodbTable, cacheTtl, cacheKeyPrefix, cacheKeySuffix, nodeType, nodes, ...rest } = argv
+                    const { transformConcurrency, nodeConcurrency, transformInWorker, transformTimeout, load, select, traverse, noise, group, autoGroup, autoWeight, maxNodesWarn, maxNodesCap, extract, extractPrefix, extractSuffix, cacheMemcachedServer, cacheDynamodbTable, cacheTtl, cacheKeyPrefix, cacheKeySuffix, nodeType, nodes, ...rest } = argv
 
                     const { getCache } = require('../../lib/globals/cache')
                     const { wrapInWorker } = require('../../../../lib/worker')
@@ -297,9 +304,19 @@ exports.yargs = {
                         gRecon.traverse(...nodes)
                     }
                     else {
+                        let realNodes = nodes
+
                         const { makeId } = require('../../../../lib/utils')
 
-                        await gRecon.addNodes(nodes.map((node) => ({
+                        if (load) {
+                            const { iterateFileLines } = require('@pown/file/lib/iterateFileLines')
+                            const { toArray } = require('@pown/async/lib/utils')
+                            const { unrollOfParallel } = require('@pown/async/lib/unrollOfParallel')
+
+                            realNodes = await toArray(unrollOfParallel(realNodes.map(iterateFileLines)))
+                        }
+
+                        await gRecon.addNodes(realNodes.filter((node) => node).map((node) => ({
                             id: makeId(nodeType, node),
                             type: nodeType,
                             label: node,
