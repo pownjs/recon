@@ -16,7 +16,7 @@ exports.yargs = {
         const auto = {
             aliases: ['a'],
 
-            description: 'Select the most appropriate methods of transformation.',
+            description: 'Select the most appropriate methods of transformation',
 
             options: {
                 name: {

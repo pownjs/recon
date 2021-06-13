@@ -19,14 +19,14 @@ exports.yargs = {
         yargs.options('select', {
             alias: 's',
             type: 'string',
-            describe: 'Select graph. Nodes will be added and linked only if graph contains at least one node.',
+            describe: 'Select graph. Nodes will be added and linked only if graph contains at least one node',
             default: ''
         })
 
         yargs.options('traverse', {
             alias: 'v',
             type: 'string',
-            describe: 'Traverse graph. Nodes will be added and linked only if graph contains at least one node.',
+            describe: 'Traverse graph. Nodes will be added and linked only if graph contains at least one node',
             default: ''
         })
 
@@ -45,7 +45,7 @@ exports.yargs = {
         })
 
         yargs.option('sample-size', {
-            description: 'The summary sample size.',
+            description: 'The summary sample size',
             type: 'number',
             alias: ['size'],
             default: 10
