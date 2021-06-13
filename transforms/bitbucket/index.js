@@ -18,7 +18,7 @@ const bitbucketListRepos = class extends Transform {
     }
 
     static get description() {
-        return 'List Bitbucket repositories.'
+        return 'List Bitbucket repositories'
     }
 
     static get group() {
@@ -93,7 +93,7 @@ const bitbucketListSnippets = class extends Transform {
     }
 
     static get description() {
-        return 'List Bitbucket snippets.'
+        return 'List Bitbucket snippets'
     }
 
     static get group() {
@@ -170,7 +170,7 @@ const bitbucketListTeamRepos = class extends Transform {
     }
 
     static get description() {
-        return 'List Bitbucket team repos.'
+        return 'List Bitbucket team repos'
     }
 
     static get group() {
@@ -230,7 +230,7 @@ const bitbucketListTeamMembers = class extends Transform {
     }
 
     static get description() {
-        return 'List Bitbucket team members.'
+        return 'List Bitbucket team members'
     }
 
     static get group() {

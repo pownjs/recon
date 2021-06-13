@@ -60,7 +60,7 @@ const zonecruncherSubdomains = class extends ZonecruncherTransform {
     }
 
     static get description() {
-        return 'Performs subdomain searching with Zonecruncher.'
+        return 'Performs subdomain searching with Zonecruncher'
     }
 
     static get group() {
@@ -79,7 +79,7 @@ const zonecruncherSubdomains = class extends ZonecruncherTransform {
         return {
             zonecruncherKey: {
                 type: 'string',
-                description: 'Zonecruncher API key.'
+                description: 'Zonecruncher API key'
             }
         }
     }

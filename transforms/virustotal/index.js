@@ -14,7 +14,7 @@ const virustotalSubdomains = class extends Transform {
     }
 
     static get description() {
-        return 'Obtain subdomains from Virustotal.'
+        return 'Obtain subdomains from Virustotal'
     }
 
     static get group() {

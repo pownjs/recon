@@ -22,7 +22,7 @@ const httpFingerprint = class extends Transform {
     }
 
     static get description() {
-        return 'Performs a fingerprint on the HTTP server and application.'
+        return 'Performs a fingerprint on the HTTP server and application'
     }
 
     static get group() {

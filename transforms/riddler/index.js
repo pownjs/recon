@@ -18,7 +18,7 @@ const riddlerIpSearch = class extends Transform {
     }
 
     static get description() {
-        return 'Searches for IP references using F-Secure riddler.io.'
+        return 'Searches for IP references using F-Secure riddler.io'
     }
 
     static get group() {
@@ -95,7 +95,7 @@ const riddlerDomainSearch = class extends Transform {
     }
 
     static get description() {
-        return 'Searches for Domain references using F-Secure riddler.io.'
+        return 'Searches for Domain references using F-Secure riddler.io'
     }
 
     static get group() {

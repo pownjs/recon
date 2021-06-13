@@ -17,7 +17,7 @@ const bufferoverrunSubdomainSearch = class extends Transform {
     }
 
     static get description() {
-        return 'Obtain a list of subdomains using bufferover.run DNS service.'
+        return 'Obtain a list of subdomains using bufferover.run DNS service'
     }
 
     static get group() {

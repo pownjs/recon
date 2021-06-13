@@ -168,7 +168,7 @@ const shodanOrgSearch = class extends ShodanTransform {
     }
 
     static get description() {
-        return 'Performs search using ORG filter.'
+        return 'Performs search using ORG filter'
     }
 
     static get group() {
@@ -187,37 +187,37 @@ const shodanOrgSearch = class extends ShodanTransform {
         return {
             shodanKey: {
                 type: 'string',
-                description: 'Shodan API key.'
+                description: 'Shodan API key'
             },
 
             extraQuery: {
                 type: 'string',
-                description: 'Extra query.'
+                description: 'Extra query'
             },
 
             pages: {
                 type: 'number',
-                description: 'Number of pages.',
+                description: 'Number of pages',
                 default: Infinity
             },
 
             extractIps: {
                 type: 'boolean',
-                description: 'Extract IP nodes.',
+                description: 'Extract IP nodes',
                 default: false,
                 alias: ['ips', 'extractIp', 'ip']
             },
 
             extractPorts: {
                 type: 'boolean',
-                description: 'Extract port nodes.',
+                description: 'Extract port nodes',
                 default: false,
                 alias: ['ports', 'extractPort', 'port']
             },
 
             extractHostnames: {
                 type: 'boolean',
-                description: 'Extract hostname nodes.',
+                description: 'Extract hostname nodes',
                 default: false,
                 alias: ['hostnames', 'extractHostname', 'hostname']
             }
@@ -251,7 +251,7 @@ const shodanSslSearch = class extends ShodanTransform {
     }
 
     static get description() {
-        return 'Performs search using SSL filter.'
+        return 'Performs search using SSL filter'
     }
 
     static get group() {
@@ -270,37 +270,37 @@ const shodanSslSearch = class extends ShodanTransform {
         return {
             shodanKey: {
                 type: 'string',
-                description: 'Shodan API key.'
+                description: 'Shodan API key'
             },
 
             extraQuery: {
                 type: 'string',
-                description: 'Extra query.'
+                description: 'Extra query'
             },
 
             pages: {
                 type: 'number',
-                description: 'Number of pages.',
+                description: 'Number of pages',
                 default: Infinity
             },
 
             extractIps: {
                 type: 'boolean',
-                description: 'Extract IP nodes.',
+                description: 'Extract IP nodes',
                 default: false,
                 alias: ['ips', 'extractIp', 'ip']
             },
 
             extractPorts: {
                 type: 'boolean',
-                description: 'Extract port nodes.',
+                description: 'Extract port nodes',
                 default: false,
                 alias: ['ports', 'extractPort', 'port']
             },
 
             extractHostnames: {
                 type: 'boolean',
-                description: 'Extract hostname nodes.',
+                description: 'Extract hostname nodes',
                 default: false,
                 alias: ['hostnames', 'extractHostname', 'hostname']
             }

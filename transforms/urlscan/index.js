@@ -15,7 +15,7 @@ const urlscanLiveshot = class extends Transform {
     }
 
     static get description() {
-        return 'Generates a liveshot of any public site via urlscan.'
+        return 'Generates a liveshot of any public site via urlscan'
     }
 
     static get group() {
@@ -86,7 +86,7 @@ const urlscanSubdomains = class extends Transform {
     }
 
     static get description() {
-        return 'Find subdomains via urlscan.'
+        return 'Find subdomains via urlscan'
     }
 
     static get group() {
@@ -105,7 +105,7 @@ const urlscanSubdomains = class extends Transform {
         return {
             urlscanKey: {
                 type: 'string',
-                description: 'Urlscan API key.'
+                description: 'Urlscan API key'
             }
         }
     }

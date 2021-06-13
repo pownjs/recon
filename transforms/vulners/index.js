@@ -13,7 +13,7 @@ const vulnersSearch = class extends Transform {
     }
 
     static get description() {
-        return 'Obtain vulnerability information via vulners.com.'
+        return 'Obtain vulnerability information via vulners.com'
     }
 
     static get group() {

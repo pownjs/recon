@@ -32,19 +32,19 @@ const worker = class extends Transform {
         return {
             worker: {
                 type: 'string',
-                description: 'The path to the worker to execute.',
+                description: 'The path to the worker to execute',
                 default: ''
             },
 
             arg: {
                 type: 'array',
-                description: 'List of arguments to pass to the worker function.',
+                description: 'List of arguments to pass to the worker function',
                 default: []
             },
 
             perNode: {
                 type: 'boolean',
-                description: 'Run new worker per node.',
+                description: 'Run new worker per node',
                 default: false
             }
         }

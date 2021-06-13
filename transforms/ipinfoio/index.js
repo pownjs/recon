@@ -13,7 +13,7 @@ const ipinfoioWidgetSearch = class extends Transform {
     }
 
     static get description() {
-        return 'Obtain ipinfo.io whois report via the web widget.'
+        return 'Obtain ipinfo.io whois report via the web widget'
     }
 
     static get group() {

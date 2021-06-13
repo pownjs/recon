@@ -14,7 +14,7 @@ const hackertargetReverseIpLookup = class extends Transform {
     }
 
     static get description() {
-        return 'Obtain reverse IP information from hackertarget.com.'
+        return 'Obtain reverse IP information from hackertarget.com'
     }
 
     static get group() {
@@ -92,7 +92,7 @@ const hackertargetOnlinePortScan = class extends Transform {
     }
 
     static get description() {
-        return 'Obtain port information from hackertarget.com.'
+        return 'Obtain port information from hackertarget.com'
     }
 
     static get group() {

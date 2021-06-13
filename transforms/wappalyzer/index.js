@@ -15,7 +15,7 @@ const wappalyzerProfile = class extends Transform {
     }
 
     static get description() {
-        return 'Enumerate technologies with api.wappalyzer.com.'
+        return 'Enumerate technologies with api.wappalyzer.com'
     }
 
     static get group() {
@@ -34,7 +34,7 @@ const wappalyzerProfile = class extends Transform {
         return {
             wappalyzerKey: {
                 type: 'string',
-                description: 'Shodan API key.'
+                description: 'Shodan API key'
             }
         }
     }

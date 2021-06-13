@@ -14,7 +14,7 @@ const pwndbSearch = class extends Transform {
     }
 
     static get description() {
-        return 'Searching the PwnDB database.'
+        return 'Searching the PwnDB database'
     }
 
     static get group() {

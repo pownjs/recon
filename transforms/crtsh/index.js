@@ -14,7 +14,7 @@ const crtshCNDomainReport = class extends Transform {
     }
 
     static get description() {
-        return 'Obtain crt.sh domain report which helps enumerating potential target subdomains.'
+        return 'Obtain crt.sh domain report which helps enumerating potential target subdomains'
     }
 
     static get group() {
@@ -93,7 +93,7 @@ const crtshSANDomainReport = class extends Transform {
     }
 
     static get description() {
-        return 'Obtain crt.sh domain report which helps enumerating potential target subdomains.'
+        return 'Obtain crt.sh domain report which helps enumerating potential target subdomains'
     }
 
     static get group() {

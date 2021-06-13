@@ -7,7 +7,7 @@ class OmnisintSubdomainReport extends SubdomainTransform {
 
     static title = 'Omnisint Subdomain Report';
 
-    static description = 'Obtain omnisint domain report which helps enumerating target subdomains.';
+    static description = 'Obtain omnisint domain report which helps enumerating target subdomains';
 
     static types = [DOMAIN_TYPE];
 

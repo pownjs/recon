@@ -14,7 +14,7 @@ const threatcrowdDomainReport = class extends Transform {
     }
 
     static get description() {
-        return 'Obtain threatcrowd domain report which helps enumerating potential target subdomains and email addresses.'
+        return 'Obtain threatcrowd domain report which helps enumerating potential target subdomains and email addresses'
     }
 
     static get types() {
@@ -84,7 +84,7 @@ const threatcrowdIpReport = class extends Transform {
     }
 
     static get description() {
-        return 'Obtain threatcrowd ip report which helps enumerating virtual hosts.'
+        return 'Obtain threatcrowd ip report which helps enumerating virtual hosts'
     }
 
     static get group() {

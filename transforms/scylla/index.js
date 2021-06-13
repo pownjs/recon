@@ -16,7 +16,7 @@ const scyllaSearch = class extends Transform {
     }
 
     static get description() {
-        return 'Searching the Scylla database.'
+        return 'Searching the Scylla database'
     }
 
     static get group() {

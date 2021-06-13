@@ -15,7 +15,7 @@ const pksLookupKeys = class extends Transform {
     }
 
     static get description() {
-        return 'Look the the PKS database at pool.sks-keyservers.net which pgp.mit.edu is part of.'
+        return 'Look the the PKS database at pool.sks-keyservers.net which pgp.mit.edu is part of'
     }
 
     static get group() {

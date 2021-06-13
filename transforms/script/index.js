@@ -12,7 +12,7 @@ const script = class extends Transform {
     }
 
     static get description() {
-        return 'Perform transformation with external script.'
+        return 'Perform transformation with external script'
     }
 
     static get group() {
@@ -31,13 +31,13 @@ const script = class extends Transform {
         return {
             script: {
                 type: 'string',
-                description: 'The path to the script to execute.',
+                description: 'The path to the script to execute',
                 default: ''
             },
 
             arg: {
                 type: 'array',
-                description: 'List of arguments to pass to the script function.',
+                description: 'List of arguments to pass to the script function',
                 default: []
             }
         }

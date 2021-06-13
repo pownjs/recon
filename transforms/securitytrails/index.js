@@ -14,7 +14,7 @@ const securitytrailsSuggestions = class extends Transform {
     }
 
     static get description() {
-        return 'Get a list of domain suggestions from securitytrails.com.'
+        return 'Get a list of domain suggestions from securitytrails.com'
     }
 
     static get group() {

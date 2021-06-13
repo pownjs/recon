@@ -85,7 +85,7 @@ const spyseSubdomains = class extends SpyseTransform {
     }
 
     static get description() {
-        return 'Performs subdomain searching with Spyse.'
+        return 'Performs subdomain searching with Spyse'
     }
 
     static get group() {
@@ -104,7 +104,7 @@ const spyseSubdomains = class extends SpyseTransform {
         return {
             spyseKey: {
                 type: 'string',
-                description: 'Spyse API key.'
+                description: 'Spyse API key'
             }
         }
     }

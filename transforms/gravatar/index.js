@@ -15,7 +15,7 @@ const gravatar = class extends Transform {
     }
 
     static get description() {
-        return 'Get gravatar.'
+        return 'Get gravatar'
     }
 
     static get group() {

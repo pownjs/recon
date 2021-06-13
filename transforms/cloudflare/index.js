@@ -14,7 +14,7 @@ const cloudflareDnsQuery = class extends Transform {
     }
 
     static get description() {
-        return 'Query CloudFlare DNS API.'
+        return 'Query CloudFlare DNS API'
     }
 
     static get group() {

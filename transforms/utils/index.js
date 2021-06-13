@@ -15,7 +15,7 @@ const noop = class extends Transform {
     }
 
     static get description() {
-        return 'Does not do anything.'
+        return 'Does not do anything'
     }
 
     static get group() {
@@ -57,7 +57,7 @@ const sleep = class extends Transform {
     }
 
     static get description() {
-        return 'Sleeps for predefined time.'
+        return 'Sleeps for predefined time'
     }
 
     static get group() {
@@ -76,7 +76,7 @@ const sleep = class extends Transform {
         return {
             time: {
                 type: 'number',
-                description: 'The ammount of time to sleep in milliseconds.',
+                description: 'The ammount of time to sleep in milliseconds',
                 default: 60000
             }
         }
@@ -107,7 +107,7 @@ const duplicate = class extends Transform {
     }
 
     static get description() {
-        return 'Duplicate node.'
+        return 'Duplicate node'
     }
 
     static get group() {
@@ -126,7 +126,7 @@ const duplicate = class extends Transform {
         return {
             newType: {
                 type: 'string',
-                description: 'Type of the new node.',
+                description: 'Type of the new node',
                 default: STRING_TYPE
             }
         }
@@ -161,7 +161,7 @@ const extract = class extends Transform {
     }
 
     static get description() {
-        return 'Extract property.'
+        return 'Extract property'
     }
 
     static get group() {
@@ -180,25 +180,25 @@ const extract = class extends Transform {
         return {
             property: {
                 type: 'string',
-                description: 'The property to extract.',
+                description: 'The property to extract',
                 default: ''
             },
 
             prefix: {
                 type: 'string',
-                description: 'Prefix for the label.',
+                description: 'Prefix for the label',
                 default: ''
             },
 
             suffix: {
                 type: 'string',
-                description: 'Suffix for the label.',
+                description: 'Suffix for the label',
                 default: ''
             },
 
             newType: {
                 type: 'string',
-                description: 'Type of the new node.',
+                description: 'Type of the new node',
                 default: STRING_TYPE
             }
         }
@@ -254,7 +254,7 @@ const prefix = class extends Transform {
     }
 
     static get description() {
-        return 'Creates a new node with a prefix.'
+        return 'Creates a new node with a prefix'
     }
 
     static get group() {
@@ -273,13 +273,13 @@ const prefix = class extends Transform {
         return {
             prefix: {
                 type: 'string',
-                description: 'The prefix to add.',
+                description: 'The prefix to add',
                 default: ''
             },
 
             newType: {
                 type: 'string',
-                description: 'Type of the new node.',
+                description: 'Type of the new node',
                 default: STRING_TYPE
             }
         }
@@ -326,7 +326,7 @@ const suffix = class extends Transform {
     }
 
     static get description() {
-        return 'Creates a new node with a suffix.'
+        return 'Creates a new node with a suffix'
     }
 
     static get group() {
@@ -345,13 +345,13 @@ const suffix = class extends Transform {
         return {
             suffix: {
                 type: 'string',
-                description: 'The suffix to add.',
+                description: 'The suffix to add',
                 default: ''
             },
 
             newType: {
                 type: 'string',
-                description: 'Type of the new node.',
+                description: 'Type of the new node',
                 default: STRING_TYPE
             }
         }
@@ -398,7 +398,7 @@ const augment = class extends Transform {
     }
 
     static get description() {
-        return 'Update node with prefix or suffix.'
+        return 'Update node with prefix or suffix'
     }
 
     static get group() {
@@ -417,19 +417,19 @@ const augment = class extends Transform {
         return {
             prefix: {
                 type: 'string',
-                description: 'The prefix to add.',
+                description: 'The prefix to add',
                 default: ''
             },
 
             suffix: {
                 type: 'string',
-                description: 'The suffix to add.',
+                description: 'The suffix to add',
                 default: ''
             },
 
             newType: {
                 type: 'string',
-                description: 'Type of the new node.',
+                description: 'Type of the new node',
                 default: STRING_TYPE
             }
         }
@@ -477,7 +477,7 @@ const splitEmail = class extends Transform {
     }
 
     static get description() {
-        return 'Split email at the @ sign.'
+        return 'Split email at the @ sign'
     }
 
     static get group() {
@@ -535,7 +535,7 @@ const buildEmail = class extends Transform {
     }
 
     static get description() {
-        return 'Build email from node label.'
+        return 'Build email from node label'
     }
 
     static get group() {
@@ -554,7 +554,7 @@ const buildEmail = class extends Transform {
         return {
             nick: {
                 type: 'string',
-                description: 'The email nick.',
+                description: 'The email nick',
                 default: 'admin'
             }
         }
@@ -589,7 +589,7 @@ const splitDomain = class extends Transform {
     }
 
     static get description() {
-        return 'Split domain at the first . sign.'
+        return 'Split domain at the first dot'
     }
 
     static get group() {
@@ -649,7 +649,7 @@ const buildDomain = class extends Transform {
     }
 
     static get description() {
-        return 'Build domain from node label.'
+        return 'Build domain from node label'
     }
 
     static get group() {
@@ -703,7 +703,7 @@ const splitUri = class extends Transform {
     }
 
     static get description() {
-        return 'Split URI to corresponding parts.'
+        return 'Split URI to corresponding parts'
     }
 
     static get group() {
@@ -757,7 +757,7 @@ const buildUri = class extends Transform {
     }
 
     static get description() {
-        return 'Build URI from node label.'
+        return 'Build URI from node label'
     }
 
     static get group() {
@@ -776,13 +776,13 @@ const buildUri = class extends Transform {
         return {
             protocol: {
                 type: 'string',
-                description: 'The URI protocol.',
+                description: 'The URI protocol',
                 default: 'http'
             },
 
             port: {
                 type: 'string',
-                description: 'The URI port.',
+                description: 'The URI port',
                 default: ''
             }
         }
@@ -822,7 +822,7 @@ const bakeImages = class extends Transform {
     }
 
     static get description() {
-        return 'Convert external image into data URIs for self-embedding purposes.'
+        return 'Convert external image into data URIs for self-embedding purposes'
     }
 
     static get group() {

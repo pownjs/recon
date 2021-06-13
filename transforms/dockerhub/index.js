@@ -14,7 +14,7 @@ const dockerhubListRepos = class extends Transform {
     }
 
     static get description() {
-        return 'List DockerHub repositories for a given member or org.'
+        return 'List DockerHub repositories for a given member or org'
     }
 
     static get group() {

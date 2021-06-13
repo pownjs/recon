@@ -14,7 +14,7 @@ const certspotterIssuances = class extends Transform {
     }
 
     static get description() {
-        return 'Obtain issuances from Certspotter.'
+        return 'Obtain issuances from Certspotter'
     }
 
     static get group() {
