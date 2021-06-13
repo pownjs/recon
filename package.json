@@ -35,9 +35,9 @@
   "devDependencies": {
     "@pown/script": "^2.21.0",
     "@pown/shell": "^2.6.0",
-    "@pown/toolchain": "^2.6.0",
-    "aws-sdk": "^2.926.0",
-    "memcached": "^2.2.2"
+    "aws-sdk": "^2.927.0",
+    "memcached": "^2.2.2",
+    "mocha": "^9.0.0"
   },
   "dependencies": {
     "@pown/async": "^2.17.0",
@@ -94,16 +94,6 @@
       "transforms/wappalyzer",
       "transforms/worker",
       "transforms/zonecruncher"
-    ]
-  },
-  "browserify": {
-    "transform": [
-      [
-        "babelify",
-        {
-          "extends": "./.babelrc"
-        }
-      ]
     ]
   }
 }
