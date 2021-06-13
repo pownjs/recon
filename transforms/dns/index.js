@@ -18,7 +18,7 @@ const dnsResolve = class extends Transform {
     }
 
     static get description() {
-        return 'Performs DNS resolution'
+        return 'Performs DNS resolution.'
     }
 
     static get group() {

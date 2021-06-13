@@ -32,7 +32,7 @@ const tcpPortScan = class extends Transform {
     }
 
     static get description() {
-        return 'Simple, full-handshake TCP port scanner (very slow and sometimes inaccurate)'
+        return 'Simple, full-handshake TCP port scanner (very slow and sometimes inaccurate).'
     }
 
     static get group() {

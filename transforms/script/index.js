@@ -12,7 +12,7 @@ const script = class extends Transform {
     }
 
     static get description() {
-        return 'Perform transformation with external script'
+        return 'Perform transformation with external script.'
     }
 
     static get group() {
