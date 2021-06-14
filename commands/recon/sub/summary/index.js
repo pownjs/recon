@@ -119,7 +119,7 @@ exports.yargs = {
         }))
 
         if (summaryFile) {
-            const { writeFile } = require('@pown/file/lib/file') // TODO: remove and use fs instead
+            const { writeFile } = require('@pown/file/lib/writeFile') // TODO: remove and use fs instead
 
             let data
 

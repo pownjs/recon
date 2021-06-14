@@ -12,7 +12,7 @@ exports.yargs = {
     handler: async(argv) => {
         const { files } = argv
 
-        const { readFile } = require('@pown/file/lib/file') // TODO: remove and use fs instead
+        const { readFile } = require('@pown/file/lib/readFile') // TODO: remove and use fs instead
 
         const { Recon } = require('../../../../lib/recon')
 
