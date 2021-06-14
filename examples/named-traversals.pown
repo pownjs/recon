@@ -1,0 +1,9 @@
+set -xe
+
+recon add --node-type letter a b c d c
+recon add --node-type number 1 2 3 4 5
+recon v set letters 'filter node[type="letter"]'
+recon v set numbers 'filter node[type="number"]'
+recon v 'traverseByName letters'
+recon v 'traverseByName numbers'
+recon v 'traverseByName letters & traverseByName numbers'
