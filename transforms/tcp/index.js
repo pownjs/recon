@@ -1,6 +1,7 @@
 const crypto = require('crypto')
 const { connect } = require('@pown/connect')
 
+const { isIp } = require('../../lib/detect')
 const { makeId } = require('../../lib//utils')
 const { ports: portsMap } = require('./ports')
 const { Transform } = require('../../lib//transform')
@@ -130,6 +131,10 @@ const tcpPortScan = class extends Transform {
                     options.tls = true
                     options.rejectUnauthorized = false
                     options.certificate = withCertificates
+
+                    if (!isIp(host)) {
+                        options.servername = host
+                    }
                 }
             }
         }
