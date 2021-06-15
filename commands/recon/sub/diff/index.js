@@ -41,7 +41,7 @@ exports.yargs = {
         let fileAJSON
 
         try {
-            fileAJSON = JSON.parse(fileAData.toString())
+            fileAJSON = JSON.parse(fileAData)
         }
         catch (e) {
             console.error(`Cannot unpack file ${fileA}`)
@@ -79,7 +79,7 @@ exports.yargs = {
         let fileBJSON
 
         try {
-            fileBJSON = JSON.parse(fileBData.toString())
+            fileBJSON = JSON.parse(fileBData)
         }
         catch (e) {
             console.error(`Cannot parse file ${fileB}`)

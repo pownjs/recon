@@ -38,7 +38,7 @@ exports.yargs = {
             let json
 
             try {
-                json = JSON.parse(data.toString())
+                json = JSON.parse(data)
             }
             catch (e) {
                 console.error(`Cannot unpack file ${file}`)

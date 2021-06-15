@@ -41,10 +41,10 @@ const handleReadOptions = async(argv, recon) => {
     let json
 
     try {
-        json = JSON.parse(data.toString())
+        json = JSON.parse(data)
     }
     catch (e) {
-        console.error(`Cannot deserialize recon data`)
+        console.error(`Cannot parse recon data`)
 
         return
     }
@@ -53,7 +53,7 @@ const handleReadOptions = async(argv, recon) => {
         recon.deserialize(json)
     }
     catch (e) {
-        console.error(`Cannot load recon data`)
+        console.error(`Cannot deserialize recon data`)
     }
 }
 
@@ -74,7 +74,7 @@ const handleWriteOptions = async(argv, recon) => {
         json = recon.serialize()
     }
     catch (e) {
-        console.error(`Cannot save recon data`)
+        console.error(`Cannot serialize recon data`)
 
         return
     }
@@ -85,7 +85,7 @@ const handleWriteOptions = async(argv, recon) => {
         data = JSON.stringify(json)
     }
     catch (e) {
-        console.error(`Cannot serialize recon data`)
+        console.error(`Cannot stringify recon data`)
 
         return
     }
