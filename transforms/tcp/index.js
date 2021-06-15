@@ -10,7 +10,6 @@ const { IPV4_TYPE, IPV6_TYPE, PORT_TYPE, TLS_TYPE, BANNER_TYPE, CERTIFICATE_TYPE
 const DEFAULT_PORTS = ''
 const DEFAULT_TIMEOUT = 5000
 const DEFAULT_CONCURRENCY = 500
-const DEFAULT_VALIDATES = false
 const DEFAULT_BE_SMART = false
 const DEFAULT_WITH_BANNERS = false
 const DEFAULT_WITH_CERTIFICATES = false
@@ -68,29 +67,22 @@ const tcpPortScan = class extends Transform {
                 default: DEFAULT_CONCURRENCY
             },
 
-            validates: {
-                description: 'Validate port',
-                type: 'boolean',
-                default: DEFAULT_VALIDATES,
-                alias: ['validate']
-            },
-
             beSmart: {
-                description: 'Use smart detection',
+                description: 'Use smart protocol detection',
                 type: 'boolean',
                 default: DEFAULT_BE_SMART,
                 alias: ['smart']
             },
 
             withBanners: {
-                description: 'Fetch banner',
+                description: 'Fetch banners',
                 type: 'boolean',
                 default: DEFAULT_WITH_BANNERS,
                 alias: ['with-banner', 'banners', 'banner']
             },
 
             withCertificates: {
-                description: 'Fetch certificate',
+                description: 'Fetch certificates',
                 type: 'boolean',
                 default: DEFAULT_WITH_CERTIFICATES,
                 alias: ['with-certificate', 'certificates', 'certificate']
@@ -106,7 +98,7 @@ const tcpPortScan = class extends Transform {
         return 1
     }
 
-    async check({ port, host, timeout = DEFAULT_TIMEOUT, validates = DEFAULT_VALIDATES, withBanners = DEFAULT_WITH_BANNERS, beSmart = DEFAULT_BE_SMART, withCertificates = DEFAULT_WITH_CERTIFICATES }) {
+    async check({ port, host, timeout = DEFAULT_TIMEOUT, withBanners = DEFAULT_WITH_BANNERS, beSmart = DEFAULT_BE_SMART, withCertificates = DEFAULT_WITH_CERTIFICATES }) {
         this.debug('probbing', host, port)
 
         const options = {
@@ -115,10 +107,10 @@ const tcpPortScan = class extends Transform {
 
             timeout,
 
-            download: validates || withBanners
+            download: withBanners
         }
 
-        if (validates || withBanners) {
+        if (withBanners) {
             options.data = PROBABLE_DATA
 
             if (beSmart) {
@@ -141,14 +133,7 @@ const tcpPortScan = class extends Transform {
 
         const { responseData, info } = await connect(options)
 
-        const result = []
-
-        if (validates) {
-            result.push(!!responseData.length)
-        }
-        else {
-            result.push(info.open)
-        }
+        const result = [info.open]
 
         const props = {}
 
