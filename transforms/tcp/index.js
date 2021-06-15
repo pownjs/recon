@@ -136,10 +136,13 @@ const tcpPortScan = class extends Transform {
 
         const { responseData, info } = await connect(options)
 
-        const result = [info.open]
+        const result = []
 
-        if (withBanners) {
-            result.push(responseData.slice(0, 512))
+        if (validates) {
+            result.push(!!responseData.length)
+        }
+        else {
+            result.push(info.open)
         }
 
         const props = {}
@@ -149,6 +152,10 @@ const tcpPortScan = class extends Transform {
         }
 
         result.push(props)
+
+        if (withBanners) {
+            result.push(responseData.slice(0, 512))
+        }
 
         if (withCertificates) {
             result.push(info.certificate)
@@ -162,7 +169,7 @@ const tcpPortScan = class extends Transform {
 
         const results = []
 
-        const [open, banner, { tls }, certificate] = await this.check({ port, host: label, ...options })
+        const [open, { tls }, banner, certificate] = await this.check({ port, host: label, ...options })
 
         if (open) {
             const protocol = 'TCP'
