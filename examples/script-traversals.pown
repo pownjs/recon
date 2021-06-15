@@ -1,0 +1,4 @@
+set -xe
+
+recon add --node-type number 1 2 3 4 5
+recon v 'traverseByScript node.data("label") % 2 === 0'
