@@ -11,7 +11,7 @@
     "shell": "POWN_ROOT=. pown-cli shell",
     "prefs": "POWN_ROOT=. pown-cli prefs",
     "build": "true",
-    "test": "mocha"
+    "test": "mocha --recursive"
   },
   "repository": {
     "type": "git",
