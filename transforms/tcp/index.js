@@ -170,7 +170,7 @@ const tcpPortScan = class extends Transform {
 
             results.push({ id: portId, type: PORT_TYPE, label: portLabel, props: { port, protocol, services }, edges: [tls ? { type: TLS_TYPE, source } : source] })
 
-            if (banner) {
+            if (banner && banner.length) {
                 const bannerLabel = crypto.createHash('sha1').update(banner).digest('hex')
                 const bannerId = makeId(BANNER_TYPE, bannerLabel)
 
