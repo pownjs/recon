@@ -7,7 +7,7 @@
 
 # Recon
 
-Recon is a target reconnaissance framework powered by graph theory. Using graph theory instead of flat table representation is easier to find the relationships between different types of information, which comes quite handy in many situations. Graph theory algorithms also help with diffing, searching, finding the shortest path, and many other helpful tasks to aid information discovery and intelligence gathering.
+Recon is a target reconnaissance framework powered by knowledge graphs. Using knowledge graphs instead of flat table representation is easier to find the relationships between different types of information, which comes quite handy in many situations. Knowledge graphs algorithms also help with diffing, searching, finding the shortest path, and many other helpful tasks to aid information discovery and intelligence gathering.
 
 ## Credits
 
