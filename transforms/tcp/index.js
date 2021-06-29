@@ -3,8 +3,8 @@ const { connect } = require('@pown/connect')
 
 const { isIp } = require('../../lib/detect')
 const { makeId } = require('../../lib//utils')
-const { ports: portsMap } = require('./ports')
 const { Transform } = require('../../lib//transform')
+const { ports: portsMap, protocols: protocolsMap } = require('./ports')
 const { IPV4_TYPE, IPV6_TYPE, PORT_TYPE, TLS_TYPE, BANNER_TYPE, CERTIFICATE_TYPE } = require('../../lib/types')
 
 const DEFAULT_PORTS = ''
@@ -114,11 +114,11 @@ const tcpPortScan = class extends Transform {
             options.data = PROBABLE_DATA
 
             if (beSmart) {
-                if ([80].includes(port)) {
+                if (protocolsMap['HTTP'].includes(port)) {
                     options.data = HTTP_DATA
                 }
                 else
-                if ([443, 6443, 8443, 9443].includes(port)) {
+                if (protocolsMap['HTTPS'].includes(port)) {
                     options.data = HTTP_DATA
                     options.tls = true
                     options.rejectUnauthorized = false

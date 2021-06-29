@@ -89,4 +89,9 @@ const ports = Object.entries(services).reduce((acc, [service, ports]) => {
     return acc
 }, {})
 
-module.exports = { categories, services, ports }
+const protocols = {
+    'HTTP': [80, 9200],
+    'HTTPS': [443, 6443, 7443, 8443, 9243, 9443]
+}
+
+module.exports = { categories, services, ports, protocols }
