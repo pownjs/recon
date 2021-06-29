@@ -35,9 +35,9 @@
   "devDependencies": {
     "@pown/script": "^2.21.0",
     "@pown/shell": "^2.6.0",
-    "aws-sdk": "^2.929.0",
+    "aws-sdk": "^2.936.0",
     "memcached": "^2.2.2",
-    "mocha": "^9.0.0"
+    "mocha": "^9.0.1"
   },
   "dependencies": {
     "@pown/async": "^2.17.0",
