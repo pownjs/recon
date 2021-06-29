@@ -11,7 +11,7 @@ const nosqlDatabases = {
     ArangoDB: [8529],
     Cassandra: [7000, 7001, 9042],
     CouchDB: [5984],
-    Elasticsearch: [9200, 9300],
+    Elasticsearch: [9200, 9243, 9300],
     MongoDB: [27017, 27018, 27019, 28017],
     Neo4J: [7473, 7474],
     Redis: [6379],
