@@ -38,7 +38,14 @@ exports.yargs = {
             let json
 
             try {
-                json = JSON.parse(data)
+                json = JSON.parse(data, (key, value) => {
+                    if (value && value.type === 'Buffer' && Array.isArray(value.data)) {
+                        return Buffer.from(value.data)
+                    }
+                    else {
+                        return value
+                    }
+                })
             }
             catch (e) {
                 console.error(`Cannot unpack file ${file}`)

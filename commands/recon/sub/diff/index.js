@@ -41,7 +41,14 @@ exports.yargs = {
         let fileAJSON
 
         try {
-            fileAJSON = JSON.parse(fileAData)
+            fileAJSON = JSON.parse(fileAData, (key, value) => {
+                if (value && value.type === 'Buffer' && Array.isArray(value.data)) {
+                    return Buffer.from(value.data)
+                }
+                else {
+                    return value
+                }
+            })
         }
         catch (e) {
             console.error(`Cannot unpack file ${fileA}`)
@@ -79,7 +86,14 @@ exports.yargs = {
         let fileBJSON
 
         try {
-            fileBJSON = JSON.parse(fileBData)
+            fileBJSON = JSON.parse(fileBData, (key, value) => {
+                if (value && value.type === 'Buffer' && Array.isArray(value.data)) {
+                    return Buffer.from(value.data)
+                }
+                else {
+                    return value
+                }
+            })
         }
         catch (e) {
             console.error(`Cannot parse file ${fileB}`)
