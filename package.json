@@ -35,9 +35,9 @@
   "devDependencies": {
     "@pown/script": "^2.21.0",
     "@pown/shell": "^2.6.0",
-    "aws-sdk": "^2.936.0",
+    "aws-sdk": "^2.944.0",
     "memcached": "^2.2.2",
-    "mocha": "^9.0.1"
+    "mocha": "^9.0.2"
   },
   "dependencies": {
     "@pown/async": "^2.17.0",
@@ -59,7 +59,7 @@
     "static-eval": "^2.1.0",
     "stream-chain": "^2.2.4",
     "stream-csv-as-json": "^1.0.4",
-    "stream-json": "^1.7.1",
+    "stream-json": "^1.7.2",
     "uuid": "^8.3.2"
   },
   "pown": {
