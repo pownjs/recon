@@ -1,5 +1,5 @@
 exports.yargs = {
-    command: 'summary',
+    command: 'summary [options]',
     describe: 'Create a summary',
     aliases: ['y'],
 
@@ -16,14 +16,14 @@ exports.yargs = {
             options: ['type', 'group']
         })
 
-        yargs.options('select', {
+        yargs.option('select', {
             alias: 's',
             type: 'string',
             describe: 'Select graph. Nodes will be added and linked only if graph contains at least one node',
             default: ''
         })
 
-        yargs.options('traverse', {
+        yargs.option('traverse', {
             alias: 'v',
             type: 'string',
             describe: 'Traverse graph. Nodes will be added and linked only if graph contains at least one node',
@@ -50,10 +50,59 @@ exports.yargs = {
             alias: ['size'],
             default: 10
         })
+
+        yargs.option('sample-title', {
+            description: 'The summary sample title',
+            type: 'string',
+            alias: ['title'],
+            default: ''
+        })
+
+        yargs.option('expand-types', {
+            description: 'Expand types',
+            type: 'array',
+            alias: ['expand', 'expand-type'],
+            default: []
+        })
+
+        yargs.option('highlights-title', {
+            description: 'Print highlights title',
+            type: 'string',
+            alias: ['highlight-title'],
+            default: ''
+        })
+
+        yargs.option('highlights-select', {
+            description: 'Select highlights',
+            type: 'string',
+            alias: ['highlight-select'],
+            default: ''
+        })
+
+        yargs.option('highlights-traverse', {
+            description: 'Traverse highlights',
+            type: 'string',
+            alias: ['highlight-traverse'],
+            default: ''
+        })
+
+        yargs.option('highlights-sort-field', {
+            description: 'Sort highlights by field',
+            type: 'string',
+            alias: ['highlight-sort-field'],
+            default: ''
+        })
+
+        yargs.option('highlights-max-size', {
+            description: 'Max size for the highlights',
+            type: 'number',
+            alias: ['highlight-max-size'],
+            default: Infinity
+        })
     },
 
     handler: async(argv) => {
-        const { kind, select, traverse, summaryFile, summaryType, sampleSize } = argv
+        const { kind, select, traverse, summaryFile, summaryType, sampleSize, sampleTitle, expandTypes, highlightsTitle, highlightsSelect, highlightsTraverse, highlightsSortField, highlightsMaxSize } = argv
 
         const { recon } = require('../../lib/globals/recon')
 
@@ -132,9 +181,68 @@ exports.yargs = {
                 default:
                     const lines = []
 
-                    Object.entries(tree).forEach(([kind, { total, sample }]) => {
-                        lines.push(`${kind} (${total}): ${sample.join(', ')}${total > sample.length ? '...' : ''}`)
-                    })
+                    let highlightsCollection
+
+                    if (highlightsSelect) {
+                        highlightsCollection = recon.cy.filter(highlightsSelect)
+                    }
+                    else
+                    if (highlightsTraverse) {
+                        highlightsCollection = recon.cy.traverse(highlightsTraverse)
+                    }
+                    else {
+                        highlightsCollection = recon.cy.collection()
+                    }
+
+                    if (highlightsSortField) {
+                        highlightsCollection = highlightsCollection.sort((nodeA, nodeB) => {
+                            return nodeB.data('props')[highlightsSortField] - nodeA.data('props')[highlightsSortField] // TODO: make it more generic by using . notation
+                        })
+                    }
+
+                    highlightsCollection = highlightsCollection.slice(0, highlightsMaxSize)
+
+                    if (highlightsCollection.length) {
+                        if (highlightsTitle) {
+                            lines.push(`${highlightsTitle}\n`)
+                        }
+
+                        highlightsCollection.forEach((node) => {
+                            lines.push(`${node.data('label')}`)
+                        })
+
+                        lines.push('')
+                    }
+
+                    for (let i = 0; i < expandTypes.length; i++) {
+                        expandTypes[i] = expandTypes[0].split(/,/g).map(i => i.trim()).filter(i => i)
+                    }
+
+                    const allItems = Object.entries(tree)
+                    const expandItems = allItems.filter(([kind]) => expandTypes.some(et => et.includes(kind)))
+                    const filteredItems = allItems.filter(([kind]) => expandTypes.every(et => !et.includes(kind)))
+
+                    if (expandItems.length) {
+                        expandItems.forEach(([kind, { sample }]) => {
+                            lines.push(`${kind.replace(/^(\w)/, (g) => g.toUpperCase())}s\n`)
+
+                            sample.forEach((item) => {
+                                lines.push(`${item}`)
+                            })
+
+                            lines.push('')
+                        })
+                    }
+
+                    if (filteredItems.length) {
+                        if (sampleTitle) {
+                            lines.push(`${sampleTitle}\n`)
+                        }
+
+                        filteredItems.forEach(([kind, { total, sample }]) => {
+                            lines.push(`${kind} (${total}): ${sample.join(', ')}${total > sample.length ? '...' : ''}`)
+                        })
+                    }
 
                     data = lines.join('\n') + '\n'
 
