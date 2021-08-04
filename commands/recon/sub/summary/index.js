@@ -200,15 +200,15 @@ exports.yargs = {
                         })
                     }
 
-                    highlightsCollection = highlightsCollection.slice(0, highlightsMaxSize)
+                    highlightsCollection = Array.from(new Set(highlightsCollection.map(node => node.data('label')))).slice(0, highlightsMaxSize)
 
                     if (highlightsCollection.length) {
                         if (highlightsTitle) {
                             lines.push(`${highlightsTitle}\n`)
                         }
 
-                        highlightsCollection.forEach((node) => {
-                            lines.push(`${node.data('label')}`)
+                        highlightsCollection.forEach((label) => {
+                            lines.push(`${label}`)
                         })
 
                         lines.push('')
