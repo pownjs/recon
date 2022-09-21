@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@pown/async": "^2.18.1",
-    "@pown/cli": "^2.40.0",
+    "@pown/cli": "^2.40.1",
     "@pown/connect": "^2.2.1",
     "@pown/engine": "^2.8.0",
     "@pown/file": "^2.1.0",
