@@ -3,7 +3,7 @@ exports.yargs = {
     describe: 'Perform inline transformation',
     aliases: ['t'],
 
-    builder: (yargs) => {
+    builder: async (yargs) => {
         const { installReadOptions, installWriteOptions, handleReadOptions, handleWriteOptions } = require('../../lib/handlers/file')
 
         installReadOptions(yargs)
@@ -11,7 +11,7 @@ exports.yargs = {
 
         const { getCompoundTransforms } = require('./transforms')
 
-        const compoundTransforms = getCompoundTransforms()
+        const compoundTransforms = await getCompoundTransforms()
 
         const auto = {
             aliases: ['a'],
@@ -228,7 +228,7 @@ exports.yargs = {
                     })
                 },
 
-                handler: async(argv) => {
+                handler: async (argv) => {
                     const { transformConcurrency, nodeConcurrency, transformInWorker, transformTimeout, load, select, traverse, noise, group, autoGroup, autoWeight, maxNodesWarn, maxNodesCap, extract, extractPrefix, extractSuffix, cacheMemcachedServer, cacheDynamodbTable, cacheTtl, cacheKeyPrefix, cacheKeySuffix, nodeType, nodes, ...rest } = argv
 
                     const { getCache } = require('../../lib/globals/cache')

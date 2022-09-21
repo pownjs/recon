@@ -3,7 +3,7 @@ const { getPreferencesSync } = require('@pown/preferences')
 
 const { buildRemoteTransforms } = require('../../../../lib/remote')
 
-const getCompoundTransforms = () => {
+const getCompoundTransforms = async () => {
     const { remotes = {} } = getPreferencesSync('recon')
 
     const remoteTransforms = buildRemoteTransforms(remotes)
@@ -13,14 +13,16 @@ const getCompoundTransforms = () => {
     return {
         ...remoteTransforms,
 
-        ...Object.assign({}, ...loadableTransforms.map((module) => {
+        ...Object.assign({}, ...(await Promise.all(loadableTransforms.map(async (module) => {
             let transforms
 
             try {
                 transforms = require(module)
             }
             catch (e) {
-                console.error(e)
+                if (e.code === 'ERR_REQUIRE_ESM' || e.message === 'Cannot use import statement outside a module') {
+                    return await import(module)
+                }
 
                 return {}
             }
@@ -37,7 +39,7 @@ const getCompoundTransforms = () => {
                     }
                 }
             }))
-        }))
+        }))))
     }
 }
 
