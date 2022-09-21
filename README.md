@@ -164,10 +164,10 @@ Commands:
   pown-cli recon transform auto [options] <nodes...>                          Select the most appropriate methods of transformation
 
 Options:
-  --version    Show version number  [boolean]
-  --help       Show help  [boolean]
-  --read, -r   Read file  [string]
-  --write, -w  Write file  [string]
+      --version  Show version number  [boolean]
+      --help     Show help  [boolean]
+  -r, --read     Read file  [string]
+  -w, --write    Write file  [string]
 ```
 
 ## Preview
